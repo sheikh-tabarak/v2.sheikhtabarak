@@ -59,8 +59,6 @@ export default function Login() {
           </LoginContext.Provider>
         // Signed in
         const user = userCredential.user;
-        // window.open("/dashboard", "_self", null);
-        // navigator()
         navigate("/dashboard", "_")
 
 
