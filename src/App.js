@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import {
-  Navigate,
   BrowserRouter,
   Routes,
   Route,
@@ -8,27 +7,24 @@ import {
   Redirect,
 } from "react-router-dom";
 import "./App.css";
+import "firebase/auth";
 import Login from "./auth/Login";
 import Dashboard from "./admin/Dashboard";
-
-import { initializeApp } from "firebase/app";
+import {initializeApp} from "firebase/app";
+// import firebase from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import Home from "./user/home";
 import Portfolio from "./user/pages/portfolio";
 import { getAuth } from "firebase/auth";
-import { Firestore } from "firebase/firestore";
+// import { Firestore } from "firebase/firestore";
+import { useDispatch, useSelector } from "react-redux/";
+import store from "./store/store";
 
 // import Practice from "./Practice";
 
-const firebaseConfig = {
-  // apiKey: process.env.REACT_APP_API_KEY,
-  // authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-  // projectId: process.env.REACT_APP_PROJECT_ID,
-  // storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-  // messagingSenderId: process.env.REACT_APP_MESSAGE_SENDER_ID,
-  // appId: process.env.REACT_APP_APP_ID,
-  // measurementId: process.env.REACT_APP_MEASURMENT_ID,
+export const authContextBro = createContext("" );
 
+const firebaseConfig = {
   apiKey: "AIzaSyCbtqO_Bjp2k8yT5NL86KTWXLg6-BoS5V8",
   authDomain: "sheikhtabarak-1019.firebaseapp.com",
   projectId: "sheikhtabarak-1019",
@@ -43,70 +39,24 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
 function App() {
-  // const [authenticated, setauthenticated] = useState(null);
-  // useEffect(async () => {
-  //   const loggedInUser = await getAuth().currentUser.isLoggedIn;
-  //   console.log(getAuth().currentUser.isLoggedIn);
-  //   if (loggedInUser === undefined || loggedInUser === null) {
-  //     setauthenticated(loggedInUser);
-  //   }
-  // }, []);
+  const [name, setname] = useState("test");
+  const isLogin = useSelector((state) => state.checkLoginApp);
 
-  // console.log(getAuth().currentUser.isLoggedIn)
-
-  // const navigate = useNavigate();
-  // const [isLoggedIn, setisLoggedIn] = useState(getAuth().currentUser.isLoggedIn);
-
-  // useEffect(() => {
-  //   // Checking if user is not loggedIn
-  //   if (!isLoggedIn) {
-  //     window.open("/login")
-
-  //     // navigate("/login");
-  //   } else {
-  // //    navigate("/login");
-  //   }
-  // },
-  // )
-  //[navigate, isLoggedIn]);
-
-  // if (!authenticated) {
-  //   return <Login />;
-  // } else {
-
-//   if(){
-
-//     return (
-//      <Navigate replace={"/*"} to={"/login"} />
-// // {/* <Redirect from="/*" to="/login" noThrow /> */}
-//     )
-        
-//   }
-
-//   else{
-
-//     return (<BrowserRouter>
-//     <Routes>
-//       <Route  path="/*" element={<Home />} />
-//       <Route path="/login/*" element={<Login />} />
-//       <Route path="/dashboard/*" element={<Dashboard />}></Route>
-//     </Routes>
-//   </BrowserRouter>)
-
-//   }
-    return (
-
-    
-
-     
+  return (
+    <authContextBro.Provider
+      value={getAuth().isLogin ? { islogin: "true" } : { islogin: "false" }}
+    >
       <BrowserRouter>
         <Routes>
-          <Route  path="/*" element={<Home />} />
-          <Route path="/login/*" element={<Login />} />
-          <Route path="/dashboard/*" element={<Dashboard />}></Route>
+          <Route path="/*" element={<Home />} />
+          <Route path="/login/" element={<Login />} />
+          <Route path="/dashboard/*" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
-    );
-  }
-//}
+    </authContextBro.Provider>
+  );
+
+
+}
+
 export default App;

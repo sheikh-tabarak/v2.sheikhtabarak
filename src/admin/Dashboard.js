@@ -1,14 +1,59 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import logo from "../assests/logo/logo.png";
 import Practice from "../Practice";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import PortfolioList from "./pages/PortfolioList";
-import { getAuth } from "firebase/auth";
+import { getAuth, updateCurrentUser, updateProfile } from "firebase/auth";
+// import * as firebase from 'firebase/app'
 import Loading from "../loading";
-import { LoginContext } from "../auth/Login";
+import { useDispatch, useSelector  } from "react-redux/";
+import { logIn } from "../store/actions";
+import AllProjects from "./projects/allProjects";
+import ManageProjects from "./projects/ManageProjects";
+
+
 
 export default function Dashboard() {
-  const navigate = useNavigate();
+
+
+// const nameuserbrowala = useContext(authContextBro);
+const navigate = useNavigate();
+
+
+const [User, setUser] = useState({
+  image:"",
+  username:"",
+  email:"",
+});
+
+// Initialize user state
+
+useEffect(() => {
+  // Set up an observer to listen for  authentication state changes
+ const unsubscribe = getAuth().onAuthStateChanged((user) => {
+    if (user) {
+      // User is signed in
+      setUser({
+        image:getAuth().photoURL,
+        username:getAuth().currentUser.displayName,
+        email: getAuth().currentUser.email
+      })
+
+    } else {
+      // User is signed out 
+            navigate("/login")
+    }
+  });
+
+  // Clean up the observer when the component unmounts
+  return () => unsubscribe();
+}, []);
+
+
+  // const thisisDispatcher = useDispatch();
+
+  // const isLogin = useSelector((state)=>state.checkLoginApp);
+
 
   const [isLoading, setisLoading] = useState(false);
 
@@ -20,6 +65,8 @@ export default function Dashboard() {
     profile: false,
     language: false,
   });
+
+
 
   async function logOut() {
     setisLoading(true);
@@ -74,6 +121,8 @@ export default function Dashboard() {
   }
 
   function profileToogle() {
+    updateProfile(getAuth().currentUser,{photoURL:"https://sheikhtabarak.me/wp-content/uploads/2023/01/Purple-Blue-Pink-Yellow-Modern-Photo-Linked-in-Profile-Picture-3-1.png"})
+
     Toggled.profile === true
       ? setToggled({
           profile: false,
@@ -93,7 +142,7 @@ export default function Dashboard() {
         });
   }
 
-  const email = useContext(LoginContext);
+  // const email = useContext(LoginContext);
 
   return isLoading === true ? (
     <Loading />
@@ -676,7 +725,7 @@ export default function Dashboard() {
               <img
                 onClick={profileToogle}
                 className="w-8 h-8 rounded-full"
-                src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png"
+                src={"https://fiverr-res.cloudinary.com/image/upload/t_profile_original,q_auto,f_auto/v1/attachments/profile/photo/66d7a3b4f278ce7c2bafd581ee9b03d7-1672492030525/41385ffb-bf1a-4097-9104-d71d49557b24.png"}
                 alt="user photo"
               />
             </button>
@@ -691,10 +740,11 @@ export default function Dashboard() {
             >
               <div className="py-3 px-4">
                 <span className="block text-sm font-semibold text-gray-900 dark:text-white">
-                  Muhammad Tabarak
+                 {User.username}
+
                 </span>
                 <span className="block text-sm text-gray-900 truncate dark:text-white">
-                  {email}
+                  {User.email}
                 </span>
               </div>
               <ul
@@ -909,7 +959,7 @@ export default function Dashboard() {
                     />
                   </svg>
                   <span className="flex-1 ml-3 text-left whitespace-nowrap">
-                    Portfolio List
+                    Project List
                   </span>
                 </button>
               </a>
@@ -924,12 +974,12 @@ export default function Dashboard() {
               >
                 <svg
                   aria-hidden="true"
-                  class="w-6 h-6"
+                  className="w-6 h-6"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -937,7 +987,7 @@ export default function Dashboard() {
                 </svg>
 
                 <span className="flex-1 ml-3 text-left whitespace-nowrap">
-                  Projects
+                 Projects
                 </span>
               </button>
               <ul
@@ -950,7 +1000,7 @@ export default function Dashboard() {
               >
                 <li>
                   <a
-                    href="#"
+                    href="/dashboard/projects"
                     className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >
                     All projects
@@ -958,7 +1008,7 @@ export default function Dashboard() {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="/dashboard/projects/new-project"
                     className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >
                     Create New Project
@@ -1113,9 +1163,12 @@ export default function Dashboard() {
       <main className="p-4 md:ml-64 h-auto pt-20">
         
         <Routes>
-          {/* <Navigate replace={"/"} to={"/overview"}></Navigate> */}
+         
           <Route path="/" element={<Practice />}></Route>
           <Route path="/portfolio-list" element={<PortfolioList />}></Route>
+          <Route path="/projects/*" element={<ManageProjects/>}></Route>
+
+
         </Routes>
 
         {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
