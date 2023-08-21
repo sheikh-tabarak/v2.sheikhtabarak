@@ -24,6 +24,17 @@ export const increaseNumber = ()=>{
    
 }
 
+export const changePageTitle=(title)=>{
+
+    return{
+        type:"CHANGE",  
+        title:title,
+    
+     
+   }
+   
+}
+
 export const decreaseNumber = ()=>{
 
     return {

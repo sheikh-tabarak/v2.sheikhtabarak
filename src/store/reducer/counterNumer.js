@@ -1,16 +1,13 @@
-const initialState=20;
+const initialState=0;
 
-const changeNumber=(state=initialState, action)=>{
+const changePageTitle=(state=initialState, action)=>{
+
+
 
     switch (action.type) {
-        case "INCREMENT" : return state+1
-
-        case "DECREMENT": return state-1
-            
-    
+        case "CHANGE" : return action.title
         default: return state
     }
-
 }
 
-export default changeNumber;
+export default changePageTitle;

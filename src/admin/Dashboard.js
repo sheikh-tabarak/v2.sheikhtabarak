@@ -1022,6 +1022,15 @@ useEffect(() => {
                     Categories
                   </a>
                 </li>
+
+                <li>
+                  <a
+                    href="/dashboard/projects/technologies"
+                    className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  >
+                    Technologies
+                  </a>
+                </li>
               </ul>
             </li>
           </ul>
@@ -1167,6 +1176,7 @@ useEffect(() => {
           <Route path="/" element={<Practice />}></Route>
           <Route path="/portfolio-list" element={<PortfolioList />}></Route>
           <Route path="/projects/*" element={<ManageProjects/>}></Route>
+
 
 
         </Routes>

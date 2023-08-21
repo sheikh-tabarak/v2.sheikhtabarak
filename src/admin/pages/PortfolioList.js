@@ -1,16 +1,16 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { increaseNumber, logIn } from '../../store/actions';
+import { changePageTitle, increaseNumber, logIn } from '../../store/actions';
 
 export default function PortfolioList() {
+
+  document.title = 'Portfolio List | Dashboard'
+
 
   // const myvalue = useSelector((value)={
     
    const thisisDispatcher = useDispatch();
-
-  // const isLogin = useSelector((state)=>state.checkLoginApp);
-
-  const isLogin = useSelector((state)=>state.changeNumber);
+  const isLogin = useSelector((state)=>state.changePageTitle);
 
 
 
@@ -28,7 +28,7 @@ export default function PortfolioList() {
       </div>
 
       <button
-      onClick={()=>{thisisDispatcher(increaseNumber())}}
+      onClick={()=>{thisisDispatcher(changePageTitle("New Oage"))}}
       >
       
         Change above

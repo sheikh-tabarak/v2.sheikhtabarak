@@ -1,11 +1,10 @@
 import checkLoginApp from "./auth";
-import changeNumber from "./counterNumer";
+import changePageTitle from "./counterNumer";
 import { combineReducers } from "redux";
 
 const rootReducer = combineReducers({
-    changeNumber,
+    changePageTitle,
     checkLoginApp,
-    
 })
 
 export default rootReducer;

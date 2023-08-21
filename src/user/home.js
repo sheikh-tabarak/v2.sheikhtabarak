@@ -14,15 +14,6 @@ export default function Home() {
 
   const isLogin = useSelector((state)=>state.changeNumber);
 
-  // const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   // const loggedInUser = localStorage.getItem("authenticated");
-  //   if (!isLogin) {
-  //     navigate("/login")
-  //   }
-  // }, []);
-
 
   return (
 

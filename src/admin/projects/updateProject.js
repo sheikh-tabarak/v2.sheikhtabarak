@@ -4,28 +4,26 @@ import Project from "../../models/ProjectsClass";
 import Datepicker from "react-tailwindcss-datepicker";
 import Loading from "../../loading";
 import { useNavigate } from "react-router-dom";
+// import { startAt } from "firebase/firestore";
 // import {Image} from ""
 
 // import {writeUserData} from '../../models/realtime_project'
 
-export default function CreateNewProject() {
-  
-    document.title = 'Create New Project | Dashboard'
+export default function UpdateProject(props) {
   
 
-  // const thisisDispatcher = useDispatch();
 
-  // thisisDispatcher(changePageTitle("Create New Product"));
-
-  const navigate = useNavigate();
+    document.title = 'Update Project | Dashboard'
+  
+  const navigates = useNavigate();
 
   const [isLoading, setisLoading] = useState(false);
 
 
 
   const [value, setValue] = useState({
-    startDate: "",
-    endDate: "",
+    startDate: props.startDate,
+    endDate: props.endDate,
   });
 
   const handleValueChange = (newValue) => {
@@ -46,16 +44,16 @@ export default function CreateNewProject() {
   };
 
   const [NewProject, setNewProject] = useState({
-    name: "",
-    desc: "",
-    budget: "",
-    clientName: "",
-    startDate:"",
-    endDate: "",
+    name: props.name,
+    desc: props.desc,
+    budget: props.budget,
+    clientName: props.clientName,
+    startDate: props.startDate,
+    endDate: props.endDate,
     featureImage:
-    "",
-    link: "",
-    builtsin:"" ,
+    props.featureImage,
+    link: props.link,
+    builtsin: props.builtsin,
   });
 
   useEffect(() => {
@@ -103,7 +101,7 @@ export default function CreateNewProject() {
 
 
 
-    navigate("/dashboard/projects")
+    navigates("/dashboard/projects")
     // navigate(0)
     
 
@@ -131,7 +129,7 @@ export default function CreateNewProject() {
     <section className="bg-white dark:bg-gray-900">
       <div className="py-8 px-4 mx-10 max-w-2xl lg:py-10">
         <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
-         Add a new Project
+          Update the Project
         </h2>
 
         <label
@@ -165,6 +163,7 @@ export default function CreateNewProject() {
             </p>
           </div>
           <input
+          value={NewProject.featureImage}
             onChange={(e) => {
               console.log(e.target.files.name);
               console.log(e.target.value);
@@ -212,6 +211,7 @@ export default function CreateNewProject() {
                 Project Name
               </label>
               <input
+              value={NewProject.name}
                 onChange={(e) => {
                   setNewProject({
                     name: e.target.value,
@@ -242,6 +242,7 @@ export default function CreateNewProject() {
                 Description
               </label>
               <textarea
+              value={NewProject.desc}
                 onChange={(e) => {
                   setNewProject({
                     name: NewProject.name,
@@ -270,6 +271,7 @@ export default function CreateNewProject() {
                 Client Name
               </label>
               <input
+              value={NewProject.clientName}
               onChange={(e)=>{
                 setNewProject({
                   name: NewProject.name,
@@ -297,8 +299,10 @@ export default function CreateNewProject() {
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Budget
+
               </label>
               <input
+              value={NewProject.budget}
                 onChange={(e) => {
                   setNewProject({
                     name: NewProject.name,
@@ -328,6 +332,7 @@ export default function CreateNewProject() {
                 Builts in
               </label>
               <select
+              value={NewProject.builtsin}
                 onChange={(e) => {
                   setNewProject({
                     name: NewProject.name,
@@ -368,6 +373,7 @@ export default function CreateNewProject() {
                 Project link
               </label>
               <input
+              value={NewProject.link}
                 onChange={(e) => {
                   setNewProject({
                     name: NewProject.name,
@@ -391,6 +397,7 @@ export default function CreateNewProject() {
             </div>
 
             <Datepicker
+
               containerClassName="relative sm:col-span-2"
               toggleClassName="absolute bg-blue-300 rounded-r-lg text-white right-0 h-full px-3 text-gray-400 focus:outline-none disabled:opacity-40 disabled:cursor-not-allowed sheikhtabarak-btn-main"
               inputClassName="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600  w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
@@ -401,18 +408,19 @@ export default function CreateNewProject() {
               placeholder={"Start Date to End Date"}
               showFooter={true}
               separator={"to"}
+              // value={value}
               value={value}
               onChange={handleValueChange}
             />
           </div>
-          <button
-            // onClick={()=>addData}
-            type="submit"
-            className="mr-10 sheikhtabarak-btn-main inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800"
-          >
-            Add Project
-          </button>
-      
+         <button
+          //   onClick={()=>addData}
+          //  type="submit"
+          className=" sheikhtabarak-btn-main inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800"
+        >
+          Update Project
+        </button>
+     
         </form>
       </div>
     </section>
