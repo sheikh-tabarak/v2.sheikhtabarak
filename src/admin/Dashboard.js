@@ -1,59 +1,51 @@
 import React, { useContext, useEffect, useState } from "react";
 import logo from "../assests/logo/logo.png";
 import Practice from "../Practice";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate, Link } from "react-router-dom";
 import PortfolioList from "./pages/PortfolioList";
 import { getAuth, updateCurrentUser, updateProfile } from "firebase/auth";
 // import * as firebase from 'firebase/app'
 import Loading from "../loading";
-import { useDispatch, useSelector  } from "react-redux/";
+import { useDispatch, useSelector } from "react-redux/";
 import { logIn } from "../store/actions";
 import AllProjects from "./projects/allProjects";
 import ManageProjects from "./projects/ManageProjects";
 
-
-
 export default function Dashboard() {
+  // const nameuserbrowala = useContext(authContextBro);
+  const navigate = useNavigate();
 
-
-// const nameuserbrowala = useContext(authContextBro);
-const navigate = useNavigate();
-
-
-const [User, setUser] = useState({
-  image:"",
-  username:"",
-  email:"",
-});
-
-// Initialize user state
-
-useEffect(() => {
-  // Set up an observer to listen for  authentication state changes
- const unsubscribe = getAuth().onAuthStateChanged((user) => {
-    if (user) {
-      // User is signed in
-      setUser({
-        image:getAuth().photoURL,
-        username:getAuth().currentUser.displayName,
-        email: getAuth().currentUser.email
-      })
-
-    } else {
-      // User is signed out 
-            navigate("/login")
-    }
+  const [User, setUser] = useState({
+    image: "",
+    username: "",
+    email: "",
   });
 
-  // Clean up the observer when the component unmounts
-  return () => unsubscribe();
-}, []);
+  // Initialize user state
 
+  useEffect(() => {
+    // Set up an observer to listen for  authentication state changes
+    const unsubscribe = getAuth().onAuthStateChanged((user) => {
+      if (user) {
+        // User is signed in
+        setUser({
+          image: getAuth().photoURL,
+          username: getAuth().currentUser.displayName,
+          email: getAuth().currentUser.email,
+        });
+      } else {
+        // User is signed out
+        navigate("/login");
+      }
+    });
+
+    // Clean up the observer when the component unmounts
+    return () => unsubscribe();
+  }, []);
 
   // const thisisDispatcher = useDispatch();
 
   // const isLogin = useSelector((state)=>state.checkLoginApp);
-
 
   const [isLoading, setisLoading] = useState(false);
 
@@ -66,14 +58,12 @@ useEffect(() => {
     language: false,
   });
 
-
-
   async function logOut() {
     setisLoading(true);
 
     await getAuth().signOut();
 
-    navigate("/login");
+    // navigate("/login");
 
     setisLoading(false);
 
@@ -121,7 +111,10 @@ useEffect(() => {
   }
 
   function profileToogle() {
-    updateProfile(getAuth().currentUser,{photoURL:"https://sheikhtabarak.me/wp-content/uploads/2023/01/Purple-Blue-Pink-Yellow-Modern-Photo-Linked-in-Profile-Picture-3-1.png"})
+    updateProfile(getAuth().currentUser, {
+      photoURL:
+        "https://sheikhtabarak.me/wp-content/uploads/2023/01/Purple-Blue-Pink-Yellow-Modern-Photo-Linked-in-Profile-Picture-3-1.png",
+    });
 
     Toggled.profile === true
       ? setToggled({
@@ -725,7 +718,9 @@ useEffect(() => {
               <img
                 onClick={profileToogle}
                 className="w-8 h-8 rounded-full"
-                src={"https://fiverr-res.cloudinary.com/image/upload/t_profile_original,q_auto,f_auto/v1/attachments/profile/photo/66d7a3b4f278ce7c2bafd581ee9b03d7-1672492030525/41385ffb-bf1a-4097-9104-d71d49557b24.png"}
+                src={
+                  "https://fiverr-res.cloudinary.com/image/upload/t_profile_original,q_auto,f_auto/v1/attachments/profile/photo/66d7a3b4f278ce7c2bafd581ee9b03d7-1672492030525/41385ffb-bf1a-4097-9104-d71d49557b24.png"
+                }
                 alt="user photo"
               />
             </button>
@@ -740,8 +735,7 @@ useEffect(() => {
             >
               <div className="py-3 px-4">
                 <span className="block text-sm font-semibold text-gray-900 dark:text-white">
-                 {User.username}
-
+                  {User.username}
                 </span>
                 <span className="block text-sm text-gray-900 truncate dark:text-white">
                   {User.email}
@@ -908,19 +902,13 @@ useEffect(() => {
                 href="/"
                 target="_blank"
                 className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-
-
-
-              </a>
-
-
+              ></a>
             </li>
 
-
             <li>
-              <a
-                href="/"
+              <Link to={"/"}>
+               <a
+                // href="/"
                 target="_blank"
                 className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
@@ -936,9 +924,11 @@ useEffect(() => {
 
                 <span className="ml-3">Visit site</span>
               </a>
+              </Link>
+             
             </li>
             <li>
-              <a href="/dashboard/portfolio-list">
+              <Link to={"/dashboard/portfolio-list"}>
                 <button
                   type="button"
                   className="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
@@ -962,7 +952,7 @@ useEffect(() => {
                     Project List
                   </span>
                 </button>
-              </a>
+              </Link>
             </li>
             <li>
               <button
@@ -987,7 +977,7 @@ useEffect(() => {
                 </svg>
 
                 <span className="flex-1 ml-3 text-left whitespace-nowrap">
-                 Projects
+                  Projects
                 </span>
               </button>
               <ul
@@ -999,20 +989,24 @@ useEffect(() => {
                 }
               >
                 <li>
-                  <a
-                    href="/dashboard/projects"
-                    className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                  >
-                    All projects
-                  </a>
+                  <Link to={"/dashboard/projects"}>
+                    <a
+                      // href="/dashboard/projects"
+                      className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                    >
+                      All projects
+                    </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="/dashboard/projects/new-project"
-                    className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                  >
-                    Create New Project
-                  </a>
+                  <Link to={"/dashboard/projects/new-project"}>
+                    <a
+                      // href="/dashboard/projects/new-project"
+                      className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                    >
+                      Create New Project
+                    </a>
+                  </Link>
                 </li>
                 <li>
                   <a
@@ -1024,19 +1018,22 @@ useEffect(() => {
                 </li>
 
                 <li>
-                  <a
-                    href="/dashboard/projects/technologies"
-                    className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                  >
-                    Technologies
-                  </a>
+                  <Link to={"/dashboard/projects/technologies"}>
+                    <a
+                      // href="/dashboard/projects/technologies"
+                      className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                    >
+                      Technologies
+                    </a>
+                  </Link>
                 </li>
               </ul>
             </li>
           </ul>
           <ul className="pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700">
             <li>
-              <a
+              <Link to={"/login"}>
+               <a
                 href="#"
                 onClick={logOut}
                 className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
@@ -1059,6 +1056,8 @@ useEffect(() => {
 
                 <span className="ml-3">Logout</span>
               </a>
+              </Link>
+             
             </li>
           </ul>
         </div>
@@ -1089,7 +1088,7 @@ useEffect(() => {
               className="text-gray-400 hover:text-gray-900 dark:hover:text-white"
             >
               <svg
-                 className="w-5 h-5"
+                className="w-5 h-5"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -1104,7 +1103,7 @@ useEffect(() => {
               className="text-gray-400 hover:text-gray-900 dark:hover:text-white"
             >
               <svg
-                  className="w-5 h-5"
+                className="w-5 h-5"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -1123,7 +1122,7 @@ useEffect(() => {
               className="text-gray-400 hover:text-gray-900 dark:hover:text-white"
             >
               <svg
-               className="w-5 h-5"
+                className="w-5 h-5"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -1170,15 +1169,10 @@ useEffect(() => {
       </aside>
 
       <main className="p-4 md:ml-64 h-auto pt-20">
-        
         <Routes>
-         
           <Route path="/" element={<Practice />}></Route>
           <Route path="/portfolio-list" element={<PortfolioList />}></Route>
-          <Route path="/projects/*" element={<ManageProjects/>}></Route>
-
-
-
+          <Route path="/projects/*" element={<ManageProjects />}></Route>
         </Routes>
 
         {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">

@@ -48,7 +48,6 @@ class Project {
       // const { id } = await addDoc(usersCollectionRef, {});
       await newProject
         .add(
-          // (value)=>{
           new Project(
             "",
             PTitle,
@@ -61,10 +60,10 @@ class Project {
             PLink,
             Builtsin
           ).toJson()
-          // }
         )
         .then(async (value) => {
           console.log(value.id);
+
           await firestore
             .collection("projects")
             .doc(value.id)
@@ -84,9 +83,6 @@ class Project {
             );
         });
 
-
-        
-
       // firestore.collection('projects').doc()
 
       console.log("Project added successfully.");
@@ -97,22 +93,44 @@ class Project {
 
   async delete(PId) {
     try {
-      await firestore
-        .collection("projects")
-        .doc(PId)
-        .delete();
+      await firestore.collection("projects").doc(PId).delete();
       console.log("Project deleted successfully.");
     } catch (error) {
       console.error("Error deleting project:", error);
     }
   }
 
-  async update() {
+  async update(
+    id,
+    PTitle,
+    PDescription,
+    PBudget,
+    PCientName,
+    PStartDate,
+    PEndDate,
+    PFeatureImg,
+    PLink,
+    Builtsin
+  ) {
     try {
-      await firestore
-        .collection("projects")
-        .doc(this.project_id)
-        .update(this.toJson());
+
+      console.log(id)
+      await firestore.collection("projects").doc(id).update(
+        new Project(
+          id,
+          PTitle,
+          PDescription,
+          PBudget,
+          PCientName,
+          PStartDate,
+          PEndDate,
+          PFeatureImg,
+          PLink,
+          Builtsin
+        ).toJson()
+
+        // new Project.toJson()
+      );
       console.log("Project updated successfully.");
     } catch (error) {
       console.error("Error updating project:", error);
@@ -130,6 +148,7 @@ class Project {
       date_to_end: this.date_to_end,
       feature_image: this.feature_image,
       project_link: this.project_link,
+      builtsin: this.builtsin,
     };
   }
 
@@ -143,7 +162,8 @@ class Project {
       data.date_to_start,
       data.date_to_end,
       data.feature_image,
-      data.project_link
+      data.project_link,
+      data.builtsin
     );
   }
 }

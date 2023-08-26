@@ -1,80 +1,75 @@
 import React, { useEffect, useState } from "react";
 import logo from "../../assests/logo/logo.png";
 import { useSelector } from "react-redux";
-import {useNavigate } from "react-router-dom";
-import {getAuth} from "firebase/auth";
-
-
-
+import { Link, useNavigate } from "react-router-dom";
+import { getAuth } from "firebase/auth";
 
 export default function Header() {
+  // const nameuserbrowala = useContext(authContextBro);
+  const navigate = useNavigate();
 
-  
-// const nameuserbrowala = useContext(authContextBro);
-const navigate = useNavigate();
-
-
-const [User, setUser] = useState({
-  image:"",
-  username:"",
-  email:"",
-});
+  const [User, setUser] = useState({
+    image: "",
+    username: "",
+    email: "",
+  });
 
   useEffect(() => {
     // Set up an observer to listen for  authentication state changes
-   const unsubscribe = getAuth().onAuthStateChanged((user) => {
+    const unsubscribe = getAuth().onAuthStateChanged((user) => {
       if (user) {
         // User is signed in
         setUser({
-          image:getAuth().photoURL,
-          username:getAuth().currentUser.displayName,
-          email: getAuth().currentUser.email
-        })
-  
+          image: getAuth().photoURL,
+          username: getAuth().currentUser.displayName,
+          email: getAuth().currentUser.email,
+        });
       } else {
-
-        // User is signed out 
-          //    navigate("/login")
+        // User is signed out
+        //    navigate("/login")
       }
     });
-  
+
     // Clean up the observer when the component unmounts
     return () => unsubscribe();
   }, []);
-  
 
-
-
-  const isLogin = useSelector((state)=>state.checkLoginApp);
+  const isLogin = useSelector((state) => state.checkLoginApp);
   return (
     <header>
       <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
         <div className="align-middle	 flex flex-wrap justify-between items-center mx-auto max-w-screen-xl ">
-         
-            <a
-              href="/"
-              className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
-            >
-              <img className="h-10 mr-2" src={logo} alt="logo" />
-            </a>
-        
+          <a
+            href="/"
+            className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
+          >
+            <img className="h-10 mr-2" src={logo} alt="logo" />
+          </a>
+
           <div className="flex items-center lg:order-2">
-           {User.username!=""?<a
-              href="/dashboard"
-              className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
-            >
-              Dashboard
-            </a>:<a
-              href="/login"
-              className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
-            >
-              Login
-            </a>} 
+            {User.username!=""?
+            
+            <Link to={"/dashboard"}>
+              <a className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">
+                Dashboard
+              </a>
+              </Link>
+              :
+              <Link to={"/login"}>
+              <a
+                href="/login"
+                className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+              >
+                Login
+              </a>
+            </Link>
+                  }
+            
             <a
               href="#"
               className="sheikhtabarak-btn-main text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
             >
-             Hire Now
+              Hire Now
             </a>
             <button
               data-collapse-toggle="mobile-menu-2"

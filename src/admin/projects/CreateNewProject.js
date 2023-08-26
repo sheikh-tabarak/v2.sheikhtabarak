@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Project from "../../models/ProjectsClass";
 import Datepicker from "react-tailwindcss-datepicker";
 import Loading from "../../loading";
-import { useNavigate } from "react-router-dom";
+// import { } from "react-router-dom";
 // import {Image} from ""
 
 // import {writeUserData} from '../../models/realtime_project'
@@ -17,7 +17,7 @@ export default function CreateNewProject() {
 
   // thisisDispatcher(changePageTitle("Create New Product"));
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const [isLoading, setisLoading] = useState(false);
 
@@ -103,7 +103,7 @@ export default function CreateNewProject() {
 
 
 
-    navigate("/dashboard/projects")
+    // navigate("/dashboard/projects")
     // navigate(0)
     
 
@@ -328,6 +328,7 @@ export default function CreateNewProject() {
                 Builts in
               </label>
               <select
+              value={NewProject.builtsin}
                 onChange={(e) => {
                   setNewProject({
                     name: NewProject.name,

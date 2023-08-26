@@ -75,9 +75,6 @@ export default function Login() {
         console.log("before"+isLogin)
 
       //  Dispatcher(logIn())
-
-        
-       
         navigate("/dashboard", "_");
         console.log("after"+isLogin)
       

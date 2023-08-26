@@ -1,29 +1,58 @@
-import React, { useEffect, useState } from "react";
+// import React, { useEffect, useState } from "react";
 // import writeUserData from "../../models/realtime_project";
-import Project from "../../models/ProjectsClass";
 import Datepicker from "react-tailwindcss-datepicker";
 import Loading from "../../loading";
-import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Project from "../../models/ProjectsClass";
+
 // import { startAt } from "firebase/firestore";
 // import {Image} from ""
 
 // import {writeUserData} from '../../models/realtime_project'
 
 export default function UpdateProject(props) {
-  
+  document.title = "Update Project | Dashboard";
 
+  // const navigates = useNavigate();
+  const location = useLocation();
 
-    document.title = 'Update Project | Dashboard'
-  
-  const navigates = useNavigate();
+  const [NewProject, setNewProject] = useState({
+    id: location.state.project[0],
+    name: location.state.project[1],
+    desc: location.state.project[2],
+    budget: location.state.project[3],
+    clientName: location.state.project[4],
+    startDate: location.state.project[5],
+    endDate: location.state.project[6],
+    featureImage: location.state.project[7],
+    link: location.state.project[8],
+    builtsin: location.state.project[9],
+  });
+
+  // location.key=location.state.test;
+  //  Itsid = "test" ;
+  //
+  // const [Itsid, setItsid] = useState(location.state.test);
+  // const Itsid;
+
+  // if (location.state.test!=="") {
+  //   // setItsid(location.state.test)
+
+  // }
+
+  console.log(location);
+  // console.log(Itsid);
+
+  // setItsid("")
+
+  // console.log(location.state.test);
 
   const [isLoading, setisLoading] = useState(false);
 
-
-
   const [value, setValue] = useState({
-    startDate: props.startDate,
-    endDate: props.endDate,
+    startDate: NewProject.startDate,
+    endDate: NewProject.endDate,
   });
 
   const handleValueChange = (newValue) => {
@@ -31,6 +60,7 @@ export default function UpdateProject(props) {
     setValue(newValue);
 
     setNewProject({
+      id: NewProject.id,
       name: NewProject.name,
       desc: NewProject.desc,
       budget: NewProject.budget,
@@ -43,18 +73,43 @@ export default function UpdateProject(props) {
     });
   };
 
-  const [NewProject, setNewProject] = useState({
-    name: props.name,
-    desc: props.desc,
-    budget: props.budget,
-    clientName: props.clientName,
-    startDate: props.startDate,
-    endDate: props.endDate,
-    featureImage:
-    props.featureImage,
-    link: props.link,
-    builtsin: props.builtsin,
-  });
+  async function UpdatethisProject (e) {
+
+    e.preventDefault();
+    setisLoading(true);
+
+    const UpdateProject = new Project();
+
+    await UpdateProject.update(
+      NewProject.id,
+      NewProject.name,
+      NewProject.desc,
+      NewProject.budget,
+      NewProject.clientName,
+      NewProject.startDate,
+      NewProject.endDate,
+      NewProject.featureImage,
+      NewProject.link,
+      NewProject.builtsin
+    );
+
+    setisLoading(false);
+  };
+
+  // const [NewProject, setNewProject] = useState({
+  //   //location.props.name);
+  //   name:props.name,
+  //   //props.name,
+  //   desc: props.desc,
+  //   budget: props.budget,
+  //   clientName: props.clientName,
+  //   startDate: props.startDate,
+  //   endDate: props.endDate,
+  //   featureImage:
+  //   props.featureImage,
+  //   link: props.link,
+  //   builtsin: props.builtsin,
+  // });
 
   useEffect(() => {
     console.log(
@@ -77,39 +132,44 @@ export default function UpdateProject(props) {
     );
   });
 
-  async function addData(e) {
-    e.preventDefault();
-    setisLoading(true);
-    
-    console.log("okay done");
-    const newProject=  new Project();
 
-    await  newProject.addProject(
-      NewProject.name,
-      NewProject.desc,
-      NewProject.budget,
-      NewProject.clientName,
-      NewProject.startDate,
-      NewProject.endDate,
-      NewProject.featureImage,
-      NewProject.link,
-      NewProject.builtsin
-    );
+  // useEffect(() => {
 
-  
-    setisLoading(false);
+  //   console.log(location.state.project[0]);
 
+  //   setProjecttoUpdate(new Project(location.state.project[1], location.state.project[2], "", 0, "", "", "", "", "", ""))
 
+  // });
 
-    navigates("/dashboard/projects")
-    // navigate(0)
-    
+  // async function addData(e) {
+  //   e.preventDefault();
+  //   setisLoading(true);
 
-    console.log("okay done after : " + newProject.client_name);
-  }
+  //   console.log("okay done");
+  //   const newProject=  new Project();
+
+  //   await  newProject.addProject(
+  //     NewProject.name,
+  //     NewProject.desc,
+  //     NewProject.budget,
+  //     NewProject.clientName,
+  //     NewProject.startDate,
+  //     NewProject.endDate,
+  //     NewProject.featureImage,
+  //     NewProject.link,
+  //     NewProject.builtsin
+  //   );
+
+  //   setisLoading(false);
+
+  //   navigates("/dashboard/projects")
+  //   // navigate(0)
+
+  //   console.log("okay done after : " + newProject.client_name);
+  // }
 
   // const setNameinState = (e) => {
-  //   setNewProject({ 
+  //   setNewProject({
   //     name: e.target.value,
   //     desc: NewProject.desc,
   //     budget: NewProject.budget,
@@ -121,15 +181,17 @@ export default function UpdateProject(props) {
   //   });
   // };
 
-  return (
+  // return (
+  //   <div>Test {location.state.id}</div>
+  // )
 
-    isLoading === true ? <Loading/>:
-
-
+  return isLoading === true ? (
+    <Loading />
+  ) : (
     <section className="bg-white dark:bg-gray-900">
       <div className="py-8 px-4 mx-10 max-w-2xl lg:py-10">
         <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
-          Update the Project
+          Update the Project {location.state.project[0]}
         </h2>
 
         <label
@@ -163,12 +225,11 @@ export default function UpdateProject(props) {
             </p>
           </div>
           <input
-          value={NewProject.featureImage}
-            onChange={(e) => {
-              console.log(e.target.files.name);
-              console.log(e.target.value);
+           
 
+            onSelect={(e) => {
               setNewProject({
+                id: NewProject.id,
                 name: NewProject.name,
                 desc: NewProject.desc,
                 budget: NewProject.budget,
@@ -180,28 +241,20 @@ export default function UpdateProject(props) {
                 builtsin: NewProject.builtsin,
               });
             }}
-            //  onSelect={(e)=>{
-
-            //   setNewProject({
-            //     name: NewProject.name,
-            //     desc: NewProject.desc,
-            //     budget: NewProject.budget,
-            //     clientName: NewProject.clientName,
-            //     startDate: NewProject.startDate,
-            //     endDate: NewProject.endDate,
-            //     featureImage: e.target.value,
-            //     link: NewProject.link,
-            //   });
-
-            // }
-            //  }
             id="dropzone-file"
             type="file"
             className="hidden"
           />
         </label>
 
-        <form onSubmit={addData}>
+        <form
+          onSubmit={UpdatethisProject
+           
+
+            
+            
+            }
+        >
           <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
             <div className="sm:col-span-2">
               <label
@@ -211,9 +264,10 @@ export default function UpdateProject(props) {
                 Project Name
               </label>
               <input
-              value={NewProject.name}
+                value={NewProject.projectname}
                 onChange={(e) => {
                   setNewProject({
+                    id: NewProject.id,
                     name: e.target.value,
                     desc: NewProject.desc,
                     budget: NewProject.budget,
@@ -242,9 +296,10 @@ export default function UpdateProject(props) {
                 Description
               </label>
               <textarea
-              value={NewProject.desc}
+                value={NewProject.desc}
                 onChange={(e) => {
                   setNewProject({
+                    id: NewProject.id,
                     name: NewProject.name,
                     desc: e.target.value,
                     budget: NewProject.budget,
@@ -271,20 +326,21 @@ export default function UpdateProject(props) {
                 Client Name
               </label>
               <input
-              value={NewProject.clientName}
-              onChange={(e)=>{
-                setNewProject({
-                  name: NewProject.name,
-                  desc: NewProject.desc,
-                  budget: NewProject.budget,
-                  clientName: e.target.value,
-                  startDate: NewProject.startDate,
-                  endDate: NewProject.endDate,
-                  featureImage: NewProject.featureImage,
-                  link: NewProject.link,
-                  builtsin: NewProject.builtsin,
-                });
-              }}
+                value={NewProject.clientName}
+                onChange={(e) => {
+                  setNewProject({
+                    id: NewProject.id,
+                    name: NewProject.name,
+                    desc: NewProject.desc,
+                    budget: NewProject.budget,
+                    clientName: e.target.value,
+                    startDate: NewProject.startDate,
+                    endDate: NewProject.endDate,
+                    featureImage: NewProject.featureImage,
+                    link: NewProject.link,
+                    builtsin: NewProject.builtsin,
+                  });
+                }}
                 type="text"
                 name="client"
                 id="client"
@@ -299,12 +355,12 @@ export default function UpdateProject(props) {
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Budget
-
               </label>
               <input
-              value={NewProject.budget}
+                value={NewProject.budget}
                 onChange={(e) => {
                   setNewProject({
+                    id: NewProject.id,
                     name: NewProject.name,
                     desc: NewProject.desc,
                     budget: e.target.value,
@@ -332,9 +388,27 @@ export default function UpdateProject(props) {
                 Builts in
               </label>
               <select
-              value={NewProject.builtsin}
+                value={NewProject.builtsin}
+                // onSelect={
+                //   (e) => {
+                //     setNewProject({
+                //       name: NewProject.name,
+                //       desc: NewProject.desc,
+                //       budget: NewProject.budget,
+                //       clientName: NewProject.clientName,
+                //       startDate: NewProject.startDate,
+                //       endDate: NewProject.endDate,
+                //       featureImage: NewProject.featureImage,
+                //       link: NewProject.link,
+                //       builtsin: e.target.value,
+                //     });
+                //   }
+
+                // }
+                // value={NewProject.builtsin}
                 onChange={(e) => {
                   setNewProject({
+                    id: NewProject.id,
                     name: NewProject.name,
                     desc: NewProject.desc,
                     budget: NewProject.budget,
@@ -346,10 +420,11 @@ export default function UpdateProject(props) {
                     builtsin: e.target.value,
                   });
                 }}
+                // placeholder={NewProject.builtsin}
                 id="builtin"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
               >
-                <option defaultValue={""}>Choose Tech Stack</option>
+                {/* <option defaultValue={""}>Choose Tech Stack</option> */}
                 <option value="Flutter / Dart + Firebase">
                   Flutter / Dart + Firebase
                 </option>
@@ -373,9 +448,10 @@ export default function UpdateProject(props) {
                 Project link
               </label>
               <input
-              value={NewProject.link}
+                value={NewProject.link}
                 onChange={(e) => {
                   setNewProject({
+                    id: NewProject.id,
                     name: NewProject.name,
                     desc: NewProject.desc,
                     budget: NewProject.budget,
@@ -397,7 +473,6 @@ export default function UpdateProject(props) {
             </div>
 
             <Datepicker
-
               containerClassName="relative sm:col-span-2"
               toggleClassName="absolute bg-blue-300 rounded-r-lg text-white right-0 h-full px-3 text-gray-400 focus:outline-none disabled:opacity-40 disabled:cursor-not-allowed sheikhtabarak-btn-main"
               inputClassName="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600  w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
@@ -408,19 +483,18 @@ export default function UpdateProject(props) {
               placeholder={"Start Date to End Date"}
               showFooter={true}
               separator={"to"}
-              // value={value}
               value={value}
               onChange={handleValueChange}
             />
           </div>
-         <button
-          //   onClick={()=>addData}
-          //  type="submit"
-          className=" sheikhtabarak-btn-main inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800"
-        >
-          Update Project
-        </button>
-     
+          <button
+           // onClick={()=>UpdatethisProject}
+            //   onClick={()=>addData}
+             type="submit"
+            className=" sheikhtabarak-btn-main inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800"
+          >
+            Update Project
+          </button>
         </form>
       </div>
     </section>
