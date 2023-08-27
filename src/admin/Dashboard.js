@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux/";
 import { logIn } from "../store/actions";
 import AllProjects from "./projects/allProjects";
 import ManageProjects from "./projects/ManageProjects";
+import { ToastContainer } from "react-toastify";
 
 export default function Dashboard() {
   // const nameuserbrowala = useContext(authContextBro);
@@ -179,12 +180,16 @@ export default function Dashboard() {
               </svg>
               <span className="sr-only">Toggle sidebar</span>
             </button>
+           <Link to={"/dashboard"}>
             <a
-              href="/dashboard"
+              // href="/dashboard"
               className="flex items-center justify-between mr-4"
             >
               <img className="h-10 mr-2" src={logo} alt="logo" />
             </a>
+           
+           </Link>
+           
             <form action="#" method="GET" className="hidden md:block md:pl-2">
               <label htmlFor="topbar-search" className="sr-only">
                 Search
@@ -928,7 +933,7 @@ export default function Dashboard() {
              
             </li>
             <li>
-              <Link to={"/dashboard/portfolio-list"}>
+              {/* <Link to={"/dashboard/portfolio-list"}>
                 <button
                   type="button"
                   className="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
@@ -952,7 +957,7 @@ export default function Dashboard() {
                     Project List
                   </span>
                 </button>
-              </Link>
+              </Link> */}
             </li>
             <li>
               <button
@@ -1009,12 +1014,14 @@ export default function Dashboard() {
                   </Link>
                 </li>
                 <li>
+                {/* <Link to={"/dashboard/projects/technologies"}>
                   <a
-                    href="#"
+                    // href="#"
                     className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >
                     Categories
                   </a>
+                  </Link> */}
                 </li>
 
                 <li>
@@ -1166,6 +1173,7 @@ export default function Dashboard() {
             <div className="tooltip-arrow" data-popper-arrow="" />
           </div>
         </div>
+       
       </aside>
 
       <main className="p-4 md:ml-64 h-auto pt-20">
@@ -1173,6 +1181,7 @@ export default function Dashboard() {
           <Route path="/" element={<Practice />}></Route>
           <Route path="/portfolio-list" element={<PortfolioList />}></Route>
           <Route path="/projects/*" element={<ManageProjects />}></Route>
+          {/* <Route path="/" element={<ManageProjects />}></Route> */}
         </Routes>
 
         {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
@@ -1196,6 +1205,7 @@ export default function Dashboard() {
       <div className="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72" />
     </div> */}
       </main>
+      <ToastContainer />
     </div>
   );
 }

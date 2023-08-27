@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import firebase from "../../models/connection";
 import Loading from "../../loading";
-import ConfirmationDialog from "../../ConfirmationDialog";
 import { Link } from "react-router-dom";
 import UpdateProject from "./updateProject";
 import CreateNewProject from "./CreateNewProject";
 import MyTechnologies from "./myTechnologies";
 import Project from "../../models/ProjectsClass";
+import ConfirmationDialog from "../../popups/ConfirmationDialog";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Technology from "../../models/TechnologyClass";
 
 export default function AllProjects() {
   document.title = "All Projects | Dashboard";
@@ -17,13 +20,18 @@ export default function AllProjects() {
   const [open, setOpen] = useState(false);
   const ConfirmDeletion = () => setOpen(!open);
   const [isLoading, setisLoading] = useState(false);
+  const [refreshData, setrefreshData] = useState(false);
+
 
   async function deleteProject(ProjectId) {
     ConfirmDeletion();
     setisLoading(true);
     const newProject = new Project();
     await newProject.delete(ProjectId);
+    setrefreshData(!refreshData);
+    // delay(1000);
     setisLoading(false);
+
   }
 
   const ProductList = [
@@ -84,49 +92,12 @@ export default function AllProjects() {
   ];
 
   const [projects, setProjects] = useState([]);
+  const [TechList, setTechList] = useState([]);
 
-  // const [TestingLocation, setTestingLocation] = useState(projects);
-
-  //   function getProject(ProjecttoUp){
-  //    setProjecttoUpdate(ProjecttoUp);
-  //   console.log(ProjecttoUp);
-  //   console.log("ProjecttoUpdate"+ProjecttoUpdate);
-  //  }
-
-  // const fetchProjectstoUpdate = async (ProjectId) => {
-  //   try {
-  //     const collectionRef = firebase.firestore().collection("projects");
-  //     const snapshot =  collectionRef.get();
-
-  //     const projectList =  await snapshot.docs.map((doc) => {
-  //       const data = doc.data();
-  //       if(ProjectId==data.project_id){
-  //         return new Project(
-  //           data.project_id,
-  //           data.project_title,
-  //           data.project_description,
-  //           data.project_budget,
-  //           data.client_name,
-  //           data.date_to_start,
-  //           data.date_to_end,
-  //           data.feature_image,
-  //           data.project_link
-  //         )
-
-  //       }
-  //       else{
-  //         return null;
-  //       }
-
-  //     });
-
-  //     setProjecttoUpdate(projectList);
-  //   } catch (error) {
-  //     console.error("Error fetching projects:", error);
-  //   }
-  // };
 
   useEffect(() => {
+    
+    
     const fetchProjects = async () => {
       try {
         const collectionRef = firebase.firestore().collection("projects");
@@ -145,7 +116,6 @@ export default function AllProjects() {
             data.feature_image,
             data.project_link,
             data.builtsin
-            
           );
         });
 
@@ -155,8 +125,30 @@ export default function AllProjects() {
       }
     };
 
+
+    // const fetchTheTechnologies = async () => {
+    //   try {
+    //     const collectionRef = firebase.firestore().collection("technologies");
+    //     const snapshot = await collectionRef.get();
+
+    //     const TechList = snapshot.docs.map((doc) => {
+    //       const data = doc.data();
+    //       return new Technology(
+    //         data.technology_id,
+    //         data.technology_title,
+    //         data.technology_desc
+    //       );
+    //     });
+    //     setTechList(TechList);
+    //   } catch (error) {
+    //     console.error("Error fetching projects:", error);
+    //   }
+    // };
+
+
+  
     fetchProjects();
-  }, [setisLoading]);
+  }, [refreshData]);
 
   // function clickHereButton() {
   //   // console.log(TestingLocation);
@@ -172,13 +164,7 @@ export default function AllProjects() {
     <Loading />
   ) : (
     <>
-      {/* <Button className="btn-primary" >
-        Change value
-      </Button>
 
-      <Button className="btn-primary" onClick={clickHereButton}>
-        Click here
-      </Button> */}
 
       <div className="flex items-right justify-between pb-4">
         <div>
@@ -348,10 +334,10 @@ export default function AllProjects() {
             placeholder="Search for items"
           />
         </div>
+
+        <ToastContainer />
         <Link to={"/dashboard/projects/new-project"}>
-          <a
-            className="sheikhtabarak-btn-main text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
-          >
+          <a className="sheikhtabarak-btn-main text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
             Add New Project
           </a>
         </Link>
@@ -440,23 +426,10 @@ export default function AllProjects() {
                             project.project_id
                           }
                           state={{
-                            project: [
-                              project.project_id,
-                              project.project_title,
-                              project.project_description,
-                              project.project_budget,
-                              project.client_name,
-                              project.date_to_start,
-                              project.date_to_end,
-                              project.feature_image,
-                              project.project_link,
-                             project.builtsin,
-
-                            ],
+                            project: project,
                           }}
                         >
                           <svg
-                           
                             // src="/dashboard/projects/update-project"
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 30 30"
@@ -469,8 +442,8 @@ export default function AllProjects() {
                       </div>
 
                       <ConfirmationDialog
-                        onConfirm={async () => {
-                          await deleteProject(project.project_id);
+                        onConfirm={async (value) => {
+                          await deleteProject(value);
                         }}
                         message={"Do you wanna delete this Project"}
                         yesButtonText={"Yes, Delete"}
@@ -480,20 +453,26 @@ export default function AllProjects() {
                       />
 
                       <div className="px-2">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="#000000"
-                          width="20px"
-                          height="20px"
-                          viewBox="-3.5 0 32 32"
-                          version="1.1"
+                        <Link
+                          to={"/projects/" + project.project_id}
+                          state={{ project: project }}
                         >
-                          <title>view</title>
-                          <path d="M12.406 13.844c1.188 0 2.156 0.969 2.156 2.156s-0.969 2.125-2.156 2.125-2.125-0.938-2.125-2.125 0.938-2.156 2.125-2.156zM12.406 8.531c7.063 0 12.156 6.625 12.156 6.625 0.344 0.438 0.344 1.219 0 1.656 0 0-5.094 6.625-12.156 6.625s-12.156-6.625-12.156-6.625c-0.344-0.438-0.344-1.219 0-1.656 0 0 5.094-6.625 12.156-6.625zM12.406 21.344c2.938 0 5.344-2.406 5.344-5.344s-2.406-5.344-5.344-5.344-5.344 2.406-5.344 5.344 2.406 5.344 5.344 5.344z" />
-                        </svg>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="#000000"
+                            width="20px"
+                            height="20px"
+                            viewBox="-3.5 0 32 32"
+                            version="1.1"
+                          >
+                            <title>view</title>
+                            <path d="M12.406 13.844c1.188 0 2.156 0.969 2.156 2.156s-0.969 2.125-2.156 2.125-2.125-0.938-2.125-2.125 0.938-2.156 2.125-2.156zM12.406 8.531c7.063 0 12.156 6.625 12.156 6.625 0.344 0.438 0.344 1.219 0 1.656 0 0-5.094 6.625-12.156 6.625s-12.156-6.625-12.156-6.625c-0.344-0.438-0.344-1.219 0-1.656 0 0 5.094-6.625 12.156-6.625zM12.406 21.344c2.938 0 5.344-2.406 5.344-5.344s-2.406-5.344-5.344-5.344-5.344 2.406-5.344 5.344 2.406 5.344 5.344 5.344z" />
+                          </svg>
+                        </Link>
                       </div>
 
                       <div className="px-2">
+                      <Link state={{id:project.project_id}}>
                         <svg
                           onClick={ConfirmDeletion}
                           fill="#FF0000"
@@ -505,6 +484,7 @@ export default function AllProjects() {
                           {" "}
                           <path d="M 14.984375 2.4863281 A 1.0001 1.0001 0 0 0 14 3.5 L 14 4 L 8.5 4 A 1.0001 1.0001 0 0 0 7.4863281 5 L 6 5 A 1.0001 1.0001 0 1 0 6 7 L 24 7 A 1.0001 1.0001 0 1 0 24 5 L 22.513672 5 A 1.0001 1.0001 0 0 0 21.5 4 L 16 4 L 16 3.5 A 1.0001 1.0001 0 0 0 14.984375 2.4863281 z M 6 9 L 7.7929688 24.234375 C 7.9109687 25.241375 8.7633438 26 9.7773438 26 L 20.222656 26 C 21.236656 26 22.088031 25.241375 22.207031 24.234375 L 24 9 L 6 9 z" />
                         </svg>
+                        </Link>
                       </div>
                     </div>
                   </a>
@@ -513,46 +493,7 @@ export default function AllProjects() {
             </tbody>
           </table>
         ))}
-        {/* </tbody> */}
       </div>
-
-      {/* <div className="relative overflow-x-auto">
-        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-              <th scope="col" className="px-6 py-3">
-                Product name
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Color
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Category
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Price
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {ProductList.map((product) => (
-              <tr className="bg-white dark:bg-gray-800">
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  {product.title}
-                </th>
-                <td className="px-6 py-4">{product.color}</td>
-                <td className="px-6 py-4">{product.category}</td>
-                <td className="px-6 py-4">{product.price}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div> */}
     </>
-
-    // <Routes>
   );
 }

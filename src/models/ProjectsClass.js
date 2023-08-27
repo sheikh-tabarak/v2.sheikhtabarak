@@ -1,6 +1,8 @@
 import firebase from "../models/connection";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
+import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 
 const firestore = firebase.firestore();
 
@@ -83,11 +85,25 @@ class Project {
             );
         });
 
-      // firestore.collection('projects').doc()
+      toast.success("Project added successfully!", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        className: "bg-white dark:bg-gray-900",
+        autoClose: 2000,
+      });
 
       console.log("Project added successfully.");
     } catch (error) {
-      console.error("Error adding project:", error);
+      toast.error(
+        <>
+          <p>Error Adding Project</p>
+          <p className="leading-relaxed text-sm/[12px]">{error}</p>
+        </>,
+        {
+          position: toast.POSITION.BOTTOM_RIGHT,
+          className: "bg-white dark:bg-gray-900",
+          autoClose: 5000,
+        }
+      );
     }
   }
 
@@ -95,7 +111,30 @@ class Project {
     try {
       await firestore.collection("projects").doc(PId).delete();
       console.log("Project deleted successfully.");
+  
+      toast.success(
+        <>
+          <p>Project Deleted Successfully</p>
+        </>,
+        {
+          position: toast.POSITION.BOTTOM_RIGHT,
+          className: "bg-white dark:bg-gray-900",
+          autoClose: 2000,
+        }
+      );
     } catch (error) {
+      toast.error(
+        <>
+          <p>Error Deleting Project</p>
+          <p className="leading-relaxed text-sm/[12px]">{error}</p>
+        </>,
+        {
+          position: toast.POSITION.BOTTOM_RIGHT,
+          className: "bg-white dark:bg-gray-900",
+          autoClose: 5000,
+        }
+      );
+
       console.error("Error deleting project:", error);
     }
   }
@@ -113,8 +152,7 @@ class Project {
     Builtsin
   ) {
     try {
-
-      console.log(id)
+      console.log(id);
       await firestore.collection("projects").doc(id).update(
         new Project(
           id,
@@ -131,8 +169,32 @@ class Project {
 
         // new Project.toJson()
       );
+
       console.log("Project updated successfully.");
+      toast.success("Project updated successfully!", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        className: "bg-white dark:bg-gray-900",
+        autoClose: 1000,
+      });
     } catch (error) {
+
+      toast.error(
+        <>
+          <p>Error Updating Project</p>
+          <p className="leading-relaxed text-sm/[12px]">{error}</p>
+        </>,
+        {
+          position: toast.POSITION.BOTTOM_RIGHT,
+          className: "bg-white dark:bg-gray-900",
+          autoClose: 5000,
+        }
+      );
+      // toast.error("Project updated successfully!", {
+      //   position: toast.POSITION.TOP_RIGHT,
+      //   className:"bg-white dark:bg-gray-900",
+      //   autoClose: 1000,
+      // });
+
       console.error("Error updating project:", error);
     }
   }

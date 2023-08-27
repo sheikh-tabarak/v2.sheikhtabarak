@@ -1,52 +1,34 @@
-// import React, { useEffect, useState } from "react";
-// import writeUserData from "../../models/realtime_project";
 import Datepicker from "react-tailwindcss-datepicker";
 import Loading from "../../loading";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Project from "../../models/ProjectsClass";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+import firebase from "../../models/connection";
+import Technology from "../../models/TechnologyClass";
 
-// import { startAt } from "firebase/firestore";
-// import {Image} from ""
-
-// import {writeUserData} from '../../models/realtime_project'
 
 export default function UpdateProject(props) {
+
   document.title = "Update Project | Dashboard";
 
-  // const navigates = useNavigate();
   const location = useLocation();
 
   const [NewProject, setNewProject] = useState({
-    id: location.state.project[0],
-    name: location.state.project[1],
-    desc: location.state.project[2],
-    budget: location.state.project[3],
-    clientName: location.state.project[4],
-    startDate: location.state.project[5],
-    endDate: location.state.project[6],
-    featureImage: location.state.project[7],
-    link: location.state.project[8],
-    builtsin: location.state.project[9],
+    id: location.state.project.project_id,
+    name: location.state.project.project_title,
+    desc: location.state.project.project_description,
+    budget: location.state.project.project_budget,
+    clientName: location.state.project.client_name,
+    startDate: location.state.project.date_to_start,
+    endDate: location.state.project.date_to_end,
+    featureImage: location.state.project.feature_image,
+    link: location.state.project.project_link,
+    builtsin: location.state.project.builtsin,
   });
 
-  // location.key=location.state.test;
-  //  Itsid = "test" ;
-  //
-  // const [Itsid, setItsid] = useState(location.state.test);
-  // const Itsid;
-
-  // if (location.state.test!=="") {
-  //   // setItsid(location.state.test)
-
-  // }
-
   console.log(location);
-  // console.log(Itsid);
-
-  // setItsid("")
-
-  // console.log(location.state.test);
 
   const [isLoading, setisLoading] = useState(false);
 
@@ -73,9 +55,15 @@ export default function UpdateProject(props) {
     });
   };
 
-  async function UpdatethisProject (e) {
+  async function UpdatethisProject(e){
 
-    e.preventDefault();
+    
+    // e.preventDefault();
+    // toast.success("Project updated successfully!", {
+    //   position: toast.POSITION.BOTTOM_RIGHT,
+    //   className:"bg-white dark:bg-gray-900",
+    //   autoClose: 1000,
+    // });
     setisLoading(true);
 
     const UpdateProject = new Project();
@@ -92,98 +80,55 @@ export default function UpdateProject(props) {
       NewProject.link,
       NewProject.builtsin
     );
+   setisLoading(false);
 
-    setisLoading(false);
+  }
+
+
+const [TechList, setTechList] = useState([]);
+
+useEffect(() => {
+  const fetchTheTechnologies = async () => {
+    try {
+      const collectionRef = firebase.firestore().collection("technologies");
+      const snapshot = await collectionRef.get();
+
+      const TechList = snapshot.docs.map((doc) => {
+        const data = doc.data();
+        return new Technology(
+          data.technology_id,
+          data.technology_title,
+          data.technology_desc
+        );
+      });
+      setTechList(TechList);
+    } catch (error) {
+      console.error("Error fetching projects:", error);
+    }
   };
 
-  // const [NewProject, setNewProject] = useState({
-  //   //location.props.name);
-  //   name:props.name,
-  //   //props.name,
-  //   desc: props.desc,
-  //   budget: props.budget,
-  //   clientName: props.clientName,
-  //   startDate: props.startDate,
-  //   endDate: props.endDate,
-  //   featureImage:
-  //   props.featureImage,
-  //   link: props.link,
-  //   builtsin: props.builtsin,
-  // });
+  fetchTheTechnologies();
 
-  useEffect(() => {
-    console.log(
-      "Title: " +
-        NewProject.name +
-        "\nDescription: " +
-        NewProject.desc +
-        "\nStartDate: " +
-        NewProject.startDate +
-        "\nEnd Date: " +
-        NewProject.endDate +
-        "\nFeature Image: " +
-        NewProject.featureImage +
-        "\nClient: " +
-        NewProject.clientName+
-        "\nProject Link: " +
-        NewProject.link+
-        "\nBuilts in: " +
-        NewProject.builtsin
-    );
-  });
-
-
-  // useEffect(() => {
-
-  //   console.log(location.state.project[0]);
-
-  //   setProjecttoUpdate(new Project(location.state.project[1], location.state.project[2], "", 0, "", "", "", "", "", ""))
-
-  // });
-
-  // async function addData(e) {
-  //   e.preventDefault();
-  //   setisLoading(true);
-
-  //   console.log("okay done");
-  //   const newProject=  new Project();
-
-  //   await  newProject.addProject(
-  //     NewProject.name,
-  //     NewProject.desc,
-  //     NewProject.budget,
-  //     NewProject.clientName,
-  //     NewProject.startDate,
-  //     NewProject.endDate,
-  //     NewProject.featureImage,
-  //     NewProject.link,
-  //     NewProject.builtsin
+//   console.log(
+  //     "Title: " +
+  //       NewProject.name +
+  //       "\nDescription: " +
+  //       NewProject.desc +
+  //       "\nStartDate: " +
+  //       NewProject.startDate +
+  //       "\nEnd Date: " +
+  //       NewProject.endDate +
+  //       "\nFeature Image: " +
+  //       NewProject.featureImage +
+  //       "\nClient: " +
+  //       NewProject.clientName +
+  //       "\nProject Link: " +
+  //       NewProject.link +
+  //       "\nBuilts in: " +
+  //       NewProject.builtsin
   //   );
+});
 
-  //   setisLoading(false);
-
-  //   navigates("/dashboard/projects")
-  //   // navigate(0)
-
-  //   console.log("okay done after : " + newProject.client_name);
-  // }
-
-  // const setNameinState = (e) => {
-  //   setNewProject({
-  //     name: e.target.value,
-  //     desc: NewProject.desc,
-  //     budget: NewProject.budget,
-  //     clientName: NewProject.clientName,
-  //     startDate: NewProject.startDate,
-  //     endDate: NewProject.endDate,
-  //     featureImage: NewProject.featureImage,
-  //     link: NewProject.link,
-  //   });
-  // };
-
-  // return (
-  //   <div>Test {location.state.id}</div>
-  // )
 
   return isLoading === true ? (
     <Loading />
@@ -225,8 +170,6 @@ export default function UpdateProject(props) {
             </p>
           </div>
           <input
-           
-
             onSelect={(e) => {
               setNewProject({
                 id: NewProject.id,
@@ -246,15 +189,8 @@ export default function UpdateProject(props) {
             className="hidden"
           />
         </label>
-
-        <form
-          onSubmit={UpdatethisProject
-           
-
-            
-            
-            }
-        >
+        <form onSubmit={UpdatethisProject}
+>
           <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
             <div className="sm:col-span-2">
               <label
@@ -264,7 +200,7 @@ export default function UpdateProject(props) {
                 Project Name
               </label>
               <input
-                value={NewProject.projectname}
+                value={NewProject.name}
                 onChange={(e) => {
                   setNewProject({
                     id: NewProject.id,
@@ -425,19 +361,13 @@ export default function UpdateProject(props) {
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
               >
                 {/* <option defaultValue={""}>Choose Tech Stack</option> */}
-                <option value="Flutter / Dart + Firebase">
-                  Flutter / Dart + Firebase
-                </option>
-                <option value="React js + Firebase">React js + Firebase</option>
-                <option value="MERN (Mongodb, Express, React and Node)">
-                  MERN (Mongodb, Express, React and Node)
-                </option>
-                <option value="WordPress">WordPress</option>
-                <option value="C#">C#</option>
-                <option value="C,C++">C,C++</option>
-                <option value="Java">Java</option>
-                <option value="Java Swing">Java Swing</option>
-                <option value="Python">Python</option>
+                {TechList.map((technology, index) => {
+                  return (
+                    <option key={index} value={technology.technology_title}>
+                      {technology.technology_title}
+                    </option>
+                  );
+                })}
               </select>
             </div>
             <div>
@@ -488,13 +418,16 @@ export default function UpdateProject(props) {
             />
           </div>
           <button
-           // onClick={()=>UpdatethisProject}
+            // onClick={()=>UpdatethisProject}
             //   onClick={()=>addData}
-             type="submit"
+            type="submit"
             className=" sheikhtabarak-btn-main inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800"
           >
             Update Project
           </button>
+       
+
+          {/* <ToastContainer/> */}
         </form>
       </div>
     </section>

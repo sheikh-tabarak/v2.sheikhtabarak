@@ -1,27 +1,14 @@
 import React, { useEffect, useState } from "react";
-// import writeUserData from "../../models/realtime_project";
 import Project from "../../models/ProjectsClass";
+import firebase from "../../models/connection";
 import Datepicker from "react-tailwindcss-datepicker";
 import Loading from "../../loading";
-// import { } from "react-router-dom";
-// import {Image} from ""
-
-// import {writeUserData} from '../../models/realtime_project'
+import Technology from "../../models/TechnologyClass";
 
 export default function CreateNewProject() {
-  
-    document.title = 'Create New Project | Dashboard'
-  
-
-  // const thisisDispatcher = useDispatch();
-
-  // thisisDispatcher(changePageTitle("Create New Product"));
-
-  // const navigate = useNavigate();
+  document.title = "Create New Project | Dashboard";
 
   const [isLoading, setisLoading] = useState(false);
-
-
 
   const [value, setValue] = useState({
     startDate: "",
@@ -50,43 +37,66 @@ export default function CreateNewProject() {
     desc: "",
     budget: "",
     clientName: "",
-    startDate:"",
+    startDate: "",
     endDate: "",
-    featureImage:
-    "",
+    featureImage: "",
     link: "",
-    builtsin:"" ,
+    builtsin: "",
   });
 
+  const [TechList, setTechList] = useState([]);
+
   useEffect(() => {
-    console.log(
-      "Title: " +
-        NewProject.name +
-        "\nDescription: " +
-        NewProject.desc +
-        "\nStartDate: " +
-        NewProject.startDate +
-        "\nEnd Date: " +
-        NewProject.endDate +
-        "\nFeature Image: " +
-        NewProject.featureImage +
-        "\nClient: " +
-        NewProject.clientName+
-        "\nProject Link: " +
-        NewProject.link+
-        "\nBuilts in: " +
-        NewProject.builtsin
-    );
+    const fetchTheTechnologies = async () => {
+      try {
+        const collectionRef = firebase.firestore().collection("technologies");
+        const snapshot = await collectionRef.get();
+
+        const TechList = snapshot.docs.map((doc) => {
+          const data = doc.data();
+          return new Technology(
+            data.technology_id,
+            data.technology_title,
+            data.technology_desc
+          );
+        });
+        setTechList(TechList);
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+      }
+    };
+
+    fetchTheTechnologies();
+
+    // console.log(
+    //   "Title: " +
+    //     NewProject.name +
+    //     "\nDescription: " +
+    //     NewProject.desc +
+    //     "\nStartDate: " +
+    //     NewProject.startDate +
+    //     "\nEnd Date: " +
+    //     NewProject.endDate +
+    //     "\nFeature Image: " +
+    //     NewProject.featureImage +
+    //     "\nClient: " +
+    //     NewProject.clientName+
+    //     "\nProject Link: " +
+    //     NewProject.link+
+    //     "\nBuilts in: " +
+    //     NewProject.builtsin
+    // );
   });
 
   async function addData(e) {
+    
     e.preventDefault();
     setisLoading(true);
-    
-    console.log("okay done");
-    const newProject=  new Project();
 
-    await  newProject.addProject(
+    console.log("okay done");
+    const newProject = new Project();
+
+    await newProject.addProject(
       NewProject.name,
       NewProject.desc,
       NewProject.budget,
@@ -98,20 +108,12 @@ export default function CreateNewProject() {
       NewProject.builtsin
     );
 
-  
     setisLoading(false);
-
-
-
-    // navigate("/dashboard/projects")
-    // navigate(0)
-    
-
     console.log("okay done after : " + newProject.client_name);
   }
 
   // const setNameinState = (e) => {
-  //   setNewProject({ 
+  //   setNewProject({
   //     name: e.target.value,
   //     desc: NewProject.desc,
   //     budget: NewProject.budget,
@@ -123,15 +125,13 @@ export default function CreateNewProject() {
   //   });
   // };
 
-  return (
-
-    isLoading === true ? <Loading/>:
-
-
+  return isLoading === true ? (
+    <Loading />
+  ) : (
     <section className="bg-white dark:bg-gray-900">
       <div className="py-8 px-4 mx-10 max-w-2xl lg:py-10">
         <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
-         Add a new Project
+          Add a new Project
         </h2>
 
         <label
@@ -270,19 +270,19 @@ export default function CreateNewProject() {
                 Client Name
               </label>
               <input
-              onChange={(e)=>{
-                setNewProject({
-                  name: NewProject.name,
-                  desc: NewProject.desc,
-                  budget: NewProject.budget,
-                  clientName: e.target.value,
-                  startDate: NewProject.startDate,
-                  endDate: NewProject.endDate,
-                  featureImage: NewProject.featureImage,
-                  link: NewProject.link,
-                  builtsin: NewProject.builtsin,
-                });
-              }}
+                onChange={(e) => {
+                  setNewProject({
+                    name: NewProject.name,
+                    desc: NewProject.desc,
+                    budget: NewProject.budget,
+                    clientName: e.target.value,
+                    startDate: NewProject.startDate,
+                    endDate: NewProject.endDate,
+                    featureImage: NewProject.featureImage,
+                    link: NewProject.link,
+                    builtsin: NewProject.builtsin,
+                  });
+                }}
                 type="text"
                 name="client"
                 id="client"
@@ -328,7 +328,7 @@ export default function CreateNewProject() {
                 Builts in
               </label>
               <select
-              value={NewProject.builtsin}
+                value={NewProject.builtsin}
                 onChange={(e) => {
                   setNewProject({
                     name: NewProject.name,
@@ -345,20 +345,13 @@ export default function CreateNewProject() {
                 id="builtin"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
               >
-                <option defaultValue={""}>Choose Tech Stack</option>
-                <option value="Flutter / Dart + Firebase">
-                  Flutter / Dart + Firebase
-                </option>
-                <option value="React js + Firebase">React js + Firebase</option>
-                <option value="MERN (Mongodb, Express, React and Node)">
-                  MERN (Mongodb, Express, React and Node)
-                </option>
-                <option value="WordPress">WordPress</option>
-                <option value="C#">C#</option>
-                <option value="C,C++">C,C++</option>
-                <option value="Java">Java</option>
-                <option value="Java Swing">Java Swing</option>
-                <option value="Python">Python</option>
+                {TechList.map((technology, index) => {
+                  return (
+                    <option key={index} value={technology.technology_title}>
+                      {technology.technology_title}
+                    </option>
+                  );
+                })}
               </select>
             </div>
             <div>
@@ -413,7 +406,6 @@ export default function CreateNewProject() {
           >
             Add Project
           </button>
-      
         </form>
       </div>
     </section>
