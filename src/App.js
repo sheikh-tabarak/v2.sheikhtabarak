@@ -19,6 +19,7 @@ import { getAuth } from "firebase/auth";
 // import { Firestore } from "firebase/firestore";
 import { useDispatch, useSelector } from "react-redux/";
 import store from "./store/store";
+import Example from "./user/pages/HomePage";
 
 // import Practice from "./Practice";
 
@@ -48,7 +49,7 @@ function App() {
     >
       <BrowserRouter>
         <Routes>
-          <Route path="/*" element={<Home />} />
+          <Route path="/*" element={<Example />} />
           <Route path="/login/" element={<Login />} />
           <Route path="/dashboard/*" element={<Dashboard />} />
         </Routes>

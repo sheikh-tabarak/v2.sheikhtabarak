@@ -1,27 +1,101 @@
-import React from 'react'
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { FaGithub,FaLink } from 'react-icons/fa';
+
+
 
 export default function Card() {
+  const test = "React js, Firebase ";
   return (
+    <section id="work">
+      <div className="px-4 py-10 lg:px-36 lg:py-10 md:px-36 md:py-10">
+        <div id="Work" className="flex pb-0">
+          <h1 className="col menu-font-span text-[22px] ">3.</h1>
+          <h1 className="col text-[20px] leading-8 font-bold tracking-tight text-[#CCD6F6] md:text-[40px] lg:text-[24px]">
+            Some Things I’ve Built.
+          </h1>
+          {/* <hr class="h-px mx-8 my-12 bg-gray-400 border-1 dark:bg-gray-700" /> */}
+        </div>
 
-    <div className="mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
-    <a href="#!">
-      <img
-        className="rounded-t-lg"
-        src="https://tecdn.b-cdn.net/img/new/standard/city/041.webp"
-        alt="Hollywood Sign on The Hill"
-      />
-    </a>
-    <div className="p-6">
-      <h5 className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-        Card title
-      </h5>
-      <p className="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-        This is a longer card with supporting text below as a natural lead-in to
-        additional content. This content is a little bit longer.
-      </p>
-    </div>
-  </div>
-  
-  
-    )
+        <div class="grid grid-cols-7 gap-4">
+          <div className="col-span-0 lg:col-start-1 lg:col-end-5 py-0 md:py-10 lg:my-10 ">
+            <Link>
+              <div class="w-full h-full bg-contain bg-center bg-[#2B374E]  rounded-[20px] hover:opacity-100  bg-no-repeat bg-[url('https://spothub.sheikhtabarak.me/wp-content/uploads/2023/07/Copy-of-Spot-hub-3.png')]">
+                {/* <img className="w-full" src="https://v4.brittanychiang.com/static/3b4d6e8f44baf7e6d7a0ed4b3e4d8d39/272cf/halcyon.png" alt="" /> */}
+              </div>
+            </Link>
+          </div>
+          <div class=" ml-0 col-start-1 col-end-8 lg:col-end-8 lg:col-span-3  lg:-ml-40">
+            <div className="">
+              {/* <img className='w-full h-full' src="https://v4.brittanychiang.com/static/3b4d6e8f44baf7e6d7a0ed4b3e4d8d39/272cf/halcyon.png" alt="" /> */}
+
+              <div className="shadow lg:px-10 py-0 sm: md:py-10 text-center lg:text-right ">
+                <p className="skills-font-span text-[13px] text-[#4CD684]">
+                  Featured Project
+                </p>
+
+                <p className="py-1 px-2 col font-bold text-[18px] leading-8 mb-4 tracking-tight text-[#CCD6F6] hover:text-[#4CD684] md:text-[40px] lg:text-[22px] font-[500] ">
+                  <Link>Halcyon Theme</Link>
+                </p>
+
+                <p className="text-center lg:text-right bg-[#112240] p-5 rounded-[10px] text-[400] text-[12px] overflow-break tracking-tight text-[#8892B0] md:text-[15px] lg:text-[15px]">
+                  Having struggled with understanding how the Spotify OAuth flow
+                  works, I made the course I wish I could have had.
+                  <br />
+                  Unlike tutorials that only cover a few concepts and leave you
+                  with half-baked GitHub repositories, this course covers
+                  everything from explaining the principles of REST APIs to
+                  implementing Spotify's OAuth flow and fetching API data in a
+                  React app. By the end of the course, you’ll have an app
+                  deployed to the internet you can add to your portfolio.
+                </p>
+
+                <div className="py-3 text-center lg:text-right">
+                  {test.split(",").map((value, i) => {
+                    return (
+                      <span className="p-1 skills-font-span text-[13px] text-[#CCD6F6]">
+                        {i !== 0 && i < test.length - 1 ? "-" : null}
+                        {value}
+                      </span>
+                    );
+                  })}
+                </div>
+
+                <div className="flex justify-end lg:text-right gap-x-6 my-5 ">
+                 
+               
+                  <a
+                 
+                 
+                 id="about"
+                    href="#"
+                    className=" flex gap-2 menu-button  hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175
+           px-5 py-3 
+            text-[10px] font-bold mb-4 tracking-tight text-[#8892B0] md:text-[13px] lg:text-[13px] lg:px-8 lg:py-3"
+                  >
+
+<FaLink/>
+                  <span> View Project</span>
+                 
+                
+                  </a>
+
+                  <a
+                    id="about"
+                    href="#"
+                    className=" flex gap-2 menu-button  hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175
+           px-2 py-3 
+            text-[10px] font-bold mb-4 tracking-tight text-[#8892B0] md:text-[13px] lg:text-[13px] lg:px-8 lg:py-3"
+                  >
+                    <FaGithub/>
+                    Git hub
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
