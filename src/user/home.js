@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react'
 import Header from './components/header'
-import Hero from './components/hero'
+// import Hero from './components/hero'
+import HeroSection from './components/HeroSection';
 import { Routes, Route } from "react-router-dom";
 import Portfolio from './pages/portfolio';
 import { useSelector } from 'react-redux';
 import AllProjects from './pages/AllProjects';
+import HomePage from './pages/HomePage';
 
 
 
@@ -21,7 +23,7 @@ export default function Home() {
 <>
 <Header/>
 <Routes>
-<Route path="/" element={<Hero/>}></Route>
+<Route path="/" element={<HomePage/>}></Route>
 <Route path="/projects/*" element={<AllProjects/>}></Route>
 <Route path="/portfolio" element={<Portfolio/>}></Route>
 </Routes>
