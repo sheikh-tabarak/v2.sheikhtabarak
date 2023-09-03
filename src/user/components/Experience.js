@@ -35,12 +35,17 @@ export default function Experience() {
     {
       title: "Founder & CEO",
       Company: "Sheikh Tabarak",
+<<<<<<< HEAD
       StartDate: "August 2021",
+=======
+      StartDate: "August 23, 2021",
+>>>>>>> cecfea990ab2d95b1a5712b38d4b1c5eb1e81f96
       EndDate: "Present",
       Description:
         "I have expertise in Frontend Web and Mobile Application Development, able to deliver high-quality, reliable solutions on time and on budget. I am dedicated to ensuring client satisfaction and am willing to go above and beyond to meet the needs of my clients. I have a proactive, solutions-oriented approach to problem-solving, and I am flexible and adaptable in working with clients’ changing needs and priorities. I am also committed to continuous learning and professional development.",
     },
 
+<<<<<<< HEAD
     // {
     //   title: "Lead Engineer",
     //   Company: "Upstatement",
@@ -49,6 +54,16 @@ export default function Experience() {
     //   Description:
     //     "Deliver high-quality, robust production code for a diverse array of projects for clients including Harvard Business School, Everytown for Gun Safety, Pratt Institute, Koala Health, Vanderbilt University, The 19th News, and more Work alongside creative directors to lead the research, development, and architecture of technical solutions to fulfill business requirements Collaborate with designers, project managers, and other engineers to transform creative concepts into production realities for clients and stakeholders Provide leadership within engineering department through close collaboration, knowledge shares, and mentorship",
     // },
+=======
+    {
+      title: "Lead Engineer",
+      Company: "Upstatement",
+      StartDate: "May 23, 2018",
+      EndDate: "Present",
+      Description:
+        "Deliver high-quality, robust production code for a diverse array of projects for clients including Harvard Business School, Everytown for Gun Safety, Pratt Institute, Koala Health, Vanderbilt University, The 19th News, and more Work alongside creative directors to lead the research, development, and architecture of technical solutions to fulfill business requirements Collaborate with designers, project managers, and other engineers to transform creative concepts into production realities for clients and stakeholders Provide leadership within engineering department through close collaboration, knowledge shares, and mentorship",
+    },
+>>>>>>> cecfea990ab2d95b1a5712b38d4b1c5eb1e81f96
   ];
 
   const [menu, setMenu] = useState({
@@ -56,7 +71,11 @@ export default function Experience() {
     two: false,
     three: false,
     four: false,
+<<<<<<< HEAD
     // five: false,
+=======
+    five: false,
+>>>>>>> cecfea990ab2d95b1a5712b38d4b1c5eb1e81f96
   });
 
   const [ExperienceState, setExperienceState] = useState({
@@ -78,7 +97,11 @@ export default function Experience() {
 
 
         
+<<<<<<< HEAD
       <div className="px-4 py-10 lg:px-36 lg:py-10 md:px-36 md:py-10">
+=======
+      <div className="px-4 py-10 lg:px-36 lg:py-28 md:px-36 md:py-10">
+>>>>>>> cecfea990ab2d95b1a5712b38d4b1c5eb1e81f96
 
 
       <div id="Experience" className="flex pb-5">
@@ -86,7 +109,10 @@ export default function Experience() {
               <h1 className="col text-[20px] leading-8 font-bold mb-4 tracking-tight text-[#CCD6F6] md:text-[40px] lg:text-[24px]">
               Where I’ve Worked.
               </h1>
+<<<<<<< HEAD
               {/* <hr class="h-px mx-8 my-12 bg-gray-400 border-1 dark:bg-gray-700"/> */}
+=======
+>>>>>>> cecfea990ab2d95b1a5712b38d4b1c5eb1e81f96
             </div>
 
 
@@ -108,7 +134,11 @@ export default function Experience() {
                     two: false,
                     three: false,
                     four: false,
+<<<<<<< HEAD
                     // five: false,
+=======
+                    five: false,
+>>>>>>> cecfea990ab2d95b1a5712b38d4b1c5eb1e81f96
                   });
 
                   //  ()=> setExperienceState({
@@ -120,8 +150,13 @@ export default function Experience() {
                 }}
                 className={
                   menu.one
+<<<<<<< HEAD
                     ? "text-[#4CD684] hover:text-[#4CD684] text-left border-l-2 border-[#4CD684] text-[13px] experience-font-in-SFMonoBold flex justify-start items-center space-x-6  focus:bg-gray-700 hover:bg-gray-700  px-3 py-2  w-full md:w-52"
                     : "text-left text-[13px] border-l-2  border-[#404C66]  experience-font-in-SFMonoBold flex justify-start items-center space-x-6  focus:bg-gray-700 focus:text-[#4CD684] hover:bg-gray-700 text-gray-400 px-3 py-2  w-full md:w-52"
+=======
+                    ? "text-left border-l-2 border-[#4CD684] text-[13px]  text-[#4CD684] experience-font-in-SFMonoBold flex justify-start items-center space-x-6  focus:bg-gray-700 hover:bg-gray-700 text-gray-400 px-3 py-2  w-full md:w-52"
+                    : "text-left text-[13px] border-l-2  border-[#404C66]   experience-font-in-SFMonoBold flex justify-start items-center space-x-6  focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 px-3 py-2  w-full md:w-52"
+>>>>>>> cecfea990ab2d95b1a5712b38d4b1c5eb1e81f96
                 }
               >
                 {ExpirenceArray[0].Company}
@@ -133,7 +168,11 @@ export default function Experience() {
                     two: true,
                     three: false,
                     four: false,
+<<<<<<< HEAD
                     // five: false,
+=======
+                    five: false,
+>>>>>>> cecfea990ab2d95b1a5712b38d4b1c5eb1e81f96
                   });
                   //  ()=> setExperienceState({
                   //     title:"This is Two",
@@ -144,7 +183,11 @@ export default function Experience() {
                 }}
                 className={
                   menu.two
+<<<<<<< HEAD
                     ? "text-left border-l-2 border-[#4CD684] text-[13px]  text-[#4CD684] experience-font-in-SFMonoBold flex justify-start items-center space-x-6  focus:bg-gray-700 hover:bg-gray-700  px-3 py-2  w-full md:w-52"
+=======
+                    ? "text-left border-l-2 border-[#4CD684] text-[13px]  text-[#4CD684] experience-font-in-SFMonoBold flex justify-start items-center space-x-6  focus:bg-gray-700 hover:bg-gray-700 text-gray-400 px-3 py-2  w-full md:w-52"
+>>>>>>> cecfea990ab2d95b1a5712b38d4b1c5eb1e81f96
                     : "text-left text-[13px] border-l-2  border-[#404C66]   experience-font-in-SFMonoBold flex justify-start items-center space-x-6  focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 px-3 py-2  w-full md:w-52"
                 }
               >
@@ -157,12 +200,20 @@ export default function Experience() {
                     two: false,
                     three: true,
                     four: false,
+<<<<<<< HEAD
                     // five: false,
+=======
+                    five: false,
+>>>>>>> cecfea990ab2d95b1a5712b38d4b1c5eb1e81f96
                   })
                 }
                 className={
                   menu.three
+<<<<<<< HEAD
                     ? "text-left  border-l-2 border-[#4CD684] text-[13px]  text-[#4CD684] experience-font-in-SFMonoBold flex justify-start items-center space-x-6  focus:bg-gray-700 hover:bg-gray-700 px-3 py-2  w-full md:w-52"
+=======
+                    ? "text-left  border-l-2 border-[#4CD684] text-[13px]  text-[#4CD684] experience-font-in-SFMonoBold flex justify-start items-center space-x-6  focus:bg-gray-700 hover:bg-gray-700 text-gray-400 px-3 py-2  w-full md:w-52"
+>>>>>>> cecfea990ab2d95b1a5712b38d4b1c5eb1e81f96
                     : "text-left text-[13px] border-l-2  border-[#404C66]   experience-font-in-SFMonoBold flex justify-start items-center space-x-6  focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 px-3 py-2  w-full md:w-52"
                 }
               >
@@ -175,25 +226,41 @@ export default function Experience() {
                     two: false,
                     three: false,
                     four: true,
+<<<<<<< HEAD
                     // five: false,
+=======
+                    five: false,
+>>>>>>> cecfea990ab2d95b1a5712b38d4b1c5eb1e81f96
                   })
                 }
                 className={
                   menu.four
+<<<<<<< HEAD
                     ? "text-left  border-l-2 border-[#4CD684] text-[13px]  text-[#4CD684] experience-font-in-SFMonoBold flex justify-start items-center space-x-6  focus:bg-gray-700 hover:bg-gray-700  px-3 py-2  w-full md:w-52"
+=======
+                    ? "text-left  border-l-2 border-[#4CD684] text-[13px]  text-[#4CD684] experience-font-in-SFMonoBold flex justify-start items-center space-x-6  focus:bg-gray-700 hover:bg-gray-700 text-gray-400 px-3 py-2  w-full md:w-52"
+>>>>>>> cecfea990ab2d95b1a5712b38d4b1c5eb1e81f96
                     : "text-left text-[13px] border-l-2  border-[#404C66]   experience-font-in-SFMonoBold flex justify-start items-center space-x-6  focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 px-3 py-2  w-full md:w-52"
                 }
               >
                 {ExpirenceArray[3].Company}
               </button>
+<<<<<<< HEAD
               {/* <button
+=======
+              <button
+>>>>>>> cecfea990ab2d95b1a5712b38d4b1c5eb1e81f96
                 onClick={() =>
                   setMenu({
                     one: false,
                     two: false,
                     three: false,
                     four: false,
+<<<<<<< HEAD
                     // five: true,
+=======
+                    five: true,
+>>>>>>> cecfea990ab2d95b1a5712b38d4b1c5eb1e81f96
                   })
                 }
                 className={
@@ -203,7 +270,11 @@ export default function Experience() {
                 }
               >
                 {ExpirenceArray[4].Company}
+<<<<<<< HEAD
               </button> */}
+=======
+              </button>
+>>>>>>> cecfea990ab2d95b1a5712b38d4b1c5eb1e81f96
             </div>
           </div>
 
@@ -218,6 +289,11 @@ export default function Experience() {
                   ? ExpirenceArray[2].title
                   : menu.four
                   ? ExpirenceArray[3].title
+<<<<<<< HEAD
+=======
+                  : menu.five
+                  ? ExpirenceArray[4].title
+>>>>>>> cecfea990ab2d95b1a5712b38d4b1c5eb1e81f96
                   : ""}
               </span>
 
@@ -232,6 +308,11 @@ export default function Experience() {
                     ? ExpirenceArray[2].Company
                     : menu.four
                     ? ExpirenceArray[3].Company
+<<<<<<< HEAD
+=======
+                    : menu.five
+                    ? ExpirenceArray[4].Company
+>>>>>>> cecfea990ab2d95b1a5712b38d4b1c5eb1e81f96
                     : ""}
                 </Link>
               </span>
@@ -245,6 +326,11 @@ export default function Experience() {
                   ? ExpirenceArray[2].StartDate
                   : menu.four
                   ? ExpirenceArray[3].StartDate
+<<<<<<< HEAD
+=======
+                  : menu.five
+                  ? ExpirenceArray[4].StartDate
+>>>>>>> cecfea990ab2d95b1a5712b38d4b1c5eb1e81f96
                   : ""}
                 -
                 {menu.one
@@ -255,7 +341,13 @@ export default function Experience() {
                   ? ExpirenceArray[2].EndDate
                   : menu.four
                   ? ExpirenceArray[3].EndDate
+<<<<<<< HEAD
                   :""}
+=======
+                  : menu.five
+                  ? ExpirenceArray[4].EndDate
+                  : ""}
+>>>>>>> cecfea990ab2d95b1a5712b38d4b1c5eb1e81f96
               </p>
 
               <p className="text-[14px]  tracking-tight text-[#8892B0] md:text-[18px] lg:text-[18px]">
@@ -267,6 +359,11 @@ export default function Experience() {
                   ? ExpirenceArray[2].Description
                   : menu.four
                   ? ExpirenceArray[3].Description
+<<<<<<< HEAD
+=======
+                  : menu.five
+                  ? ExpirenceArray[4].Description
+>>>>>>> cecfea990ab2d95b1a5712b38d4b1c5eb1e81f96
                   : ""}
               </p>
             </div>

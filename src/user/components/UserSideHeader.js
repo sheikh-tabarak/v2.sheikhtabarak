@@ -100,7 +100,11 @@ export default function UserSideHeader() {
                 <span className="menu-font-span pr-1 text-[13px]">03.</span>
                 <a 
                 onClick={clickMenu}
+<<<<<<< HEAD
                 href="#work" className="menu-font-in-SFMonoBold py-2  ">
+=======
+                href="#" className="menu-font-in-SFMonoBold py-2  ">
+>>>>>>> cecfea990ab2d95b1a5712b38d4b1c5eb1e81f96
                   Work
                 </a>
               </li>
