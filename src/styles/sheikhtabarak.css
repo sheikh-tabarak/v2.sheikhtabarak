@@ -34,7 +34,7 @@
 
 
 .menu-font-in-SFMonoBold{
-    font-size: 13px;
+    /* font-size: 13px; */
     font-family: 'SF Mono Light';
     font-weight: 100;
     /* background-color: #46c378; */
@@ -49,7 +49,7 @@
 
 
 .menu-font-in-SFMonoBold:hover {
-    font-size: 13px;
+    /* font-size: 13px; */
     font-family: 'SF Mono Light';
     font-weight: 100;
     /* background-color: #46c378; */

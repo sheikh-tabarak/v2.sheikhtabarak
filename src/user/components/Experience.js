@@ -78,15 +78,15 @@ export default function Experience() {
 
 
         
-      <div className="px-4 py-10 lg:px-36 lg:py-10 md:px-36 md:py-10">
+      <div className="px-4 py-10 lg:px-36 lg:py-12 md:px-36 md:py-10">
 
 
-      <div id="Experience" className="flex pb-5">
+      <div id="Experience" className="flex pb-4">
               <h1 className="col menu-font-span text-[22px] ">2.</h1>
               <h1 className="col text-[20px] leading-8 font-bold mb-4 tracking-tight text-[#CCD6F6] md:text-[40px] lg:text-[24px]">
               Where I’ve Worked.
               </h1>
-              {/* <hr class="h-px mx-8 my-12 bg-gray-400 border-1 dark:bg-gray-700"/> */}
+              {/* <hr className="h-px mx-8 my-12 bg-gray-400 border-1 dark:bg-gray-700"/> */}
             </div>
 
 
@@ -186,24 +186,7 @@ export default function Experience() {
               >
                 {ExpirenceArray[3].Company}
               </button>
-              {/* <button
-                onClick={() =>
-                  setMenu({
-                    one: false,
-                    two: false,
-                    three: false,
-                    four: false,
-                    // five: true,
-                  })
-                }
-                className={
-                  menu.five
-                    ? "text-left border-l-2 border-[#4CD684] text-[13px]  text-[#4CD684] experience-font-in-SFMonoBold flex justify-start items-center space-x-6  focus:bg-gray-700 hover:bg-gray-700 text-gray-400 px-3 py-2  w-full md:w-52"
-                    : "text-left text-[13px] border-l-2  border-[#404C66]   experience-font-in-SFMonoBold flex justify-start items-center space-x-6  focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 px-3 py-2  w-full md:w-52"
-                }
-              >
-                {ExpirenceArray[4].Company}
-              </button> */}
+              
             </div>
           </div>
 
@@ -271,8 +254,11 @@ export default function Experience() {
               </p>
             </div>
           </div>
-        </div>
+          
+        </div><div id="work"></div>
       </div>
+
+      
     </section>
   );
 }

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 export default function Contact() {
   return (
-    <section>
+    <section id="contact">
       <div className="px-4 py-10 lg:px-36 lg:py-10 md:px-36 md:py-5">
         <p className="text-center menu-font-span leading-10 text-[16px] ">
           04. What’s Next?
@@ -16,8 +16,8 @@ export default function Contact() {
           Get In Touch
         </h1>
 
-        <div className="px-20 py-0 lg:px-36 lg:py-7">
-          <p className=" text-center lg:text-center text-[16px]   text-[#8892B0] md:text-[20px] lg:text-[20px]">
+        <div className="px-2 py-5 lg:px-36 lg:py-7">
+          <p className=" text-center lg:text-center text-[16px]  text-[#8892B0] md:text-[20px] lg:text-[20px]">
             Although I’m not currently looking for any new opportunities, my
             inbox is always open. Whether you have a question or just want to
             say hi, I’ll try my best to get back to you!
@@ -27,7 +27,7 @@ export default function Contact() {
         <div className="flex justify-center mx-auto">
           <a
             id="about"
-            href="#"
+            href="mailto:admin@sheikhtabarak.me"
             className=" flex gap-2 menu-button  hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175 px-5 py-3 text-[10px] font-bold mb-4 tracking-tight text-[#8892B0] md:text-[13px] lg:text-[13px] lg:px-8 lg:py-3"
           >
             <HiOutlineMailOpen />
@@ -35,12 +35,13 @@ export default function Contact() {
           </a>
         </div>
       </div>
+ <Link className="menu-font-in-SFMonoBold text-[10px] lg:text-[13px] py-2 flex gap-2 content-between justify-center" to="https://github.com/sheikh-tabarak/sheikhtabarak"  target="blank">
+     
+   Designed & Built by Muhammad Tabarak
 
-      <Link className="menu-font-in-SFMonoBold py-2 flex gap-2 content-between justify-center">
-   Designed & Built by Muhammad Tabarak </Link> 
-
-<Link to={"/"} className="menu-font-in-SFMonoBold pb-5 flex gap-2 content-between justify-center "><FaRegCopyright className="self-center	"/>
-2023 Copyrights Muhammad Tabarak | All Rights Reserved</Link> 
+</Link>
+<Link to={"/"} className="menu-font-in-SFMonoBold  text-[10px] lg:text-[13px] pb-5 flex gap-2 content-between justify-center "><FaRegCopyright className="self-center	"/>
+2023 Copyrights | All Rights Reserved</Link> 
 
     </section>
   );

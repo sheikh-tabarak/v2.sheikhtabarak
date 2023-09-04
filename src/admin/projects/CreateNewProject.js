@@ -46,7 +46,11 @@ export default function CreateNewProject() {
 
   const [TechList, setTechList] = useState([]);
 
+  const [SelectedTechList, setSelectedTechList] = useState([]);
+
   useEffect(() => {
+    // console.log("selected + "+NewProject.builtsin);
+
     const fetchTheTechnologies = async () => {
       try {
         const collectionRef = firebase.firestore().collection("technologies");
@@ -60,7 +64,7 @@ export default function CreateNewProject() {
             data.technology_desc
           );
         });
-        setTechList(TechList);
+        setTechList(TechList, false);
       } catch (error) {
         console.error("Error fetching projects:", error);
       }
@@ -89,7 +93,6 @@ export default function CreateNewProject() {
   });
 
   async function addData(e) {
-    
     e.preventDefault();
     setisLoading(true);
 
@@ -320,15 +323,14 @@ export default function CreateNewProject() {
                 required=""
               />
             </div>
-            <div>
-              <label
-                htmlFor="builtin"
+          <div>
+          <label
+                htmlFor="link"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
-                Builts in
+                Project link
               </label>
-              <select
-                value={NewProject.builtsin}
+              <input
                 onChange={(e) => {
                   setNewProject({
                     name: NewProject.name,
@@ -338,22 +340,20 @@ export default function CreateNewProject() {
                     startDate: NewProject.startDate,
                     endDate: NewProject.endDate,
                     featureImage: NewProject.featureImage,
-                    link: NewProject.link,
-                    builtsin: e.target.value,
+                    link: e.target.value,
+                    builtsin: NewProject.builtsin,
                   });
                 }}
-                id="builtin"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-              >
-                {TechList.map((technology, index) => {
-                  return (
-                    <option key={index} value={technology.technology_title}>
-                      {technology.technology_title}
-                    </option>
-                  );
-                })}
-              </select>
-            </div>
+                type="text"
+                name="link"
+                id="link"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                placeholder={"https://xyz.sheikhtabarak.me"}
+                required=""
+              />
+
+
+          </div>
             <div>
               <label
                 htmlFor="link"
@@ -383,6 +383,67 @@ export default function CreateNewProject() {
                 required=""
               />
             </div>
+
+            {/* <div className=""> */}
+
+            <div>
+              <label
+                htmlFor="builtin"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Builts in
+              </label>
+            
+              <div class="w-full flex justify-between items-left">
+
+              {TechList.map((technology, index) => {
+                return (
+                  <div key={index} class="flex items-center">
+                    <input
+                      onClick={() => {
+                        if (
+                          SelectedTechList.includes(
+                            technology.technology_title + ","
+                          )
+                        ) {
+                          let elementToRemove =
+                            technology.technology_title + ",";
+
+                          setSelectedTechList((SelectedTechList) =>
+                            SelectedTechList.filter(
+                              (number) => number !== elementToRemove
+                            )
+                          );
+                        } else {
+                          setSelectedTechList([
+                            ...SelectedTechList,
+                            technology.technology_title + ",",
+                          ]);
+                        }
+
+                        console.log(NewProject.builtsin);
+                      }}
+                      id="checked-checkbox"
+                      type="checkbox"
+                      value=""
+                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label
+                      for="checked-checkbox"
+                      class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    >
+                      {technology.technology_title}
+                    </label>
+                  </div>
+                );
+              })}
+              </div>
+
+              <div>{SelectedTechList}</div>
+
+              </div>
+              
+            {/* </div> */}
 
             <Datepicker
               containerClassName="relative sm:col-span-2"

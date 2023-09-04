@@ -6,24 +6,22 @@ import AboutSection from "../components/AboutSection";
 import Experience from "../components/Experience";
 import Card from "../components/card";
 import Contact from "../components/Contact";
+import Archive from "./Archive";
 
 export default function HomePage() {
- 
   return (
     <>
-    <div className="w-full bg-[#0A192F] "> 
-    
-    <UserSideHeader/>
-  <HeroSection/>
-   <AboutSection/> 
-   <Experience/>
-   <Card/>
+      <div className="w-full bg-[#0A192F] ">
+        <UserSideHeader />
 
-   <Contact/>
- 
+        <Archive/>
+        {/* <HeroSection />
+        <AboutSection />
+        <Experience />
+        <Card />
+        <Contact /> */}
 
-    </div>
-    
+      </div>
     </>
-    );
+  );
 }

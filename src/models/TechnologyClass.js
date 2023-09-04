@@ -10,6 +10,7 @@ class Technology {
     this.technology_id = technology_id;
     this.technology_title = technology_title;
     this.technology_desc = technology_desc;
+    
   }
 
   async addTechnology(TTitle, TDescription) {

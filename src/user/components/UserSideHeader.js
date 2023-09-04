@@ -10,7 +10,6 @@ export default function UserSideHeader() {
   }
   return (
     <header className="sticky top-0 z-50">
-      {/* <button className="menu__StyledHamburgerButton-sdn9y6-1 eCxtrN"><div className="ham-box"><div className="ham-box-inner"></div></div></button> */}
 
       <nav className="dark border-gray-200 px-4 lg:px-8 py-2 bg-[#0A192F]">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
@@ -21,13 +20,7 @@ export default function UserSideHeader() {
               alt="Sheikh Tabarak Logo"
             />
           </a>
-          {/* <div className="flex items-right lg:order-2"> */}
-          {/* <a
-            href="#"
-            className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
-          >
-            Log in
-          </a> */}
+       
 
           <button
             onClick={clickMenu}
@@ -63,10 +56,8 @@ export default function UserSideHeader() {
               />
             </svg>
           </button>
-          {/* </div> */}
           <div
-            //   className={`fixed top-0 right-0 h-full w-64 bg-white shadow-md slide-in-right${ menu ? ' active' : ''
-            //   }`}
+        
             className={
               menu
                 ?
@@ -80,9 +71,8 @@ export default function UserSideHeader() {
                 <span className="menu-font-span pr-1 text-[13px]">01.</span>
                 <a
                 onClick={clickMenu}
-                // onScroll={AnimationEffect(smoo)}
                   href="/#about"
-                  className="menu-font-in-SFMonoBold py-2 "
+                  className="menu-font-in-SFMonoBold text-[13px] hover:text-[13px] py-2 "
                   aria-current="page"
                 >
                   About
@@ -92,7 +82,7 @@ export default function UserSideHeader() {
                 <span className="menu-font-span pr-1 text-[13px]">02.</span>
                 <a
                 onClick={clickMenu}
-                href="#Experience" className="menu-font-in-SFMonoBold py-2  ">
+                href="#Experience" className="menu-font-in-SFMonoBold text-[13px] hover:text-[13px] py-2  ">
                 Experience
                 </a>
               </li>
@@ -100,7 +90,7 @@ export default function UserSideHeader() {
                 <span className="menu-font-span pr-1 text-[13px]">03.</span>
                 <a 
                 onClick={clickMenu}
-                href="#work" className="menu-font-in-SFMonoBold py-2  ">
+                href="#work" className="menu-font-in-SFMonoBold text-[13px] hover:text-[13px]  py-2  ">
                   Work
                 </a>
               </li>
@@ -108,22 +98,11 @@ export default function UserSideHeader() {
                 <span className="menu-font-span pr-1 text-[13px]">04.</span>
                 <a
                 onClick={clickMenu}
-                href="#" className="menu-font-in-SFMonoBold py-2  ">
+                href="#contact" className="menu-font-in-SFMonoBold text-[13px] hover:text-[13px]  py-2  ">
                   Contact
                 </a>
               </li>
-            {/*   <li>
-                <span className="menu-font-span pr-1 text-[13px]">05.</span>
-                <a href="#" className="menu-font-in-SFMonoBold py-2  ">
-                  Team
-                </a>
-              </li>
-              <li>
-                <span className="menu-font-span pr-1 text-[13px]">06.</span>
-                <a href="#" className="menu-font-in-SFMonoBold py-2  ">
-                  Contact
-                </a>
-              </li> */}
+           
 
               <li className="hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-17">
                 <a
@@ -134,7 +113,6 @@ onClick={clickMenu}
                 >
                   Resume
                 </a>
-                {/* </div> */}
               </li>
             </ul>
           </div>
@@ -219,9 +197,9 @@ onClick={clickMenu}
         <ul className="">
           <li className="">
             <div className=" rotate-90 pr-32 hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175">
-              {/* <a href="#" class="inline-flex justify-between items-center py-1 px-1 pr-4 mb-7  ring-1 ring-[#CCD6F6] hover:ring-[#4CD684] text-sm rounded-full  text-white  hover:bg-grey-200" role="alert">
-            <span class=" text-xs bg-[#4CD684] rounded-full text-[#0A192F] px-4 py-1.5 mr-3">fiverr.com/sheikhtabarak</span> <span class=" menu-font-in-SFMonoBold text-sm font-medium">Level two Seller</span> 
-            <svg class="ml-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+              {/* <a href="#" className="inline-flex justify-between items-center py-1 px-1 pr-4 mb-7  ring-1 ring-[#CCD6F6] hover:ring-[#4CD684] text-sm rounded-full  text-white  hover:bg-grey-200" role="alert">
+            <span className=" text-xs bg-[#4CD684] rounded-full text-[#0A192F] px-4 py-1.5 mr-3">fiverr.com/sheikhtabarak</span> <span className=" menu-font-in-SFMonoBold text-sm font-medium">Level two Seller</span> 
+            <svg className="ml-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path></svg>
         </a> */}
               <a
                 href="mailto:admin@sheikhtabarak.me"
