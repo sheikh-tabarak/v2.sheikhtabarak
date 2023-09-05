@@ -33,28 +33,22 @@ export default function MyTechnologies() {
     setisLoading(false);
   }
 
-
-
-
-
-  async function updateTechnology(TID, TTiltle, TDesc){
+  async function updateTechnology(TID, TTiltle, TDesc) {
     OpenEditBox();
     setisLoading(true);
-    
+
     const newTech = new Technology();
 
     await newTech.updateTech(TID, TTiltle, TDesc);
 
     setrefreshData(!refreshData);
     setisLoading(false);
-
-
   }
 
-  const location = useLocation();
+  // const location = useLocation();
 
   useEffect(() => {
-    const fetchProjects = async () => {
+    const fetchTechnologies = async () => {
       try {
         const collectionRef = firebase.firestore().collection("technologies");
         const snapshot = await collectionRef.get();
@@ -74,7 +68,7 @@ export default function MyTechnologies() {
       }
     };
 
-    fetchProjects();
+    fetchTechnologies();
   }, [refreshData]);
 
   // useEffect(() => {
@@ -85,7 +79,6 @@ export default function MyTechnologies() {
   // });
 
   async function addNewTech(e) {
-
     e.preventDefault();
     setisLoading(true);
 
@@ -174,8 +167,6 @@ export default function MyTechnologies() {
             Add Technology
           </button>
         </form>
-
-      
       </div>
       <div className="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-auto">
         <div className="my-10">
@@ -187,23 +178,16 @@ export default function MyTechnologies() {
             <table className=" w-full text-sm text-left text-gray-500 dark:text-gray-400">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                  <th className="text-left w-2/3 p-5">
-                    Title
-                  </th>
+                  <th className="text-left w-2/3 p-5">Title</th>
 
-                  <th className="text-left w-1/3 p-5">
-                    Action
-                  </th>
+                  <th className="text-left w-1/3 p-5">Action</th>
                 </tr>
               </thead>
               <tbody>
                 {techList.map((Technology, index) => {
                   return (
                     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                      <td
-                      
-                        className="text-left w-2/3 p-5 flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
-                      >
+                      <td className="text-left w-2/3 p-5 flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                         <div className="pl-3">
                           <div className="text-base font-semibold">
                             {Technology.technology_title}
@@ -228,9 +212,9 @@ export default function MyTechnologies() {
                         {/* Modal toggle */}
                         <div className="flex row">
                           <div className="px-2">
-                            <Link state={{technology:Technology}}>
+                            <Link state={{ technology: Technology }}>
                               <svg
-                              onClick={OpenEditBox}
+                                onClick={OpenEditBox}
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 30 30"
                                 width="20px"
@@ -266,17 +250,15 @@ export default function MyTechnologies() {
               </tbody>
             </table>
 
-            <UpdateTechnologies 
-            EditForm={EditForm}
-            OpenEditBox={OpenEditBox}
-            // refresh={refresh}
-            UpdatetheTechnology={ async (id, title, desc)=>{
-              await updateTechnology(id, title, desc);
-              console.log(id+title+desc);
-            }}
-            
+            <UpdateTechnologies
+              EditForm={EditForm}
+              OpenEditBox={OpenEditBox}
+              // refresh={refresh}
+              UpdatetheTechnology={async (id, title, desc) => {
+                await updateTechnology(id, title, desc);
+                console.log(id + title + desc);
+              }}
             />
-          
           </div>
         </div>
       </div>

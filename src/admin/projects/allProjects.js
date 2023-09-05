@@ -166,7 +166,7 @@ export default function AllProjects() {
     <>
 
 
-      <div className="flex items-right justify-between pb-4">
+      <div className="hidden lg:flex items-right lg:justify-between pb-4">
         <div>
           <button
             id="dropdownRadioButton"
