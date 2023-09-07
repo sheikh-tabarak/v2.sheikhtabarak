@@ -61,6 +61,27 @@ const ProjectArchive = [
         // playstore_link:""
       },
 
+
+      {
+        year: 2022,
+        title: "CVC Supplies",
+        madeat: "Fiverr",
+        builtwith: "Wordpress , Maxbizz , Elementor",
+        link: "https://cvcsupplies.com/",
+        github_link: "",
+        // playstore_link:""
+      },
+
+      {
+        year: 2022,
+        title: "Big Brand Saver",
+        madeat: "Fiverr",
+        builtwith: "Wordpress , Rozer , Elementor, Woocommerce",
+        link: "  https://www.bigbrandsaver.com/",
+        github_link: "",
+        // playstore_link:""
+      },
+
       {
         year: 2022,
         title: "Math Lab",
@@ -68,6 +89,16 @@ const ProjectArchive = [
         builtwith: "HTML , CSS , Java Script",
         link: "https://mathlab.sheikhtabarak.me",
         github_link: "https://github.com/sheikh-tabarak/Account-Managment-System-using-cpp",
+        // playstore_link:""
+      },
+
+      {
+        year: 2021,
+        title: "Car Rental System",
+        madeat: "Fiverr",
+        builtwith: "Wordpress , WP Car Rental , WP_Bakery, Fleet_Management,testing",
+        link: "https://rgdiasporaservices.com/",
+        github_link: "",
         // playstore_link:""
       },
 
