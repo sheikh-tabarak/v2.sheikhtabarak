@@ -1,5 +1,18 @@
 const ProjectArchive = [
 
+  {
+    year: 2019,
+    title: "Candy Shop",
+    madeat: "Upwork",
+    builtwith: "Wordpress, Rozer, Elementor, Woocommerce",
+    link: "https://candyhype.com/",
+    github_link: "",
+    // playstore_link:""
+  },
+
+
+  //
+
     {
       
       year: 2023,
@@ -16,7 +29,7 @@ const ProjectArchive = [
       year: 2022,
       title: "Trusted Rentals",
       madeat: "Fiverr",
-      builtwith: "Wordpress,Tolips,Slider_Revolution",
+      builtwith: "Wordpress,Tolips,Slider Revolution",
       link: "https://trustedrentals.ca/",
       github_link: "",
       // playstore_link:""
@@ -97,7 +110,7 @@ const ProjectArchive = [
         year: 2021,
         title: "Car Rental System",
         madeat: "Fiverr",
-        builtwith: "Wordpress , WP Car Rental , WP_Bakery, Fleet_Management,testing",
+        builtwith: "Wordpress , WP Car Rental , WP Bakery, Fleet Management,testing",
         link: "https://rgdiasporaservices.com/",
         github_link: "",
         // playstore_link:""
@@ -112,6 +125,9 @@ const ProjectArchive = [
         github_link: "https://github.com/sheikh-tabarak/Account-Managment-System-using-cpp",
         // playstore_link:""
       },
+
+
+      //https://candyhype.com/
   ];
 
 
