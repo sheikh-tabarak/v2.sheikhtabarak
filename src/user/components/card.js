@@ -50,9 +50,11 @@ export default function Card() {
 
                 <div className="py-3 text-center lg:text-right">
                   {test.split(",").map((value, i) => {
-                    
                     return (
-                      <span key={i} className="p-1 skills-font-span text-[13px] text-[#CCD6F6]">
+                      <span
+                        key={i}
+                        className="p-1 skills-font-span text-[13px] text-[#CCD6F6]"
+                      >
                         {i !== 0 && i < test.length - 1 ? "-" : null}
                         {value}
                       </span>
@@ -86,8 +88,16 @@ export default function Card() {
               </div>
             </div>
           </div>
-        </div>
+        </div>    
+        
+        <Link className="text-center" to={"/archive"}>
+        <p className="menu-font-span hover:underline leading-6 md:leading-10 text-[14px] lg:text-[16px] pb-10 ">
+          view the archive
+        </p>
+      </Link>
       </div>
+
+  
     </section>
   );
 }

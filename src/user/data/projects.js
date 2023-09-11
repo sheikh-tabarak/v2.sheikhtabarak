@@ -1,10 +1,10 @@
 const ProjectArchive = [
 
   {
-    year: 2019,
+    year: 2023,
     title: "Candy Shop",
     madeat: "Upwork",
-    builtwith: "Wordpress, Rozer, Elementor, Woocommerce",
+    builtwith: "Wordpress,Rozer, Elementor, Woocommerce",
     link: "https://candyhype.com/",
     github_link: "",
     // playstore_link:""
@@ -48,7 +48,7 @@ const ProjectArchive = [
         year: 2022,
         title: "React Documentation 2022 (Clone)",
         madeat: "-",
-        builtwith: "React js,Bootstrap,CSS",
+        builtwith: "React js,Bootstrap,CSS,Wordpress",
         link: "https://reactdocs.sheikhtabarak.me/",
         github_link: "https://github.com/sheikh-tabarak/Clone-of-React-Js-Documentation-reactjs.org-",
         // playstore_link:""

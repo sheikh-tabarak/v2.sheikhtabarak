@@ -30,25 +30,10 @@ export default function Experience() {
       EndDate: "Apr 2023",
       Description:
         'I had the privilege of honing a diverse range of skills during my time at NIC. This included teamwork, leadership, stress management and effective time management. As a web developer, social media specialist, and finance manager for our startup project "Pakpets", I was able to apply these skills in a practical setting, resulting in a truly enriching experience.  This valuable experience has added an indispensable dimension to my professional journey.',
+
     },
 
-    {
-      title: "Founder & CEO",
-      Company: "Sheikh Tabarak",
-      StartDate: "August 2021",
-      EndDate: "Present",
-      Description:
-        "I have expertise in Frontend Web and Mobile Application Development, able to deliver high-quality, reliable solutions on time and on budget. I am dedicated to ensuring client satisfaction and am willing to go above and beyond to meet the needs of my clients. I have a proactive, solutions-oriented approach to problem-solving, and I am flexible and adaptable in working with clients’ changing needs and priorities. I am also committed to continuous learning and professional development.",
-    },
-
-    // {
-    //   title: "Lead Engineer",
-    //   Company: "Upstatement",
-    //   StartDate: "May 23, 2018",
-    //   EndDate: "Present",
-    //   Description:
-    //     "Deliver high-quality, robust production code for a diverse array of projects for clients including Harvard Business School, Everytown for Gun Safety, Pratt Institute, Koala Health, Vanderbilt University, The 19th News, and more Work alongside creative directors to lead the research, development, and architecture of technical solutions to fulfill business requirements Collaborate with designers, project managers, and other engineers to transform creative concepts into production realities for clients and stakeholders Provide leadership within engineering department through close collaboration, knowledge shares, and mentorship",
-    // },
+   
   ];
 
   const [menu, setMenu] = useState({
@@ -156,7 +141,7 @@ export default function Experience() {
                     one: false,
                     two: false,
                     three: true,
-                    four: false,
+                    // four: false,
                     // five: false,
                   })
                 }
@@ -168,13 +153,13 @@ export default function Experience() {
               >
                 {ExpirenceArray[2].Company}
               </button>
-              <button
+              {/* <button
                 onClick={() =>
                   setMenu({
                     one: false,
                     two: false,
                     three: false,
-                    four: true,
+                    // four: true,
                     // five: false,
                   })
                 }
@@ -185,7 +170,7 @@ export default function Experience() {
                 }
               >
                 {ExpirenceArray[3].Company}
-              </button>
+              </button> */}
               
             </div>
           </div>
@@ -199,9 +184,10 @@ export default function Experience() {
                   ? ExpirenceArray[1].title
                   : menu.three
                   ? ExpirenceArray[2].title
-                  : menu.four
-                  ? ExpirenceArray[3].title
-                  : ""}
+                  //:
+                  // menu.four
+                  // ? ExpirenceArray[3].title:
+                   :""}
               </span>
 
               <span className="px-2 col text-[18px] leading-8 mb-4 tracking-tight text-[#4CD684] md:text-[40px] lg:text-[22px] font-[500] ">
@@ -213,8 +199,8 @@ export default function Experience() {
                     ? ExpirenceArray[1].Company
                     : menu.three
                     ? ExpirenceArray[2].Company
-                    : menu.four
-                    ? ExpirenceArray[3].Company
+                    // : menu.four
+                    // ? ExpirenceArray[3].Company
                     : ""}
                 </Link>
               </span>
@@ -226,8 +212,8 @@ export default function Experience() {
                   ? ExpirenceArray[1].StartDate
                   : menu.three
                   ? ExpirenceArray[2].StartDate
-                  : menu.four
-                  ? ExpirenceArray[3].StartDate
+                  // : menu.four
+                  // ? ExpirenceArray[3].StartDate
                   : ""}
                 -
                 {menu.one
@@ -236,8 +222,8 @@ export default function Experience() {
                   ? ExpirenceArray[1].EndDate
                   : menu.three
                   ? ExpirenceArray[2].EndDate
-                  : menu.four
-                  ? ExpirenceArray[3].EndDate
+                  // : menu.four
+                  // ? ExpirenceArray[3].EndDate
                   :""}
               </p>
 
@@ -248,8 +234,8 @@ export default function Experience() {
                   ? ExpirenceArray[1].Description
                   : menu.three
                   ? ExpirenceArray[2].Description
-                  : menu.four
-                  ? ExpirenceArray[3].Description
+                  // : menu.four
+                  // ? ExpirenceArray[3].Description
                   : ""}
               </p>
             </div>

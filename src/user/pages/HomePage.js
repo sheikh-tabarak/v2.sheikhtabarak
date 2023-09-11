@@ -7,8 +7,9 @@ import Experience from "../components/Experience";
 import Card from "../components/card";
 import Contact from "../components/Contact";
 import Archive from "./Archive";
-import { Route, Routes } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import SocialIcons from "../components/socialIcons";
+import Footer from "../components/Footer";
 
 export default function HomePage() {
   return (
@@ -25,22 +26,21 @@ export default function HomePage() {
                 <AboutSection />
                 <Experience />
                 <Card />
+                
+                
                 <Contact />
               
               </>
             }
           />
-          <Route path="/archive" element={<Archive />} />
-
+          <Route path="/archive/*" element={<Archive />} />
           {/* <Route path="/dashboard/*" element={<Dashboard />} /> */}
         </Routes>
 
+        <Footer/>
+
        
-        {/* <HeroSection />
-        <AboutSection />
-        <Experience />
-        <Card />
-        <Contact /> */}
+    
       </div>
     </>
   );

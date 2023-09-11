@@ -1,31 +1,100 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import {BiLinkExternal} from 'react-icons/bi'
 import "../../styles/sheikhtabarak.css";
 import { BiLinkExternal, BiLogoGithub } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { Link, Route, Routes, useLocation } from "react-router-dom";
 import ProjectArchive from "../data/projects";
-
-
-
 
 export default function Archive(props) {
   const [Moredetails, setMoredetails] = useState(true);
+  const history = useLocation();
+  const [Tech, setTech] = useState("");
 
-   
-
-
+  useEffect(() => {
+    const FilterText = history.pathname.split("/")[2];
+    FilterText !== undefined ? setTech(FilterText) : setTech("");
+  }, []);
 
   return (
     <div className="px-5 py-10 lg:px-36 lg:py-10 md:px-36 md:py-10">
-      <h1 className="text-[20px] font-bold  tracking-tight text-[#CCD6F6] md:text-[40px] lg:text-[60px]">
-        Archive
-      </h1>
+      <div className="lg:justify-between  lg:flex	lg:items-end">
+        <h1 className="text-[20px] font-bold  tracking-tight text-[#CCD6F6] md:text-[40px] lg:text-[60px]">
+          Archive
+        </h1>
+        <ul className="py-5 lg:py-0 z-10 overflow-scroll flex  skills-font-span ">
+          <Link onClick={() => setTech("")} to={"/archive"}>
+            <li className="my-2 mr-2 min-w-min">
+              <div
+                className={
+                  Tech === ""
+                    ? "flex items-center rounded-[10px]  px-3 py-1.5 lg:px-5 lg:py-2 text-[10px] lg:text-[13px] font-medium leading-5 text-white bg-[#46c378]"
+                    : "flex items-center rounded-[10px]  px-3 py-1.5 lg:px-5 lg:py-2 text-[10px] lg:text-[13px] font-medium leading-5 text-[#46c378] bg-teal-400/10"
+                }
+              >
+                All
+              </div>
+            </li>
+          </Link>
+          <Link onClick={() => setTech("Wordpress")} to={"/archive/Wordpress"}>
+            <li className="my-2 mr-2 min-w-max">
+              <div
+                className={
+                  Tech === "Wordpress"
+                    ? "flex items-center rounded-[10px]  px-3 py-1.5 lg:px-5 lg:py-2 text-[10px] lg:text-[13px] font-medium leading-5 text-white bg-[#46c378]"
+                    : "flex items-center rounded-[10px]  px-3 py-1.5 lg:px-5 lg:py-2 text-[10px] lg:text-[13px] font-medium leading-5 text-[#46c378] bg-teal-400/10"
+                }
+              >
+                Wordpress
+              </div>
+            </li>
+          </Link>
+
+          <Link onClick={() => setTech("Reactjs")} to={"/archive/Reactjs"}>
+            <li className="my-2 mr-2 min-w-max">
+              <div
+                className={
+                  Tech === "Reactjs"
+                    ? "flex items-center rounded-[10px]  px-3 py-1.5 lg:px-5 lg:py-2 text-[10px] lg:text-[13px] font-medium leading-5 text-white bg-[#46c378]"
+                    : "flex items-center rounded-[10px]  px-3 py-1.5 lg:px-5 lg:py-2 text-[10px] lg:text-[13px] font-medium leading-5 text-[#46c378] bg-teal-400/10"
+                }
+              >
+                React js
+              </div>
+            </li>
+          </Link>
+
+          <Link onClick={() => setTech("Flutter")} to={"/archive/Flutter"}>
+            <li className="my-2 mr-2 min-w-max">
+              <div
+                className={
+                  Tech === "Flutter"
+                    ? "flex items-center rounded-[10px]  px-3 py-1.5 lg:px-5 lg:py-2 text-[10px] lg:text-[13px] font-medium leading-5 text-white bg-[#46c378]"
+                    : "flex items-center rounded-[10px]  px-3 py-1.5 lg:px-5 lg:py-2 text-[10px] lg:text-[13px] font-medium leading-5 text-[#46c378] bg-teal-400/10"
+                }
+              >
+                Flutter
+              </div>
+            </li>
+          </Link>
+
+          <Link onClick={() => setTech("Others")} to={"/archive/Others"}>
+            <li className="my-2 mr-2 min-w-max">
+              <div
+                className={
+                  Tech === "Others"
+                    ? "flex items-center rounded-[10px]  px-3 py-1.5 lg:px-5 lg:py-2 text-[10px] lg:text-[13px] font-medium leading-5 text-white bg-[#46c378]"
+                    : "flex items-center rounded-[10px]  px-3 py-1.5 lg:px-5 lg:py-2 text-[10px] lg:text-[13px] font-medium leading-5 text-[#46c378] bg-teal-400/10"
+                }
+              >
+                C++/Java/Others
+              </div>
+            </li>
+          </Link>
+        </ul>
+      </div>
       <p className="menu-font-span leading-6 md:leading-10 text-[14px] lg:text-[16px] pb-10 ">
         A big list of things I’ve worked on
       </p>
-
-   
-
       <div className="relative overflow-x-auto shadow-md">
         <table className="w-full text-sm text-left  text-gray-400">
           <thead className="">
@@ -47,7 +116,7 @@ export default function Archive(props) {
               </th>
               <th
                 scope="col"
-                className="px-2 py-2 lg:px-6 lg:py-3    lg:table-cell hidden lg:w-4/13"
+                className="px-2 py-2 lg:px-6 lg:py-3 min-w-max hidden lg:table-cell  lg:w-4/13"
               >
                 Built with
               </th>
@@ -61,122 +130,304 @@ export default function Archive(props) {
           </thead>
 
           <tbody className="border-radius: 20px">
-            {ProjectArchive.map((value, index) => {
-              return (
-                <>
-                  <tr
-                    key={index}
-                    className="py-5 lg:py-10 border-b border-gray-700 hover:bg-[#112240] rounded-xl"
-                  >
-                    <th
-                      scope="row"
-                      className="px-2 py-2 lg:px-6 lg:py-3 font-medium  whitespace-nowrap text-white"
-                    >
-                      <p className="menu-font-span text-[13px] lg:text-[16px] ">
-                        {value.year}
-                      </p>
-                    </th>
-
-                    <td
-                      className={
-                        "align-middle px-2 py-2 lg:px-6 lg:py-3  "
-                        // + "w-6/13 lg:w-4/13"
-                      }
-                    >
-                      {/* <div className={Moredetails===true?" absolute bg-white p-[200]":"hidden bg-grey-200 p-[200]"}>Details here</div> */}
-
-                      <p
-                        // onMouseOver={()=>setMoredetails(!Moredetails)}
-                        // onMouseOut={()=>setMoredetails(!Moredetails)}
-                        className="align-middle py-1 px-2  col leading-5 lg:leading-7 md:leading-6  font-bold text-[14px] md:text-[16px]  lg:text-[17px] tracking-tight text-[#CCD6F6] font-[500] "
-                      >
-                        {value.title}
-                      </p>
-                    </td>
-                    <td className="px-2 py-2 lg:px-6 lg:py-3  hidden lg:table-cell lg:w-2/13 ">
-                      {value.madeat}
-                    </td>
-                    <td
-                      className={
-                        " flex-inline skills-font-span text-[12px] px-2 py-2 lg:px-6 lg:py-3  "
-                        // +"lg:w-4/13 hidden lg:table-cell"
-                      }
-                    >
-                      <ul class="flex -translate-y-1.5 flex-wrap">
-                       
-
-                      {value.builtwith.split(",").map((values, i) => {
-                        return (
-                         <li class="my-1 mr-1.5">
-                          <div class="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300 ">
-                            {values}
-                          </div>
-                        </li>
-                        );
-                      })}
-                        
-
-                      </ul>
-
-                      {/* {value.builtwith.split(",").map((values, i) => {
-                        return (
-                          <span
-                            key={i}
-                            className="my-1.5 mr-2 items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300 "
+            <Routes>
+              <Route
+                path={"/"}
+                element={
+                  <>
+                    {ProjectArchive.map((value, index) => {
+                      return (
+                        <>
+                          <tr
+                            key={index}
+                            className="py-5 lg:py-10 border-b border-gray-700 hover:bg-[#112240] rounded-xl"
                           >
-                            {values}
-                          </span>
-                        );
-                      })} */}
-                    </td>
-                    <td
-                      className={
-                        "px-2 py-2 lg:px-6 lg:py-3   text-right"
-                        // +"w-4/13 lg:w-2/13"
-                      }
-                    >
-                      <p className="flex gap-x-4 col font-bold text-[18px] tracking-tight md:text-[22px] lg:text-[22px] font-[500] ">
-                        {value.link !== "" ? (
-                          <Link
-                            target="blank"
-                            to={value.link}
-                            className="text-[#CCD6F6] hover:text-[#4CD684] "
+                            <th
+                              scope="row"
+                              className="px-2 py-2 lg:px-6 lg:py-3 font-medium  whitespace-nowrap text-white"
+                            >
+                              <p className="menu-font-span text-[13px] lg:text-[16px] ">
+                                {value.year}
+                              </p>
+                            </th>
+
+                            <td
+                              className={
+                                "align-middle px-2 py-2 lg:px-6 lg:py-3 w-6/13 lg:w-4/13"
+                              }
+                            >
+                              {/* <div className={Moredetails===true?" absolute bg-white p-[200]":"hidden bg-grey-200 p-[200]"}>Details here</div> */}
+
+                              <p
+                                // onMouseOver={()=>setMoredetails(!Moredetails)}
+                                // onMouseOut={()=>setMoredetails(!Moredetails)}
+                                className="align-middle py-1 px-2  col leading-5 lg:leading-7 md:leading-6  font-bold text-[14px] md:text-[16px]  lg:text-[17px] tracking-tight text-[#CCD6F6] font-[500] "
+                              >
+                                {value.title}
+                              </p>
+                            </td>
+                            <td className="px-2 py-2 lg:px-6 lg:py-3  hidden lg:table-cell lg:w-2/13 ">
+                              {value.madeat}
+                            </td>
+                            <td
+                              className={
+                                " flex-inline skills-font-span text-[12px] px-2 py-2 lg:px-6 lg:py-3 lg:w-4/13 hidden lg:table-cell "
+                                // +
+                                // "lg:w-4/13 hidden lg:table-cell"
+                              }
+                            >
+                              <ul className="flex -translate-y-1.5 flex-wrap">
+                                {value.builtwith.split(",").map((values, i) => {
+                                  return (
+                                    <li key={i} className="my-1 mr-1.5">
+                                      <div className="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300 ">
+                                        {values}
+                                      </div>
+                                    </li>
+                                  );
+                                })}
+                              </ul>
+                            </td>
+                            <td
+                              className={
+                                "px-2 py-2 lg:px-6 lg:py-3   text-right w-4/13 lg:w-2/13" +
+                                "w-4/13 lg:w-2/13"
+                              }
+                            >
+                              <p className="flex gap-x-4 col font-bold text-[18px] tracking-tight md:text-[22px] lg:text-[22px] font-[500] ">
+                                {value.link !== "" ? (
+                                  <Link
+                                    target="blank"
+                                    to={value.link}
+                                    className="text-[#CCD6F6] hover:text-[#4CD684] "
+                                  >
+                                    <BiLinkExternal />
+                                  </Link>
+                                ) : (
+                                  <></>
+                                )}
+
+                                {value.github_link !== "" ? (
+                                  <Link
+                                    to={value.github_link}
+                                    target="blank"
+                                    className="text-[#CCD6F6] hover:text-[#4CD684] "
+                                  >
+                                    <BiLogoGithub />
+                                  </Link>
+                                ) : (
+                                  <></>
+                                )}
+                              </p>
+                            </td>
+                          </tr>
+                        </>
+                      );
+                    })}
+                  </>
+                }
+              />
+
+              <Route
+                path={"/" + Tech}
+                //onEnter={()=>setTech(Tech)}
+
+                // action={async ({ params, request }) => {
+                //  setTech(params.Tech);
+                // }}
+                // action={()=>setTech("Wordpress")}
+                element={ProjectArchive.map((value, index) => {
+                  if (Tech === "Others") {
+                    if (
+                      !value.builtwith.replace(/\s/g, "").includes("Reactjs") &&
+                      !value.builtwith.replace(/\s/g, "").includes("Flutter") &&
+                      !value.builtwith.replace(/\s/g, "").includes("Wordpress")
+                    ) {
+                      return (
+                        <>
+                          <tr
+                            key={index}
+                            className="py-5 lg:py-10 border-b border-gray-700 hover:bg-[#112240] rounded-xl"
                           >
-                            <BiLinkExternal />
-                          </Link>
-                        ) : (
-                          <></>
-                        )}
+                            <th
+                              scope="row"
+                              className="px-2 py-2 lg:px-6 lg:py-3 font-medium  whitespace-nowrap text-white"
+                            >
+                              <p className="menu-font-span text-[13px] lg:text-[16px] ">
+                                {value.year}
+                              </p>
+                            </th>
 
-                        {value.github_link !== "" ? (
-                          <Link
-                            to={value.github_link}
-                            target="blank"
-                            className="text-[#CCD6F6] hover:text-[#4CD684] "
+                            <td
+                              className={
+                                "align-middle px-2 py-2 lg:px-6 lg:py-3  "
+                                // + "w-6/13 lg:w-4/13"
+                              }
+                            >
+                              {/* <div className={Moredetails===true?" absolute bg-white p-[200]":"hidden bg-grey-200 p-[200]"}>Details here</div> */}
+
+                              <p
+                                // onMouseOver={()=>setMoredetails(!Moredetails)}
+                                // onMouseOut={()=>setMoredetails(!Moredetails)}
+                                className="align-middle py-1 px-2  col leading-5 lg:leading-7 md:leading-6  font-bold text-[14px] md:text-[16px]  lg:text-[17px] tracking-tight text-[#CCD6F6] font-[500] "
+                              >
+                                {value.title}
+                              </p>
+                            </td>
+                            <td className="px-2 py-2 lg:px-6 lg:py-3  hidden lg:table-cell lg:w-2/13 ">
+                              {value.madeat}
+                            </td>
+                            <td
+                              className={
+                                " flex-inline skills-font-span text-[12px] px-2 py-2 lg:px-6 lg:py-3  " +
+                                "lg:w-4/13 hidden lg:table-cell"
+                              }
+                            >
+                              <ul className="flex -translate-y-1.5 flex-wrap">
+                                {value.builtwith.split(",").map((values, i) => {
+                                  return (
+                                    <li key={i} className="my-1 mr-1.5">
+                                      <div className="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300 ">
+                                        {values}
+                                      </div>
+                                    </li>
+                                  );
+                                })}
+                              </ul>
+                            </td>
+                            <td
+                              className={
+                                "px-2 py-2 lg:px-6 lg:py-3   text-right"
+                                // +"w-4/13 lg:w-2/13"
+                              }
+                            >
+                              <p className="flex gap-x-4 col font-bold text-[18px] tracking-tight md:text-[22px] lg:text-[22px] font-[500] ">
+                                {value.link !== "" ? (
+                                  <Link
+                                    target="blank"
+                                    to={value.link}
+                                    className="text-[#CCD6F6] hover:text-[#4CD684] "
+                                  >
+                                    <BiLinkExternal />
+                                  </Link>
+                                ) : (
+                                  <></>
+                                )}
+
+                                {value.github_link !== "" ? (
+                                  <Link
+                                    to={value.github_link}
+                                    target="blank"
+                                    className="text-[#CCD6F6] hover:text-[#4CD684] "
+                                  >
+                                    <BiLogoGithub />
+                                  </Link>
+                                ) : (
+                                  <></>
+                                )}
+                              </p>
+                            </td>
+                          </tr>
+                        </>
+                      );
+                    }
+                  } else {
+                    if (value.builtwith.replace(/\s/g, "").includes(Tech)) {
+                      return (
+                        <>
+                          <tr
+                            key={index}
+                            className="py-5 lg:py-10 border-b border-gray-700 hover:bg-[#112240] rounded-xl"
                           >
-                            <BiLogoGithub />
-                          </Link>
-                        ) : (
-                          <></>
-                        )}
-                      </p>
-                    </td>
-                  </tr>
+                            <th
+                              scope="row"
+                              className="px-2 py-2 lg:px-6 lg:py-3 font-medium  whitespace-nowrap text-white"
+                            >
+                              <p className="menu-font-span text-[13px] lg:text-[16px] ">
+                                {value.year}
+                              </p>
+                            </th>
 
-              
+                            <td
+                              className={
+                                "align-middle px-2 py-2 lg:px-6 lg:py-3  "
+                                // + "w-6/13 lg:w-4/13"
+                              }
+                            >
+                              {/* <div className={Moredetails===true?" absolute bg-white p-[200]":"hidden bg-grey-200 p-[200]"}>Details here</div> */}
 
+                              <p
+                                // onMouseOver={()=>setMoredetails(!Moredetails)}
+                                // onMouseOut={()=>setMoredetails(!Moredetails)}
+                                className="align-middle py-1 px-2  col leading-5 lg:leading-7 md:leading-6  font-bold text-[14px] md:text-[16px]  lg:text-[17px] tracking-tight text-[#CCD6F6] font-[500] "
+                              >
+                                {value.title}
+                              </p>
+                            </td>
+                            <td className="px-2 py-2 lg:px-6 lg:py-3  hidden lg:table-cell lg:w-2/13 ">
+                              {value.madeat}
+                            </td>
+                            <td
+                              className={
+                                " flex-inline skills-font-span text-[12px] px-2 py-2 lg:px-6 lg:py-3  " +
+                                "lg:w-4/13 hidden lg:table-cell"
+                              }
+                            >
+                              <ul className="flex -translate-y-1.5 flex-wrap">
+                                {value.builtwith.split(",").map((values, i) => {
+                                  return (
+                                    <li key={i} className="my-1 mr-1.5">
+                                      <div className="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300 ">
+                                        {values}
+                                      </div>
+                                    </li>
+                                  );
+                                })}
+                              </ul>
+                            </td>
+                            <td
+                              className={
+                                "px-2 py-2 lg:px-6 lg:py-3   text-right"
+                                // +"w-4/13 lg:w-2/13"
+                              }
+                            >
+                              <p className="flex gap-x-4 col font-bold text-[18px] tracking-tight md:text-[22px] lg:text-[22px] font-[500] ">
+                                {value.link !== "" ? (
+                                  <Link
+                                    target="blank"
+                                    to={value.link}
+                                    className="text-[#CCD6F6] hover:text-[#4CD684] "
+                                  >
+                                    <BiLinkExternal />
+                                  </Link>
+                                ) : (
+                                  <></>
+                                )}
 
-
-              
-
-
-
-
-
-
-                </>
-              );
-            })}
+                                {value.github_link !== "" ? (
+                                  <Link
+                                    to={value.github_link}
+                                    target="blank"
+                                    className="text-[#CCD6F6] hover:text-[#4CD684] "
+                                  >
+                                    <BiLogoGithub />
+                                  </Link>
+                                ) : (
+                                  <></>
+                                )}
+                              </p>
+                            </td>
+                          </tr>
+                        </>
+                      );
+                    }
+                  }
+                })}
+                loader={async ({ params }) => {
+                  return setTech(params.Tech);
+                }}
+              />
+            </Routes>
           </tbody>
         </table>
       </div>
