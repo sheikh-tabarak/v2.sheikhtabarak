@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Logo from "../../assests/logo/logoicon.png";
 import LogoGif from "../../assests/logo/sheikhtabarak.gif";
+import { Link } from "react-router-dom";
 
 export default function UserSideHeader() {
   const [menu, setMenu] = useState(false);
@@ -12,13 +13,13 @@ export default function UserSideHeader() {
     <header className="sticky top-0 z-10">
       <nav className="dark border-gray-200 px-4 lg:px-8 py-2 bg-[#0A192F] z-50">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-          <a href="/" className="flex items-center">
+          <Link to={"/"} className="flex items-center">
             <img
               src={LogoGif}
               className="h-10 sm:h-20 hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175"
               alt="Sheikh Tabarak Logo"
             />
-          </a>
+          </Link>
 
           <button
             onClick={clickMenu}
@@ -65,14 +66,14 @@ export default function UserSideHeader() {
             <ul className=" flex flex-col mt-4  lg:flex-row lg:space-x-8 lg:mt-0">
               <li>
                 <span className="menu-font-span pr-1 text-[13px]">01.</span>
-                <a
+                <Link
                   onClick={clickMenu}
-                  href="/#about"
+                  to={"/#about"}
                   className="menu-font-in-SFMonoBold text-[13px] hover:text-[13px] py-2 "
                   aria-current="page"
                 >
                   About
-                </a>
+                </Link>
               </li>
               <li>
                 <span className="menu-font-span pr-1 text-[13px]">02.</span>

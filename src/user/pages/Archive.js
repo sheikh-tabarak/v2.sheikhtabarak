@@ -21,7 +21,7 @@ export default function Archive(props) {
         <h1 className="text-[20px] font-bold  tracking-tight text-[#CCD6F6] md:text-[40px] lg:text-[60px]">
           Archive
         </h1>
-        <ul className="py-5 lg:py-0 z-10 overflow-scroll flex  skills-font-span ">
+        <ul className="py-5 lg:py-0 z-10 scrollbar-hide flex  skills-font-span whitespace-nowrap overflow-auto">
           <Link onClick={() => setTech("")} to={"/archive"}>
             <li className="my-2 mr-2 min-w-min">
               <div
@@ -35,11 +35,11 @@ export default function Archive(props) {
               </div>
             </li>
           </Link>
-          <Link onClick={() => setTech("Wordpress")} to={"/archive/Wordpress"}>
+          <Link onClick={() => setTech("wordpress")} to={"/archive/wordpress"}>
             <li className="my-2 mr-2 min-w-max">
               <div
                 className={
-                  Tech === "Wordpress"
+                  Tech === "wordpress"
                     ? "flex items-center rounded-[10px]  px-3 py-1.5 lg:px-5 lg:py-2 text-[10px] lg:text-[13px] font-medium leading-5 text-white bg-[#46c378]"
                     : "flex items-center rounded-[10px]  px-3 py-1.5 lg:px-5 lg:py-2 text-[10px] lg:text-[13px] font-medium leading-5 text-[#46c378] bg-teal-400/10"
                 }
@@ -49,11 +49,11 @@ export default function Archive(props) {
             </li>
           </Link>
 
-          <Link onClick={() => setTech("Reactjs")} to={"/archive/Reactjs"}>
+          <Link onClick={() => setTech("reactjs")} to={"/archive/reactjs"}>
             <li className="my-2 mr-2 min-w-max">
               <div
                 className={
-                  Tech === "Reactjs"
+                  Tech === "reactjs"
                     ? "flex items-center rounded-[10px]  px-3 py-1.5 lg:px-5 lg:py-2 text-[10px] lg:text-[13px] font-medium leading-5 text-white bg-[#46c378]"
                     : "flex items-center rounded-[10px]  px-3 py-1.5 lg:px-5 lg:py-2 text-[10px] lg:text-[13px] font-medium leading-5 text-[#46c378] bg-teal-400/10"
                 }
@@ -63,11 +63,11 @@ export default function Archive(props) {
             </li>
           </Link>
 
-          <Link onClick={() => setTech("Flutter")} to={"/archive/Flutter"}>
+          <Link onClick={() => setTech("flutter")} to={"/archive/flutter"}>
             <li className="my-2 mr-2 min-w-max">
               <div
                 className={
-                  Tech === "Flutter"
+                  Tech === "flutter"
                     ? "flex items-center rounded-[10px]  px-3 py-1.5 lg:px-5 lg:py-2 text-[10px] lg:text-[13px] font-medium leading-5 text-white bg-[#46c378]"
                     : "flex items-center rounded-[10px]  px-3 py-1.5 lg:px-5 lg:py-2 text-[10px] lg:text-[13px] font-medium leading-5 text-[#46c378] bg-teal-400/10"
                 }
@@ -77,11 +77,11 @@ export default function Archive(props) {
             </li>
           </Link>
 
-          <Link onClick={() => setTech("Others")} to={"/archive/Others"}>
+          <Link onClick={() => setTech("others")} to={"/archive/others"}>
             <li className="my-2 mr-2 min-w-max">
               <div
                 className={
-                  Tech === "Others"
+                  Tech === "others"
                     ? "flex items-center rounded-[10px]  px-3 py-1.5 lg:px-5 lg:py-2 text-[10px] lg:text-[13px] font-medium leading-5 text-white bg-[#46c378]"
                     : "flex items-center rounded-[10px]  px-3 py-1.5 lg:px-5 lg:py-2 text-[10px] lg:text-[13px] font-medium leading-5 text-[#46c378] bg-teal-400/10"
                 }
@@ -156,11 +156,9 @@ export default function Archive(props) {
                                 "align-middle px-2 py-2 lg:px-6 lg:py-3 w-6/13 lg:w-4/13"
                               }
                             >
-                              {/* <div className={Moredetails===true?" absolute bg-white p-[200]":"hidden bg-grey-200 p-[200]"}>Details here</div> */}
 
                               <p
-                                // onMouseOver={()=>setMoredetails(!Moredetails)}
-                                // onMouseOut={()=>setMoredetails(!Moredetails)}
+                              
                                 className="align-middle py-1 px-2  col leading-5 lg:leading-7 md:leading-6  font-bold text-[14px] md:text-[16px]  lg:text-[17px] tracking-tight text-[#CCD6F6] font-[500] "
                               >
                                 {value.title}
@@ -230,14 +228,9 @@ export default function Archive(props) {
 
               <Route
                 path={"/" + Tech}
-                //onEnter={()=>setTech(Tech)}
-
-                // action={async ({ params, request }) => {
-                //  setTech(params.Tech);
-                // }}
-                // action={()=>setTech("Wordpress")}
+       
                 element={ProjectArchive.map((value, index) => {
-                  if (Tech === "Others") {
+                  if (Tech.toLowerCase() === "others") {
                     if (
                       !value.builtwith.replace(/\s/g, "").includes("Reactjs") &&
                       !value.builtwith.replace(/\s/g, "").includes("Flutter") &&
@@ -332,7 +325,7 @@ export default function Archive(props) {
                       );
                     }
                   } else {
-                    if (value.builtwith.replace(/\s/g, "").includes(Tech)) {
+                    if (value.builtwith.replace(/\s/g, "").toLowerCase().includes(Tech.toLowerCase())) {
                       return (
                         <>
                           <tr

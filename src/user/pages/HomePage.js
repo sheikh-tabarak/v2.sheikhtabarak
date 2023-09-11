@@ -16,7 +16,7 @@ export default function HomePage() {
     <>
       <div className="w-full bg-[#0A192F] ">
         <UserSideHeader />
- <SocialIcons/>
+        <SocialIcons />
         <Routes>
           <Route
             path="/"
@@ -26,10 +26,7 @@ export default function HomePage() {
                 <AboutSection />
                 <Experience />
                 <Card />
-                
-                
                 <Contact />
-              
               </>
             }
           />
@@ -37,10 +34,7 @@ export default function HomePage() {
           {/* <Route path="/dashboard/*" element={<Dashboard />} /> */}
         </Routes>
 
-        <Footer/>
-
-       
-    
+        <Footer />
       </div>
     </>
   );
