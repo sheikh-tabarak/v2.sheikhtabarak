@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaGithub, FaLink } from "react-icons/fa";
+import Image from "../../assests/projects/spothub.png";
 
 export default function Card() {
   const test = "React js, Firebase ";
@@ -18,8 +19,9 @@ export default function Card() {
         <div className="grid grid-cols-7 gap-4">
           <div className="col-span-0 lg:col-start-1 lg:col-end-5 py-0 md:py-10 lg:my-10 ">
             <Link>
-              <div className="w-full h-full bg-contain bg-center bg-[#2B374E]  rounded-[20px] hover:opacity-100  bg-no-repeat bg-[url('https://spothub.sheikhtabarak.me/wp-content/uploads/2023/07/Copy-of-Spot-hub-3.png')]">
-                {/* <img className="w-full" src="https://v4.brittanychiang.com/static/3b4d6e8f44baf7e6d7a0ed4b3e4d8d39/272cf/halcyon.png" alt="" /> */}
+            {/* <iframe className="w-full h-full rounded-[20px]" src="https://spothub.sheikhtabarak.me"></iframe> */}
+              <div className="w-full h-full bg-contain bg-center bg-[#2B374E]   hover:opacity-100  bg-no-repeat bg-[url('https://v4.brittanychiang.com/static/3b4d6e8f44baf7e6d7a0ed4b3e4d8d39/272cf/halcyon.png')]]">
+                {/* <img className="w-full h-full " src={Image} alt="" /> */}
               </div>
             </Link>
           </div>

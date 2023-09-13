@@ -11,6 +11,7 @@ import { logIn } from "../store/actions";
 import AllProjects from "./projects/allProjects";
 import ManageProjects from "./projects/ManageProjects";
 import { ToastContainer } from "react-toastify";
+import { GrProjects, GrTechnology } from "react-icons/gr";
 
 export default function Dashboard() {
   // const nameuserbrowala = useContext(authContextBro);
@@ -180,16 +181,15 @@ export default function Dashboard() {
               </svg>
               <span className="sr-only">Toggle sidebar</span>
             </button>
-           <Link to={"/dashboard"}>
-            <a
-              // href="/dashboard"
-              className="flex items-center justify-between mr-4"
-            >
-              <img className="h-10 mr-2" src={logo} alt="logo" />
-            </a>
-           
-           </Link>
-           
+            <Link to={"/dashboard"}>
+              <a
+                // href="/dashboard"
+                className="flex items-center justify-between mr-4"
+              >
+                <img className="h-10 mr-2" src={logo} alt="logo" />
+              </a>
+            </Link>
+
             <form action="#" method="GET" className="hidden md:block md:pl-2">
               <label htmlFor="topbar-search" className="sr-only">
                 Search
@@ -912,159 +912,81 @@ export default function Dashboard() {
 
             <li>
               <Link to={"/"}>
-               <a
-                // href="/"
-                target="_blank"
-                className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <svg
-                  aria-hidden="true"
-                  className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z" />
-                </svg>
-
-                <span className="ml-3">Visit site</span>
-              </a>
-              </Link>
-             
-            </li>
-            <li>
-              {/* <Link to={"/dashboard/portfolio-list"}>
-                <button
-                  type="button"
-                  className="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                  aria-controls="dropdown-pages"
-                  data-collapse-toggle="dropdown-pages"
+                <a
+                  target="_blank"
+                  className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 >
                   <svg
                     aria-hidden="true"
-                    className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                    className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
                   >
-                    <path
-                      fillRule="evenodd"
-                      d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"
-                      clipRule="evenodd"
-                    />
+                    <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z" />
                   </svg>
-                  <span className="flex-1 ml-3 text-left whitespace-nowrap">
-                    Project List
-                  </span>
-                </button>
-              </Link> */}
+
+                  <span className="ml-3">Visit site</span>
+                </a>
+              </Link>
             </li>
+
             <li>
-              <button
-                onClick={expandProjects}
-                type="button"
-                className="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                aria-controls="dropdown-sales"
-                data-collapse-toggle="dropdown-sales"
-              >
-                <svg
-                  aria-hidden="true"
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
+              <Link to={"/dashboard/projects"}>
+                <a
+                  target="_blank"
+                  className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 >
-                  <path d="M3 12h18M3 6h18M3 18h18" />
-                </svg>
+                  {/* <span className="text-[#4CD684]"> */}
+                    <GrProjects className="h-4 w-4 fill-emerald-950	 hover:fill-[#4CD684;]" />
+                  {/* </span> */}
 
-                <span className="flex-1 ml-3 text-left whitespace-nowrap">
-                  Projects
-                </span>
-              </button>
-              <ul
-                id="dropdown-sales"
-                className={
-                  Toggled.project === true
-                    ? "py-2 space-y-2"
-                    : "hidden py-2 space-y-2"
-                }
-              >
-                <li>
-                  <Link to={"/dashboard/projects"}>
-                    <a
-                      // href="/dashboard/projects"
-                      className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                    >
-                      All projects
-                    </a>
-                  </Link>
-                </li>
-                <li>
-                  <Link to={"/dashboard/projects/new-project"}>
-                    <a
-                      // href="/dashboard/projects/new-project"
-                      className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                    >
-                      Create New Project
-                    </a>
-                  </Link>
-                </li>
-                <li>
-                {/* <Link to={"/dashboard/projects/technologies"}>
-                  <a
-                    // href="#"
-                    className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                  >
-                    Categories
-                  </a>
-                  </Link> */}
-                </li>
-
-                <li>
-                  <Link to={"/dashboard/projects/technologies"}>
-                    <a
-                      // href="/dashboard/projects/technologies"
-                      className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                    >
-                      Technologies
-                    </a>
-                  </Link>
-                </li>
-              </ul>
+                  <span className="ml-3">Projects </span>
+                </a>
+              </Link>
             </li>
+
+            <li>
+              <Link to={"/dashboard/projects/technologies"}>
+                <a
+                  target="_blank"
+                  className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                >
+                  <GrTechnology className="fill-[#CCD6F6;] hover:fill-[#4CD684;]" />
+                  <span className="ml-3">Technologies </span>
+                </a>
+              </Link>
+            </li>
+
+            {/* //http://localhost:3000/dashboard/projects/technologies */}
           </ul>
           <ul className="pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700">
             <li>
               <Link to={"/login"}>
-               <a
-                href="#"
-                onClick={logOut}
-                className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
-              >
-                <svg
-                  aria-hidden="true"
-                  className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
+                <a
+                  href="#"
+                  onClick={logOut}
+                  className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
-                  />
-                </svg>
+                  <svg
+                    aria-hidden="true"
+                    className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+                    />
+                  </svg>
 
-                <span className="ml-3">Logout</span>
-              </a>
+                  <span className="ml-3">Logout</span>
+                </a>
               </Link>
-             
             </li>
           </ul>
         </div>
@@ -1173,7 +1095,6 @@ export default function Dashboard() {
             <div className="tooltip-arrow" data-popper-arrow="" />
           </div>
         </div>
-       
       </aside>
 
       <main className="p-4 md:ml-64 h-auto pt-20">

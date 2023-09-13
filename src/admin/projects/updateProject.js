@@ -19,7 +19,7 @@ export default function UpdateProject(props) {
     id: location.state.project.project_id,
     name: location.state.project.project_title,
     desc: location.state.project.project_description,
-    budget: location.state.project.project_budget,
+    github: location.state.project.project_github,
     clientName: location.state.project.client_name,
     startDate: location.state.project.date_to_start,
     endDate: location.state.project.date_to_end,
@@ -45,7 +45,7 @@ export default function UpdateProject(props) {
       id: NewProject.id,
       name: NewProject.name,
       desc: NewProject.desc,
-      budget: NewProject.budget,
+      github: NewProject.github,
       clientName: NewProject.clientName,
       startDate: newValue.startDate,
       endDate: newValue.endDate,
@@ -72,7 +72,7 @@ export default function UpdateProject(props) {
       NewProject.id,
       NewProject.name,
       NewProject.desc,
-      NewProject.budget,
+      NewProject.github,
       NewProject.clientName,
       NewProject.startDate,
       NewProject.endDate,
@@ -175,7 +175,7 @@ useEffect(() => {
                 id: NewProject.id,
                 name: NewProject.name,
                 desc: NewProject.desc,
-                budget: NewProject.budget,
+                github: NewProject.github,
                 clientName: NewProject.clientName,
                 startDate: NewProject.startDate,
                 endDate: NewProject.endDate,
@@ -206,7 +206,7 @@ useEffect(() => {
                     id: NewProject.id,
                     name: e.target.value,
                     desc: NewProject.desc,
-                    budget: NewProject.budget,
+                    github: NewProject.github,
                     clientName: NewProject.clientName,
                     startDate: NewProject.startDate,
                     endDate: NewProject.endDate,
@@ -238,7 +238,7 @@ useEffect(() => {
                     id: NewProject.id,
                     name: NewProject.name,
                     desc: e.target.value,
-                    budget: NewProject.budget,
+                    github: NewProject.github,
                     clientName: NewProject.clientName,
                     startDate: NewProject.startDate,
                     endDate: NewProject.endDate,
@@ -268,7 +268,7 @@ useEffect(() => {
                     id: NewProject.id,
                     name: NewProject.name,
                     desc: NewProject.desc,
-                    budget: NewProject.budget,
+                    github: NewProject.github,
                     clientName: e.target.value,
                     startDate: NewProject.startDate,
                     endDate: NewProject.endDate,
@@ -286,68 +286,48 @@ useEffect(() => {
               />
             </div>
             <div className="w-full">
-              <label
-                htmlFor="budget"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Budget
-              </label>
-              <input
-                value={NewProject.budget}
-                onChange={(e) => {
-                  setNewProject({
-                    id: NewProject.id,
-                    name: NewProject.name,
-                    desc: NewProject.desc,
-                    budget: e.target.value,
-                    clientName: NewProject.clientName,
-                    startDate: NewProject.startDate,
-                    endDate: NewProject.endDate,
-                    featureImage: NewProject.featureImage,
-                    link: NewProject.link,
-                    builtsin: NewProject.builtsin,
-                  });
-                }}
-                type="number"
-                name="budget"
-                id="budget"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                placeholder="Rs. 30,000"
-                required=""
-              />
-            </div>
-            <div>
-              <label
+
+            <label
                 htmlFor="builtin"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Builts in
               </label>
-              <select
-                value={NewProject.builtsin}
-                // onSelect={
-                //   (e) => {
-                //     setNewProject({
-                //       name: NewProject.name,
-                //       desc: NewProject.desc,
-                //       budget: NewProject.budget,
-                //       clientName: NewProject.clientName,
-                //       startDate: NewProject.startDate,
-                //       endDate: NewProject.endDate,
-                //       featureImage: NewProject.featureImage,
-                //       link: NewProject.link,
-                //       builtsin: e.target.value,
-                //     });
-                //   }
 
-                // }
-                // value={NewProject.builtsin}
+              <input
+                value={NewProject.builtsin}
                 onChange={(e) => {
                   setNewProject({
                     id: NewProject.id,
                     name: NewProject.name,
                     desc: NewProject.desc,
-                    budget: NewProject.budget,
+                    github: NewProject.github,
+                    clientName: NewProject.clientName,
+                    startDate: NewProject.startDate,
+                    endDate: NewProject.endDate,
+                    featureImage: NewProject.featureImage,
+                    link: NewProject.link,
+                    builtsin: e.target.value,
+                  });
+                }}
+                type="text"
+                name="github"
+                id="github"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                placeholder="Rs. 30,000"
+                required=""
+              />
+
+
+              {/* <select
+                value={NewProject.builtsin}
+             
+                onChange={(e) => {
+                  setNewProject({
+                    id: NewProject.id,
+                    name: NewProject.name,
+                    desc: NewProject.desc,
+                    github: NewProject.github,
                     clientName: NewProject.clientName,
                     startDate: NewProject.startDate,
                     endDate: NewProject.endDate,
@@ -360,7 +340,6 @@ useEffect(() => {
                 id="builtin"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
               >
-                {/* <option defaultValue={""}>Choose Tech Stack</option> */}
                 {TechList.map((technology, index) => {
                   return (
                     <option key={index} value={technology.technology_title}>
@@ -368,7 +347,41 @@ useEffect(() => {
                     </option>
                   );
                 })}
-              </select>
+              </select> */}
+             
+            </div>
+            <div>
+
+            <label
+                htmlFor="github"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Github Link
+              </label>
+              <input
+                value={NewProject.github}
+                onChange={(e) => {
+                  setNewProject({
+                    id: NewProject.id,
+                    name: NewProject.name,
+                    desc: NewProject.desc,
+                    github: e.target.value,
+                    clientName: NewProject.clientName,
+                    startDate: NewProject.startDate,
+                    endDate: NewProject.endDate,
+                    featureImage: NewProject.featureImage,
+                    link: NewProject.link,
+                    builtsin: NewProject.builtsin,
+                  });
+                }}
+                type="text"
+                name="github"
+                id="github"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                placeholder="Rs. 30,000"
+                required=""
+              />
+             
             </div>
             <div>
               <label
@@ -384,7 +397,7 @@ useEffect(() => {
                     id: NewProject.id,
                     name: NewProject.name,
                     desc: NewProject.desc,
-                    budget: NewProject.budget,
+                    github: NewProject.github,
                     clientName: NewProject.clientName,
                     startDate: NewProject.startDate,
                     endDate: NewProject.endDate,
@@ -408,8 +421,7 @@ useEffect(() => {
               inputClassName="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600  w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
               primaryColor={"green"}
               showShortcuts={true}
-              // asSingle={true}
-              // useRange={false}
+            
               placeholder={"Start Date to End Date"}
               showFooter={true}
               separator={"to"}
@@ -418,8 +430,7 @@ useEffect(() => {
             />
           </div>
           <button
-            // onClick={()=>UpdatethisProject}
-            //   onClick={()=>addData}
+          
             type="submit"
             className=" sheikhtabarak-btn-main inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800"
           >

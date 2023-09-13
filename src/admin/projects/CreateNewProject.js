@@ -22,7 +22,7 @@ export default function CreateNewProject() {
     setNewProject({
       name: NewProject.name,
       desc: NewProject.desc,
-      budget: NewProject.budget,
+      github: NewProject.github,
       clientName: NewProject.clientName,
       startDate: newValue.startDate,
       endDate: newValue.endDate,
@@ -35,7 +35,7 @@ export default function CreateNewProject() {
   const [NewProject, setNewProject] = useState({
     name: "",
     desc: "",
-    budget: "",
+    github: "",
     clientName: "",
     startDate: "",
     endDate: "",
@@ -102,7 +102,7 @@ export default function CreateNewProject() {
     await newProject.addProject(
       NewProject.name,
       NewProject.desc,
-      NewProject.budget,
+      NewProject.github,
       NewProject.clientName,
       NewProject.startDate,
       NewProject.endDate,
@@ -175,7 +175,7 @@ export default function CreateNewProject() {
               setNewProject({
                 name: NewProject.name,
                 desc: NewProject.desc,
-                budget: NewProject.budget,
+                github: NewProject.github,
                 clientName: NewProject.clientName,
                 startDate: NewProject.startDate,
                 endDate: NewProject.endDate,
@@ -219,7 +219,7 @@ export default function CreateNewProject() {
                   setNewProject({
                     name: e.target.value,
                     desc: NewProject.desc,
-                    budget: NewProject.budget,
+                    github: NewProject.github,
                     clientName: NewProject.clientName,
                     startDate: NewProject.startDate,
                     endDate: NewProject.endDate,
@@ -249,7 +249,7 @@ export default function CreateNewProject() {
                   setNewProject({
                     name: NewProject.name,
                     desc: e.target.value,
-                    budget: NewProject.budget,
+                    github: NewProject.github,
                     clientName: NewProject.clientName,
                     startDate: NewProject.startDate,
                     endDate: NewProject.endDate,
@@ -277,7 +277,7 @@ export default function CreateNewProject() {
                   setNewProject({
                     name: NewProject.name,
                     desc: NewProject.desc,
-                    budget: NewProject.budget,
+                    github: NewProject.github,
                     clientName: e.target.value,
                     startDate: NewProject.startDate,
                     endDate: NewProject.endDate,
@@ -299,27 +299,27 @@ export default function CreateNewProject() {
                 htmlFor="budget"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
-                Budget
+                Built in
               </label>
               <input
                 onChange={(e) => {
                   setNewProject({
                     name: NewProject.name,
                     desc: NewProject.desc,
-                    budget: e.target.value,
+                    github: NewProject.github,
                     clientName: NewProject.clientName,
                     startDate: NewProject.startDate,
                     endDate: NewProject.endDate,
                     featureImage: NewProject.featureImage,
                     link: NewProject.link,
-                    builtsin: NewProject.builtsin,
+                    builtsin: e.target.value,
                   });
                 }}
-                type="number"
-                name="budget"
-                id="budget"
+                type="text"
+                name="link"
+                id="link"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                placeholder="Rs. 30,000"
+                placeholder={"Put ',' between techology name i.e Html,Css"}
                 required=""
               />
             </div>
@@ -335,7 +335,7 @@ export default function CreateNewProject() {
                   setNewProject({
                     name: NewProject.name,
                     desc: NewProject.desc,
-                    budget: NewProject.budget,
+                    github: NewProject.github,
                     clientName: NewProject.clientName,
                     startDate: NewProject.startDate,
                     endDate: NewProject.endDate,
@@ -359,89 +359,35 @@ export default function CreateNewProject() {
                 htmlFor="link"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
-                Project link
+               Github Link
               </label>
               <input
                 onChange={(e) => {
                   setNewProject({
                     name: NewProject.name,
                     desc: NewProject.desc,
-                    budget: NewProject.budget,
+                    github:  e.target.value,
                     clientName: NewProject.clientName,
                     startDate: NewProject.startDate,
                     endDate: NewProject.endDate,
                     featureImage: NewProject.featureImage,
-                    link: e.target.value,
-                    builtsin: NewProject.builtsin,
+                    link: NewProject.link,
+                    builtsin:NewProject.builtsin,
                   });
                 }}
                 type="text"
                 name="link"
                 id="link"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                placeholder={"https://xyz.sheikhtabarak.me"}
+                placeholder={"https://github.com/{username}/{repository}"}
                 required=""
               />
+
             </div>
 
             {/* <div className=""> */}
 
-            <div>
-              <label
-                htmlFor="builtin"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Builts in
-              </label>
-            
-              <div class="w-full flex justify-between items-left">
-
-              {TechList.map((technology, index) => {
-                return (
-                  <div key={index} class="flex items-center">
-                    <input
-                      onClick={() => {
-                        if (
-                          SelectedTechList.includes(
-                            technology.technology_title + ","
-                          )
-                        ) {
-                          let elementToRemove =
-                            technology.technology_title + ",";
-
-                          setSelectedTechList((SelectedTechList) =>
-                            SelectedTechList.filter(
-                              (number) => number !== elementToRemove
-                            )
-                          );
-                        } else {
-                          setSelectedTechList([
-                            ...SelectedTechList,
-                            technology.technology_title + ",",
-                          ]);
-                        }
-
-                        console.log(NewProject.builtsin);
-                      }}
-                      id="checked-checkbox"
-                      type="checkbox"
-                      value=""
-                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    <label
-                      for="checked-checkbox"
-                      class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                    >
-                      {technology.technology_title}
-                    </label>
-                  </div>
-                );
-              })}
-              </div>
-
-              <div>{SelectedTechList}</div>
-
-              </div>
+        
               
             {/* </div> */}
 

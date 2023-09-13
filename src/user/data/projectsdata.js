@@ -7,11 +7,9 @@ const ProjectArchive = [
     builtwith: "Wordpress,Rozer, Elementor, Woocommerce",
     link: "https://candyhype.com/",
     github_link: "",
-    // playstore_link:""
   },
 
 
-  //
 
     {
       
@@ -21,7 +19,6 @@ const ProjectArchive = [
       builtwith: "Flutter,Firebase,Dart",
       link: "https://spothub.sheikhtabarak.me/",
       github_link: "https://github.com/sheikh-tabarak/spot_hub",
-      // playstore_link:""
     },
 
     {
@@ -32,17 +29,8 @@ const ProjectArchive = [
       builtwith: "Wordpress,Tolips,Slider Revolution",
       link: "https://trustedrentals.ca/",
       github_link: "",
-      // playstore_link:""
     },
-    // {
-    //   year: 2022,
-    //   title: "Login System by testing title leagth is okay or not",
-    //   madeat: "Fiverr",
-    //   builtwith: "Wordpress . Tolips . Slider Revolution",
-    //   link: "https://trustedrentals.ca/",
-    //   github_link: "",
-    //   // playstore_link:""
-    // },
+   
     {
       
         year: 2022,

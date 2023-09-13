@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import "../../styles/sheikhtabarak.css";
 import { BiLinkExternal, BiLogoGithub } from "react-icons/bi";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
-import ProjectArchive from "../data/projects";
+import ProjectArchive from "../data/projectsdata";
 
 export default function Archive(props) {
   const [Moredetails, setMoredetails] = useState(true);
@@ -21,7 +21,7 @@ export default function Archive(props) {
         <h1 className="text-[20px] font-bold  tracking-tight text-[#CCD6F6] md:text-[40px] lg:text-[60px]">
           Archive
         </h1>
-        <ul className="py-5 lg:py-0 z-10 scrollbar-hide flex  skills-font-span whitespace-nowrap overflow-auto">
+        <ul className="py-5 lg:py-0 scrollbar-hide flex  skills-font-span whitespace-nowrap overflow-auto">
           <Link onClick={() => setTech("")} to={"/archive"}>
             <li className="my-2 mr-2 min-w-min">
               <div

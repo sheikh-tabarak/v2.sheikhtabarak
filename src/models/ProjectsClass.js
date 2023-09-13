@@ -11,7 +11,7 @@ class Project {
     project_id,
     project_title,
     project_description,
-    project_budget,
+    project_github,
     client_name,
     date_to_start,
     date_to_end,
@@ -22,7 +22,7 @@ class Project {
     this.project_id = project_id;
     this.project_title = project_title;
     this.project_description = project_description;
-    this.project_budget = project_budget;
+    this.project_github = project_github;
     this.client_name = client_name;
     this.date_to_start = date_to_start;
     this.date_to_end = date_to_end;
@@ -34,7 +34,7 @@ class Project {
   async addProject(
     PTitle,
     PDescription,
-    PBudget,
+    PGithub,
     PCientName,
     PStartDate,
     PEndDate,
@@ -54,7 +54,7 @@ class Project {
             "",
             PTitle,
             PDescription,
-            PBudget,
+            PGithub,
             PCientName,
             PStartDate,
             PEndDate,
@@ -74,7 +74,7 @@ class Project {
                 value.id,
                 PTitle,
                 PDescription,
-                PBudget,
+                PGithub,
                 PCientName,
                 PStartDate,
                 PEndDate,
@@ -204,7 +204,7 @@ class Project {
       project_id: this.project_id,
       project_title: this.project_title,
       project_description: this.project_description,
-      project_budget: this.project_budget,
+      project_github: this.project_github,
       client_name: this.client_name,
       date_to_start: this.date_to_start,
       date_to_end: this.date_to_end,

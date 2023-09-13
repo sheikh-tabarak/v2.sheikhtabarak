@@ -22,7 +22,6 @@ export default function AllProjects() {
   const [isLoading, setisLoading] = useState(false);
   const [refreshData, setrefreshData] = useState(false);
 
-
   async function deleteProject(ProjectId) {
     ConfirmDeletion();
     setisLoading(true);
@@ -31,7 +30,6 @@ export default function AllProjects() {
     setrefreshData(!refreshData);
     // delay(1000);
     setisLoading(false);
-
   }
 
   const ProductList = [
@@ -94,10 +92,8 @@ export default function AllProjects() {
   const [projects, setProjects] = useState([]);
   const [TechList, setTechList] = useState([]);
 
-
   useEffect(() => {
-    
-    
+
     const fetchProjects = async () => {
       try {
         const collectionRef = firebase.firestore().collection("projects");
@@ -109,7 +105,7 @@ export default function AllProjects() {
             data.project_id,
             data.project_title,
             data.project_description,
-            data.project_budget,
+            data.project_github,
             data.client_name,
             data.date_to_start,
             data.date_to_end,
@@ -125,6 +121,8 @@ export default function AllProjects() {
       }
     };
 
+
+    // console.log(projects.project_github)
 
     // const fetchTheTechnologies = async () => {
     //   try {
@@ -145,8 +143,6 @@ export default function AllProjects() {
     //   }
     // };
 
-
-  
     fetchProjects();
   }, [refreshData]);
 
@@ -164,8 +160,6 @@ export default function AllProjects() {
     <Loading />
   ) : (
     <>
-
-
       <div className="hidden lg:flex items-right lg:justify-between pb-4">
         <div>
           <button
@@ -357,7 +351,7 @@ export default function AllProjects() {
               </th>
 
               <th scope="col" className="text-left w-1/6 p-5">
-                Project Budget
+                Builts in
               </th>
               <th scope="col" className="text-center w-1/6 p-5">
                 Action
@@ -401,7 +395,21 @@ export default function AllProjects() {
                 >
                   {project.project_description === ""
                     ? "N/A"
-                    : project.project_description}
+                    : project.project_description.length <= 15
+                    ? project.project_description
+                    : project.project_description.split("", 15)}
+
+
+{project.project_description === ""
+                    ? "N/A"
+                    : project.project_description.length <= 15
+                    ? ""
+                    : " ..."}
+
+              
+
+
+                  
                 </td>
 
                 {/* <td className="w-full  px-6 py-4">{product.project_title===""?"N/A":product.project_title}</td> */}
@@ -409,9 +417,9 @@ export default function AllProjects() {
                   {project.project_id === "" ? "N/A" : project.client_name}
                 </td>
                 <td className=" w-1/6 px-6 py-4">
-                  {project.project_budget === ""
+                  {project.builtsin === ""
                     ? "N/A"
-                    : project.project_budget}
+                    : project.builtsin}
                 </td>
                 <td className=" w-1/6 px-6 py-4">
                   <a
@@ -472,18 +480,18 @@ export default function AllProjects() {
                       </div>
 
                       <div className="px-2">
-                      <Link state={{id:project.project_id}}>
-                        <svg
-                          onClick={ConfirmDeletion}
-                          fill="#FF0000"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 30 30"
-                          width="20px"
-                          height="20px"
-                        >
-                          {" "}
-                          <path d="M 14.984375 2.4863281 A 1.0001 1.0001 0 0 0 14 3.5 L 14 4 L 8.5 4 A 1.0001 1.0001 0 0 0 7.4863281 5 L 6 5 A 1.0001 1.0001 0 1 0 6 7 L 24 7 A 1.0001 1.0001 0 1 0 24 5 L 22.513672 5 A 1.0001 1.0001 0 0 0 21.5 4 L 16 4 L 16 3.5 A 1.0001 1.0001 0 0 0 14.984375 2.4863281 z M 6 9 L 7.7929688 24.234375 C 7.9109687 25.241375 8.7633438 26 9.7773438 26 L 20.222656 26 C 21.236656 26 22.088031 25.241375 22.207031 24.234375 L 24 9 L 6 9 z" />
-                        </svg>
+                        <Link state={{ id: project.project_id }}>
+                          <svg
+                            onClick={ConfirmDeletion}
+                            fill="#FF0000"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 30 30"
+                            width="20px"
+                            height="20px"
+                          >
+                            {" "}
+                            <path d="M 14.984375 2.4863281 A 1.0001 1.0001 0 0 0 14 3.5 L 14 4 L 8.5 4 A 1.0001 1.0001 0 0 0 7.4863281 5 L 6 5 A 1.0001 1.0001 0 1 0 6 7 L 24 7 A 1.0001 1.0001 0 1 0 24 5 L 22.513672 5 A 1.0001 1.0001 0 0 0 21.5 4 L 16 4 L 16 3.5 A 1.0001 1.0001 0 0 0 14.984375 2.4863281 z M 6 9 L 7.7929688 24.234375 C 7.9109687 25.241375 8.7633438 26 9.7773438 26 L 20.222656 26 C 21.236656 26 22.088031 25.241375 22.207031 24.234375 L 24 9 L 6 9 z" />
+                          </svg>
                         </Link>
                       </div>
                     </div>

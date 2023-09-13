@@ -21,6 +21,12 @@ import { useDispatch, useSelector } from "react-redux/";
 import store from "./store/store";
 import HomePage from "./user/pages/HomePage";
 
+
+// import Particles from "react-particles";
+// import { loadFull } from "tsparticles";
+// import { useCallback } from "react";
+import AnimatedCursor from "react-animated-cursor"
+
 // import Practice from "./Practice";
 
 export const authContextBro = createContext("" );
@@ -43,10 +49,99 @@ function App() {
   const [name, setname] = useState("test");
   const isLogin = useSelector((state) => state.checkLoginApp);
 
+
+
+
+  // const options = {
+  //   particles: {
+  //     number: {
+  //       value: 50,
+  //       density: {
+  //         enable: true,
+  //         area: 800
+  //       }
+  //     },
+  //     color: {
+  //       value: ["#3cba54", "#f4c20d", "#db3236", "#4885ed"]
+  //     },
+  //     shape: {
+  //       type: "circle"
+  //     },
+  //     opacity: {
+  //       value: 1
+  //     },
+  //     size: {
+  //       value: { min: 1, max: 8 }
+  //     },
+  //     links: {
+  //       enable: true,
+  //       distance: 150,
+  //       color: "#808080",
+  //       opacity: 0.4,
+  //       width: 1
+  //     },
+  //     move: {
+  //       enable: true,
+  //       speed: 3,
+  //       direction: "none",
+  //       random: false,
+  //       straight: false,
+  //       outModes: "out"
+  //     }
+  //   },
+  //   interactivity: {
+  //     events: {
+  //       onHover: {
+  //         enable: true,
+  //         mode: "grab"
+  //       },
+  //       onClick: {
+  //         enable: true,
+  //         mode: "push"
+  //       }
+  //     },
+  //     modes: {
+  //       grab: {
+  //         distance: 140,
+  //         links: {
+  //           opacity: 1
+  //         }
+  //       },
+  //       push: {
+  //         quantity: 4
+  //       }
+  //     }
+  //   }
+  // };
+
+  // const particlesInit = useCallback(async (engine) => {
+  //   await loadFull(engine);
+  // }, []);
+
+
+  
+
+
+
+
+
+
+
   return (
     <authContextBro.Provider
       value={getAuth().isLogin ? { islogin: "true" } : { islogin: "false" }}
     >
+       <AnimatedCursor
+
+
+      innerSize={12}
+      outerSize={34}
+      color='76, 214, 132'
+      outerAlpha={0.2}
+      innerScale={0.7}
+      outerScale={3}
+    />
+      {/* <Particles options={options} init={particlesInit} /> */}
       <BrowserRouter>
         <Routes>
           <Route path="/*" element={<HomePage />} />
