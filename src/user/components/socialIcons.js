@@ -6,13 +6,13 @@ import { Link } from "react-router-dom";
 export default function SocialIcons() {
   return (
     <>
-      <div className=" hidden justify-between leading-10 items-right w-full lg:flex lg:w-auto lg:order-1  fixed bottom-0 left-8 ">
-        <ul className="pt-4">
+      <div className="leading-10 w-full flex justify-between lg:w-auto lg:order-1  lg:fixed lg:bottom-0 lg:bottom-0 lg:left-8 ">
+        <ul className="pt-4 flex justify-evenly w-full lg:block  ">
           {/* <!-- Behance --> */}
 
           <Link to={"https://www.behance.net/sheikhtabarak"} target="blank">
             <li className="py-3">
-              <FaBehance className="h-6 w-6 fill-[#CCD6F6;] hover:fill-[#4CD684;]  hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175" />
+              <FaBehance className="h-8 w-8 lg:h-6 lg:w-6  fill-[#CCD6F6;] hover:fill-[#4CD684;]  hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175" />
             </li>
           </Link>
 
@@ -22,7 +22,7 @@ export default function SocialIcons() {
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 xmlnsXlink="http://www.w3.org/1999/xlink"
-                className="h-6 w-6 fill-[#CCD6F6;] hover:fill-[#4CD684;]  hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175"
+                className="h-8 w-8 lg:h-6 lg:w-6  fill-[#CCD6F6;] hover:fill-[#4CD684;]  hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175"
                 version="1.1"
                 viewBox="0 0 512 512"
                 xmlSpace="preserve"
@@ -46,31 +46,31 @@ export default function SocialIcons() {
           <Link to={"https://www.upwork.com/freelancers/~017ed24f96b80d5bca"} target="blank">
           <li className="py-3">
           
-              <SiUpwork className="h-6 w-6 fill-[#CCD6F6;] hover:fill-[#4CD684;]  hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175" />
+              <SiUpwork className="h-8 w-8 lg:h-6 lg:w-6  fill-[#CCD6F6;] hover:fill-[#4CD684;]  hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175" />
          
           </li>
           </Link>
           {/* <!-- Github --> */}
           <Link to={"https://github.com/sheikh-tabarak"} target="blank">
           <li className="py-3">
-             <FaGithub  className="h-6 w-6 fill-[#CCD6F6;] hover:fill-[#4CD684;]  hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175"/>
+             <FaGithub  className="h-8 w-8 lg:h-6 lg:w-6  fill-[#CCD6F6;] hover:fill-[#4CD684;]  hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175"/>
           </li>
           </Link>
           <li className="py-3">
             
             <Link to={"https://www.linkedin.com/in/sheikhtabarak/"}  target="blank">
               {/* <!-- Linkedin --> */}
-              <FaLinkedinIn className="h-6 w-6 fill-[#CCD6F6;] hover:fill-[#4CD684;]  hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175"/>
+              <FaLinkedinIn className="h-8 w-8 lg:h-6 lg:w-6  fill-[#CCD6F6;] hover:fill-[#4CD684;]  hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175"/>
             </Link>
           </li>
           <li className="py-3">
             <Link to={"https://instagram.com/sheikh_tabarak"} target="blank">
               {/* <!-- Instagram --> */}
-              <FaInstagram className="h-6 w-6 fill-[#CCD6F6;] hover:fill-[#4CD684;]  hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175"/>
+              <FaInstagram className="h-8 w-8 lg:h-6 lg:w-6  fill-[#CCD6F6;] hover:fill-[#4CD684;]  hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175"/>
             </Link>
           </li>
 
-          <li className="pt-8 flex justify-center">
+          <li className="hidden lg:flex pt-8 flex justify-center">
             <div className="item-center align-center h-[100px] min-h-[1em] w-0.5 self-stretch bg-neutral-100 opacity-100 dark:opacity-50"></div>
           </li>
         </ul>
@@ -80,10 +80,7 @@ export default function SocialIcons() {
         <ul className="">
           <li className="">
             <div className=" rotate-90 pr-32 hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175">
-              {/* <a href="#" className="inline-flex justify-between items-center py-1 px-1 pr-4 mb-7  ring-1 ring-[#CCD6F6] hover:ring-[#4CD684] text-sm rounded-full  text-white  hover:bg-grey-200" role="alert">
-        <span className=" text-xs bg-[#4CD684] rounded-full text-[#0A192F] px-4 py-1.5 mr-3">fiverr.com/sheikhtabarak</span> <span className=" menu-font-in-SFMonoBold text-sm font-medium">Level two Seller</span> 
-        <svg className="ml-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path></svg>
-    </a> */}
+             
               <a
                 href="mailto:admin@sheikhtabarak.me"
                 className="menu-font-in-SFMonoBold py-2 "

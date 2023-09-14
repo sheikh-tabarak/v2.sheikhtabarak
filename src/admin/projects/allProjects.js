@@ -443,7 +443,7 @@ export default function AllProjects() {
 
                       <div className="px-2">
                         <Link
-                          to={"/projects/" + project.project_id}
+                          to={"/archive/id/" + project.project_id}
                           state={{ project: project }}
                         >
                           <svg

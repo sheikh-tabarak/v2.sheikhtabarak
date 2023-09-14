@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaRegCopyright } from "react-icons/fa";
+
 import Github from "./Github";
+import SocialIcons from "./socialIcons";
 
 export default function Footer() {
   return (
@@ -25,6 +27,8 @@ export default function Footer() {
 
             {/* <p  className="text-[10px] lg:text-[13px] py-2 flex gap-2 content-between justify-start">A visual journey through my coding commitment and open-source contributions.</p> */}
 
+
+
             <Link
               to={"/"}
               className="menu-font-in-SFMonoBold text-[10px] lg:text-[13px]  flex gap-2 content-between justify-center lg:justify-start "
@@ -32,7 +36,10 @@ export default function Footer() {
               <FaRegCopyright className="self-center	" />
               2023 Copyrights | All Rights Reserved
             </Link>
+
+           
           </div>
+
 
           <Github />
         </div>

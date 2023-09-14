@@ -10,25 +10,17 @@ import Archive from "./Archive";
 import { Link, Route, Routes } from "react-router-dom";
 import SocialIcons from "../components/socialIcons";
 import Footer from "../components/Footer";
-
-
-
-
-
-
-
+import SingleProject from "./SingleProject";
 
 export default function HomePage() {
-
-
-  
-
-
   return (
     <>
       <div className="w-full bg-[#0A192F] ">
         <UserSideHeader />
-        <SocialIcons />
+        <div className="hidden lg:block">
+          <SocialIcons />
+        </div>
+
         <Routes>
           <Route
             path="/"
@@ -42,9 +34,15 @@ export default function HomePage() {
               </>
             }
           />
-          <Route path="/archive/*" element={<Archive />} />
+          <Route path="/archive/tech/*" element={<Archive />} />
+          <Route path="/archive/id/*" element={<SingleProject />}></Route>
+
           {/* <Route path="/dashboard/*" element={<Dashboard />} /> */}
         </Routes>
+
+        <div className=" lg:hidden">
+          <SocialIcons />
+        </div>
 
         <Footer />
       </div>

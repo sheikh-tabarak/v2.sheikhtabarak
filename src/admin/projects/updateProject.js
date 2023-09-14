@@ -28,6 +28,8 @@ export default function UpdateProject(props) {
     builtsin: location.state.project.builtsin,
   });
 
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [ImageFile, setImageFile] = useState();
   console.log(location);
 
   const [isLoading, setisLoading] = useState(false);
@@ -57,13 +59,6 @@ export default function UpdateProject(props) {
 
   async function UpdatethisProject(e){
 
-    
-    // e.preventDefault();
-    // toast.success("Project updated successfully!", {
-    //   position: toast.POSITION.BOTTOM_RIGHT,
-    //   className:"bg-white dark:bg-gray-900",
-    //   autoClose: 1000,
-    // });
     setisLoading(true);
 
     const UpdateProject = new Project();
@@ -85,29 +80,29 @@ export default function UpdateProject(props) {
   }
 
 
-const [TechList, setTechList] = useState([]);
+// const [TechList, setTechList] = useState([]);
 
 useEffect(() => {
-  const fetchTheTechnologies = async () => {
-    try {
-      const collectionRef = firebaseconnection.firestore().collection("technologies");
-      const snapshot = await collectionRef.get();
+  // const fetchTheTechnologies = async () => {
+  //   try {
+  //     const collectionRef = firebaseconnection.firestore().collection("technologies");
+  //     const snapshot = await collectionRef.get();
 
-      const TechList = snapshot.docs.map((doc) => {
-        const data = doc.data();
-        return new Technology(
-          data.technology_id,
-          data.technology_title,
-          data.technology_desc
-        );
-      });
-      setTechList(TechList);
-    } catch (error) {
-      console.error("Error fetching projects:", error);
-    }
-  };
+  //     const TechList = snapshot.docs.map((doc) => {
+  //       const data = doc.data();
+  //       return new Technology(
+  //         data.technology_id,
+  //         data.technology_title,
+  //         data.technology_desc
+  //       );
+  //     });
+  //     setTechList(TechList);
+  //   } catch (error) {
+  //     console.error("Error fetching projects:", error);
+  //   }
+  // };
 
-  fetchTheTechnologies();
+  // fetchTheTechnologies();
 
 //   console.log(
   //     "Title: " +
@@ -136,10 +131,63 @@ useEffect(() => {
     <section className="bg-white dark:bg-gray-900">
       <div className="py-8 px-4 mx-10 max-w-2xl lg:py-10">
         <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
-          Update the Project {location.state.project[0]}
+          Update the Project {location.state.project.project_title}
         </h2>
 
-        <label
+        <label htmlFor="UploadImage">
+          <div className="mb-7 w-full flex flex-col items-center justify-center h-64 border-2 border-gray-300 border-dashed  rounded-lg shadow ">
+            <input
+              className="hidden"
+              id="UploadImage"
+              type="file"
+              accept="image/*"
+              onChange={(e) => {
+                const file = e.target.files[0];
+                setSelectedImage(file);
+                setImageFile(file);
+              }}
+            />
+
+            {(selectedImage === null&&location.state.project.feature_image=="") ? (
+              <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                <svg
+                  className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 20 16"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                  />
+                </svg>
+                <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                  <span className="font-semibold">Click to upload</span> or drag
+                  and drop
+                </p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">
+                  SVG, PNG, JPG or GIF (MAX. 800x400px)
+                </p>
+              </div>
+            ) : (
+              <img
+                className="h-60 rounded-lg"
+                src={
+                  selectedImage === null
+                    ? location.state.project.feature_image
+                    : URL.createObjectURL(selectedImage)
+                }
+                alt="Selected"
+              />
+            )}
+          </div>
+        </label>
+
+        {/* <label
           htmlFor="dropzone-file"
           className={
             " bg-no-repeat bg-contain	 mb-5 flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-white dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
@@ -188,7 +236,7 @@ useEffect(() => {
             type="file"
             className="hidden"
           />
-        </label>
+        </label> */}
         <form onSubmit={UpdatethisProject}
 >
           <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">

@@ -6,33 +6,27 @@ import { Link, Route, Routes, useLocation } from "react-router-dom";
 import ProjectArchive from "../data/projectsdata";
 import firebaseconnection from "../../models/connection";
 import Project from "../../models/ProjectsClass";
-
+import SingleProject from "./SingleProject";
 
 export default function Archive(props) {
   const [Moredetails, setMoredetails] = useState(true);
   const history = useLocation();
-  const [Tech, setTech] = useState("");
-
+  const [Tech, setTech] = useState("tech");
 
   const [projects, setProjects] = useState([]);
   const [refreshData, setrefreshData] = useState(false);
 
-
-
   useEffect(() => {
-
-    const FilterText = history.pathname.split("/")[2];
+    const FilterText = history.pathname.split("/")[3];
     FilterText !== undefined ? setTech(FilterText) : setTech("");
 
-  
     const fetchProjects = async () => {
-
-
-
       try {
-        const collectionRef = firebaseconnection.firestore().collection("projects");
+        const collectionRef = firebaseconnection
+          .firestore()
+          .collection("projects");
         const snapshot = await collectionRef.get();
-  
+
         const projectList = snapshot.docs.map((doc) => {
           const data = doc.data();
           return new Project(
@@ -48,22 +42,17 @@ export default function Archive(props) {
             data.builtsin
           );
         });
-  
+
         setProjects(projectList);
       } catch (error) {
         console.error("Error fetching projects:", error);
       }
     };
-  
-  
-    
-  
+
     fetchProjects();
   }, [refreshData]);
 
-  useEffect(() => {
-    
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <div className="px-5 py-10 lg:px-36 lg:py-10 md:px-36 md:py-10">
@@ -72,7 +61,7 @@ export default function Archive(props) {
           Archive
         </h1>
         <ul className="py-5 lg:py-0 scrollbar-hide flex  skills-font-span whitespace-nowrap overflow-auto">
-          <Link onClick={() => setTech("")} to={"/archive"}>
+          <Link onClick={() => setTech("")} to={"/archive/tech"}>
             <li className="my-2 mr-2 min-w-min">
               <div
                 className={
@@ -85,7 +74,10 @@ export default function Archive(props) {
               </div>
             </li>
           </Link>
-          <Link onClick={() => setTech("wordpress")} to={"/archive/wordpress"}>
+          <Link
+            onClick={() => setTech("wordpress")}
+            to={"/archive/tech/wordpress"}
+          >
             <li className="my-2 mr-2 min-w-max">
               <div
                 className={
@@ -99,7 +91,7 @@ export default function Archive(props) {
             </li>
           </Link>
 
-          <Link onClick={() => setTech("reactjs")} to={"/archive/reactjs"}>
+          <Link onClick={() => setTech("reactjs")} to={"/archive/tech/reactjs"}>
             <li className="my-2 mr-2 min-w-max">
               <div
                 className={
@@ -113,7 +105,7 @@ export default function Archive(props) {
             </li>
           </Link>
 
-          <Link onClick={() => setTech("flutter")} to={"/archive/flutter"}>
+          <Link onClick={() => setTech("flutter")} to={"/archive/tech/flutter"}>
             <li className="my-2 mr-2 min-w-max">
               <div
                 className={
@@ -127,7 +119,7 @@ export default function Archive(props) {
             </li>
           </Link>
 
-          <Link onClick={() => setTech("others")} to={"/archive/others"}>
+          <Link onClick={() => setTech("others")} to={"/archive/tech/others"}>
             <li className="my-2 mr-2 min-w-max">
               <div
                 className={
@@ -181,6 +173,9 @@ export default function Archive(props) {
 
           <tbody className="border-radius: 20px">
             <Routes>
+
+         
+
               <Route
                 path={"/"}
                 element={
@@ -201,19 +196,23 @@ export default function Archive(props) {
                               </p>
                             </th>
 
-                            <td
+                            
+                            <Link
+                          to={"/archive/id/" + value.project_id}
+                          state={{ project: value }}
+                        >
+                          <td
                               className={
                                 "align-middle px-2 py-2 lg:px-6 lg:py-3 w-6/13 lg:w-4/13"
                               }
                             >
-
-                              <p
-                              
-                                className="align-middle py-1 px-2  col leading-5 lg:leading-7 md:leading-6  font-bold text-[14px] md:text-[16px]  lg:text-[17px] tracking-tight text-[#CCD6F6] font-[500] "
-                              >
+                              <p className="align-middle py-1 px-2  col leading-5 lg:leading-7 md:leading-6  font-bold text-[14px] md:text-[16px]  lg:text-[17px] tracking-tight text-[#CCD6F6] font-[500] ">
                                 {value.project_title}
                               </p>
                             </td>
+                            
+                            </Link>
+                            
                             <td className="px-2 py-2 lg:px-6 lg:py-3  hidden lg:table-cell lg:w-2/13 ">
                               {value.client_name}
                             </td>
@@ -255,7 +254,7 @@ export default function Archive(props) {
                                   <></>
                                 )}
 
-                                {value.project_github !== "" ? (
+                                {(value.project_github !== "" ||value.project_github!==undefined)?(
                                   <Link
                                     to={value.project_github}
                                     target="blank"
@@ -278,7 +277,6 @@ export default function Archive(props) {
 
               <Route
                 path={"/" + Tech}
-       
                 element={projects.map((value, index) => {
                   if (Tech.toLowerCase() === "others") {
                     if (
@@ -375,7 +373,12 @@ export default function Archive(props) {
                       );
                     }
                   } else {
-                    if (value.builtsin.replace(/\s/g, "").toLowerCase().includes(Tech.toLowerCase())) {
+                    if (
+                      value.builtsin
+                        .replace(/\s/g, "")
+                        .toLowerCase()
+                        .includes(Tech.toLowerCase())
+                    ) {
                       return (
                         <>
                           <tr
@@ -470,6 +473,11 @@ export default function Archive(props) {
                   return setTech(params.Tech);
                 }}
               />
+
+
+
+
+             
             </Routes>
           </tbody>
         </table>

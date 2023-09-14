@@ -1,31 +1,46 @@
 import React, { useEffect, useState } from "react";
 import Project from "../../models/ProjectsClass";
-import firebaseconnection,{storageRef} from "../../models/connection";
+import firebaseconnection, { storageRef } from "../../models/connection";
 import Datepicker from "react-tailwindcss-datepicker";
 import Loading from "../../loading";
 import Technology from "../../models/TechnologyClass";
-import 'firebase/storage';
-
-
+import "firebase/storage";
 
 export default function CreateNewProject() {
-
-
-
-
   const [selectedImage, setSelectedImage] = useState(null);
-  const [imageURL, setImageURL] = useState('');
+  const [ImageFile, setImageFile] = useState();
 
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    setSelectedImage(file);
+  
+  const [NewProject, setNewProject] = useState({
+    name: "",
+    desc: "",
+    github: "",
+    clientName: "",
+    startDate: "",
+    endDate: "",
+    featureImage: "",
+    link: "",
+    builtsin: "",
+  });
+  
 
+  // const [imageURL, setImageURL] = useState("");
+
+
+
+  async function handleImageUpload (file) {
+
+    // const file = e.target.files[0];
+    // setSelectedImage(file);
+    // setbeforeUploadimageURL(URL.createObjectURL(selectedImage));
     // Create a reference to the Firebase Storage location where you want to store the image
 
     // const storageRef = firebaseconnection.storage().ref(`images/${file.name}`);
 
     // // Upload the selected image to Firebase Storage
-    const uploadTask = storageRef.ref(`images/${file.name}`).put(file);
+    
+    
+    const uploadTask = storageRef.ref(`projectImages/${file.name}`).put(file);
 
     uploadTask.on(
       'state_changed',
@@ -36,24 +51,27 @@ export default function CreateNewProject() {
       () => {
         // Get the download URL of the uploaded image
         uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-          setImageURL(downloadURL);
+
+          setNewProject({
+            name: NewProject.name,
+            desc: NewProject.desc,
+            github: NewProject.github,
+            clientName: NewProject.clientName,
+            startDate: NewProject.startDate,
+            endDate: NewProject.endDate,
+            featureImage: downloadURL,
+            link: NewProject.link,
+            builtsin: NewProject.builtsin,
+          });
+
+          console.log(NewProject.featureImage)
+
+
+          // setImageURL(downloadURL);
         });
       }
     );
   };
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   document.title = "Create New Project | Dashboard";
 
@@ -81,17 +99,6 @@ export default function CreateNewProject() {
     });
   };
 
-  const [NewProject, setNewProject] = useState({
-    name: "",
-    desc: "",
-    github: "",
-    clientName: "",
-    startDate: "",
-    endDate: "",
-    featureImage: "",
-    link: "",
-    builtsin: "",
-  });
 
   const [TechList, setTechList] = useState([]);
 
@@ -100,53 +107,69 @@ export default function CreateNewProject() {
   useEffect(() => {
     // console.log("selected + "+NewProject.builtsin);
 
-    const fetchTheTechnologies = async () => {
-      try {
-        const collectionRef = firebaseconnection.firestore().collection("technologies");
-        const snapshot = await collectionRef.get();
+    // const fetchTheTechnologies = async () => {
+    //   try {
+    //     const collectionRef = firebaseconnection
+    //       .firestore()
+    //       .collection("technologies");
+    //     const snapshot = await collectionRef.get();
 
-        const TechList = snapshot.docs.map((doc) => {
-          const data = doc.data();
-          return new Technology(
-            data.technology_id,
-            data.technology_title,
-            data.technology_desc
-          );
-        });
-        setTechList(TechList, false);
-      } catch (error) {
-        console.error("Error fetching projects:", error);
-      }
-    };
+    //     const TechList = snapshot.docs.map((doc) => {
+    //       const data = doc.data();
+    //       return new Technology(
+    //         data.technology_id,
+    //         data.technology_title,
+    //         data.technology_desc
+    //       );
+    //     });
+    //     setTechList(TechList, false);
+    //   } catch (error) {
+    //     console.error("Error fetching projects:", error);
+    //   }
+    // };
 
-    fetchTheTechnologies();
+    // fetchTheTechnologies();
 
-    // console.log(
-    //   "Title: " +
-    //     NewProject.name +
-    //     "\nDescription: " +
-    //     NewProject.desc +
-    //     "\nStartDate: " +
-    //     NewProject.startDate +
-    //     "\nEnd Date: " +
-    //     NewProject.endDate +
-    //     "\nFeature Image: " +
-    //     NewProject.featureImage +
-    //     "\nClient: " +
-    //     NewProject.clientName+
-    //     "\nProject Link: " +
-    //     NewProject.link+
-    //     "\nBuilts in: " +
-    //     NewProject.builtsin
-    // );
-  });
+    console.log(
+      "Title: " +
+        NewProject.name +
+        "\nDescription: " +
+        NewProject.desc +
+        "\nStartDate: " +
+        NewProject.startDate +
+        "\nEnd Date: " +
+        NewProject.endDate +
+        "\nFeature Image: " +
+        NewProject.featureImage +
+        "\nClient: " +
+        NewProject.clientName+
+        "\nProject Link: " +
+        NewProject.link+
+        "\nBuilts in: " +
+        NewProject.builtsin
+    );
+  },[]);
 
   async function addData(e) {
     e.preventDefault();
     setisLoading(true);
-
+await handleImageUpload(ImageFile);
     console.log("okay done");
     const newProject = new Project();
+
+
+    
+    
+
+
+    console.log(
+      "Title: " +
+        NewProject.name 
+
+    );
+
+
+
 
     await newProject.addProject(
       NewProject.name,
@@ -161,21 +184,9 @@ export default function CreateNewProject() {
     );
 
     setisLoading(false);
-    console.log("okay done after : " + newProject.client_name);
+    console.log("okay done after : " + NewProject.clientName);
   }
 
-  // const setNameinState = (e) => {
-  //   setNewProject({
-  //     name: e.target.value,
-  //     desc: NewProject.desc,
-  //     budget: NewProject.budget,
-  //     clientName: NewProject.clientName,
-  //     startDate: NewProject.startDate,
-  //     endDate: NewProject.endDate,
-  //     featureImage: NewProject.featureImage,
-  //     link: NewProject.link,
-  //   });
-  // };
 
   return isLoading === true ? (
     <Loading />
@@ -186,72 +197,61 @@ export default function CreateNewProject() {
           Add a new Project
         </h2>
 
-        <label
-          htmlFor="dropzone-file"
-          className={
-            " bg-no-repeat bg-cover bg-[url('https://firebasestorage.googleapis.com/v0/b/sheikhtabarak-1019.appspot.com/o/spothub.png?alt=media&token=5bcf0bb7-1e59-4efd-9723-4b0027bd1283')]	 mb-5 flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-white dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
-          }
-        >
-          <div className="flex flex-col items-center justify-center pt-5 pb-6">
-            <svg
-              className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 20 16"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+        {/* 'https://firebasestorage.googleapis.com/v0/b/sheikhtabarak-1019.appspot.com/o/spothub.png?alt=media&token=5bcf0bb7-1e59-4efd-9723-4b0027bd1283 */}
+
+        <label htmlFor="UploadImage">
+          <div className="mb-7 w-full flex flex-col items-center justify-center h-64 border-2 border-gray-300 border-dashed  rounded-lg shadow ">
+            <input
+              className="hidden"
+              id="UploadImage"
+              type="file"
+              accept="image/*"
+              onChange={(e) => {
+                const file = e.target.files[0];
+                setSelectedImage(file);
+                setImageFile(file);
+
+
+              }}
+            />
+
+            {selectedImage === null ? (
+              <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                <svg
+                  className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 20 16"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                  />
+                </svg>
+                <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                  <span className="font-semibold">Click to upload</span> or drag
+                  and drop
+                </p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">
+                  SVG, PNG, JPG or GIF (MAX. 800x400px)
+                </p>
+              </div>
+            ) : (
+              <img
+                className="h-60 rounded-lg"
+                src={
+                  selectedImage === null
+                    ? ""
+                    : URL.createObjectURL(selectedImage)
+                }
+                alt="Selected"
               />
-            </svg>
-            <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-              <span className="font-semibold">Click to upload</span> or drag and
-              drop
-            </p>
-            <p className="text-xs text-gray-500 dark:text-gray-400">
-              SVG, PNG, JPG or GIF (MAX. 800x400px)
-            </p>
+            )}
           </div>
-          <input
-            onChange={(e) => {
-              console.log(e.target.files.name);
-              console.log(e.target.value);
-
-              setNewProject({
-                name: NewProject.name,
-                desc: NewProject.desc,
-                github: NewProject.github,
-                clientName: NewProject.clientName,
-                startDate: NewProject.startDate,
-                endDate: NewProject.endDate,
-                featureImage: e.target.value,
-                link: NewProject.link,
-                builtsin: NewProject.builtsin,
-              });
-            }}
-            //  onSelect={(e)=>{
-
-            //   setNewProject({
-            //     name: NewProject.name,
-            //     desc: NewProject.desc,
-            //     budget: NewProject.budget,
-            //     clientName: NewProject.clientName,
-            //     startDate: NewProject.startDate,
-            //     endDate: NewProject.endDate,
-            //     featureImage: e.target.value,
-            //     link: NewProject.link,
-            //   });
-
-            // }
-            //  }
-            id="dropzone-file"
-            type="file"
-            className="hidden"
-          />
         </label>
 
         <form onSubmit={addData}>
@@ -372,8 +372,8 @@ export default function CreateNewProject() {
                 required=""
               />
             </div>
-          <div>
-          <label
+            <div>
+              <label
                 htmlFor="link"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
@@ -400,28 +400,26 @@ export default function CreateNewProject() {
                 placeholder={"https://xyz.sheikhtabarak.me"}
                 required=""
               />
-
-
-          </div>
+            </div>
             <div>
               <label
                 htmlFor="link"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
-               Github Link
+                Github Link
               </label>
               <input
                 onChange={(e) => {
                   setNewProject({
                     name: NewProject.name,
                     desc: NewProject.desc,
-                    github:  e.target.value,
+                    github: e.target.value,
                     clientName: NewProject.clientName,
                     startDate: NewProject.startDate,
                     endDate: NewProject.endDate,
                     featureImage: NewProject.featureImage,
                     link: NewProject.link,
-                    builtsin:NewProject.builtsin,
+                    builtsin: NewProject.builtsin,
                   });
                 }}
                 type="text"
@@ -431,13 +429,10 @@ export default function CreateNewProject() {
                 placeholder={"https://github.com/{username}/{repository}"}
                 required=""
               />
-
             </div>
 
             {/* <div className=""> */}
 
-        
-              
             {/* </div> */}
 
             <Datepicker
@@ -455,27 +450,7 @@ export default function CreateNewProject() {
               onChange={handleValueChange}
             />
           </div>
-
-
-          <div>
-      <h1>Upload Image to Firebase Storage</h1>
-      <input type="file" accept="image/*" onChange={handleImageUpload} />
-      {selectedImage && <img src={URL.createObjectURL(selectedImage)} alt="Selected" />}
-      {imageURL && (
-        <div>
-          <h2>Uploaded Image URL:</h2>
-          <a href={imageURL} target="_blank" rel="noopener noreferrer">
-            {imageURL}
-          </a>
-          <img src={imageURL} alt="Uploaded" />
-        </div>
-      )}
-    </div>
-
-
-
           <button
-            // onClick={()=>addData}
             type="submit"
             className="mr-10 sheikhtabarak-btn-main inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800"
           >
@@ -483,10 +458,6 @@ export default function CreateNewProject() {
           </button>
         </form>
       </div>
-
-
-
-
     </section>
   );
 }

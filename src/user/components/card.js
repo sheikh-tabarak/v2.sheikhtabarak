@@ -19,10 +19,19 @@ export default function Card() {
         <div className="grid grid-cols-7 gap-4">
           <div className="col-span-0 lg:col-start-1 lg:col-end-5 py-0 md:py-10 lg:my-10 ">
             <Link>
-            {/* <iframe className="w-full h-full rounded-[20px]" src="https://spothub.sheikhtabarak.me"></iframe> */}
-              <div className="w-full h-full bg-contain bg-center bg-[#2B374E]   hover:opacity-100  bg-no-repeat bg-[url('https://v4.brittanychiang.com/static/3b4d6e8f44baf7e6d7a0ed4b3e4d8d39/272cf/halcyon.png')]]">
-                {/* <img className="w-full h-full " src={Image} alt="" /> */}
+              {/* <iframe className="w-full h-full rounded-[20px]" src="https://spothub.sheikhtabarak.me"></iframe> */}
+              {/* <div className="w-full h-full bg-contain bg-center bg-[#2B374E]   hover:opacity-100  bg-no-repeat bg-[url('https://v4.brittanychiang.com/static/3b4d6e8f44baf7e6d7a0ed4b3e4d8d39/272cf/halcyon.png')]]"> */}
+              {/* <img className="w-full h-full " src={Image} alt="" /> */}
+              <div className="w-full  border border-[#4CD684] rounded-lg shadow  bg-[#112240]">
+                <a href="#">
+                  <img
+                    className="rounded-lg"
+                    src="https://firebasestorage.googleapis.com/v0/b/sheikhtabarak-1019.appspot.com/o/spothub.png?alt=media&token=5bcf0bb7-1e59-4efd-9723-4b0027bd1283"
+                    alt="product image"
+                  />
+                </a>
               </div>
+              {/* </div> */}
             </Link>
           </div>
           <div className=" ml-0 col-start-1 col-end-8 lg:col-end-8 lg:col-span-3  lg:-ml-40">
@@ -64,11 +73,11 @@ export default function Card() {
                   })}
                 </div>
 
-                <div className="flex justify-end lg:text-right gap-x-6 my-5 ">
+                <div className="flex justify-center lg:justify-end lg:text-right gap-x-6 my-5 ">
                   <a
                     id="about"
                     href="#"
-                    className=" flex gap-2 menu-button  hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175
+                    className="flex gap-2 menu-button  hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175
            px-5 py-3 
             text-[10px] font-bold mb-4 tracking-tight text-[#8892B0] md:text-[13px] lg:text-[13px] lg:px-8 lg:py-3"
                   >
@@ -84,22 +93,20 @@ export default function Card() {
             text-[10px] font-bold mb-4 tracking-tight text-[#8892B0] md:text-[13px] lg:text-[13px] lg:px-8 lg:py-3"
                   >
                     <FaGithub />
-                    Git hub
+                    Git hub Link
                   </a>
                 </div>
               </div>
             </div>
           </div>
-        </div>    
-        
-        <Link className="text-center" to={"/archive"}>
-        <p className="menu-font-span hover:underline leading-6 md:leading-10 text-[14px] lg:text-[16px] pb-10 ">
-          view the archive
-        </p>
-      </Link>
-      </div>
+        </div>
 
-  
+        <Link className="text-center" to={"/archive/tech"}>
+          <p className="menu-font-span hover:underline leading-6 md:leading-10 text-[14px] lg:text-[16px] pb-10 ">
+            view the archive
+          </p>
+        </Link>
+      </div>
     </section>
   );
 }
