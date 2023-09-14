@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Project from "../../models/ProjectsClass";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
-import firebase from "../../models/connection";
+import firebaseconnection from "../../models/connection";
 import Technology from "../../models/TechnologyClass";
 
 
@@ -90,7 +90,7 @@ const [TechList, setTechList] = useState([]);
 useEffect(() => {
   const fetchTheTechnologies = async () => {
     try {
-      const collectionRef = firebase.firestore().collection("technologies");
+      const collectionRef = firebaseconnection.firestore().collection("technologies");
       const snapshot = await collectionRef.get();
 
       const TechList = snapshot.docs.map((doc) => {

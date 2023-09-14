@@ -36,7 +36,7 @@ export default function HeroSection() {
         <div className="mt-10 flex items-center justify-left gap-x-6">
           <Link  to={"/archive"}
           
-          id="about"
+         
             className="menu-button  hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175
            px-5 py-3 
             text-[10px] font-bold mb-4 tracking-tight text-[#8892B0] md:text-[13px] lg:text-[13px] lg:px-12 lg:py-3"

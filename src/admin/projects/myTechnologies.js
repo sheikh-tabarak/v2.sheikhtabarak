@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Loading from "../../loading";
 import Technology from "../../models/TechnologyClass";
 import { Link, useLocation } from "react-router-dom";
-import firebase from "../../models/connection";
+import firebaseconnection from "../../models/connection";
 import ConfirmationDialog from "../../popups/ConfirmationDialog";
 import UpdateTechnologies from "../../popups/updateTechnologies";
 
@@ -50,7 +50,7 @@ export default function MyTechnologies() {
   useEffect(() => {
     const fetchTechnologies = async () => {
       try {
-        const collectionRef = firebase.firestore().collection("technologies");
+        const collectionRef = firebaseconnection.firestore().collection("technologies");
         const snapshot = await collectionRef.get();
 
         const TechList = snapshot.docs.map((doc) => {

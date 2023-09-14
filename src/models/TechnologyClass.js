@@ -1,9 +1,9 @@
-import firebase from "../models/connection";
+import firebaseconnection from "../models/connection";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import { toast } from "react-toastify";
 
-const firestore = firebase.firestore();
+const firestore = firebaseconnection.firestore();
 
 class Technology {
   constructor(technology_id, technology_title, technology_desc) {

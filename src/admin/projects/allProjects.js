@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import firebase from "../../models/connection";
+import firebaseconnection from "../../models/connection";
 import Loading from "../../loading";
 import { Link } from "react-router-dom";
 import UpdateProject from "./updateProject";
@@ -96,7 +96,7 @@ export default function AllProjects() {
 
     const fetchProjects = async () => {
       try {
-        const collectionRef = firebase.firestore().collection("projects");
+        const collectionRef = firebaseconnection.firestore().collection("projects");
         const snapshot = await collectionRef.get();
 
         const projectList = snapshot.docs.map((doc) => {
@@ -122,26 +122,7 @@ export default function AllProjects() {
     };
 
 
-    // console.log(projects.project_github)
-
-    // const fetchTheTechnologies = async () => {
-    //   try {
-    //     const collectionRef = firebase.firestore().collection("technologies");
-    //     const snapshot = await collectionRef.get();
-
-    //     const TechList = snapshot.docs.map((doc) => {
-    //       const data = doc.data();
-    //       return new Technology(
-    //         data.technology_id,
-    //         data.technology_title,
-    //         data.technology_desc
-    //       );
-    //     });
-    //     setTechList(TechList);
-    //   } catch (error) {
-    //     console.error("Error fetching projects:", error);
-    //   }
-    // };
+    
 
     fetchProjects();
   }, [refreshData]);

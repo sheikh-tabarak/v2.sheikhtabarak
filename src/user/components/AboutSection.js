@@ -4,7 +4,7 @@ import LogoGif from "../../assests/logo/sheikhtabarak.gif";
 
 export default function AboutSection() {
   return (
-    <section id="" className=" motion-safe:animate-fadeIn">
+    <section id="about" className=" motion-safe:animate-fadeIn">
       <div className=" grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-2 lg:grid-cols-12 lg:px-36 md:px-36 md:py-10">
         <div className="mr-auto place-self-center lg:col-span-7">
           <div className="">

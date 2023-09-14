@@ -66,20 +66,20 @@ export default function UserSideHeader() {
             <ul className=" flex flex-col mt-4  lg:flex-row lg:space-x-8 lg:mt-0">
               <li>
                 <span className="menu-font-span pr-1 text-[13px]">01.</span>
-                <a
+                <Link
                   onClick={clickMenu}
-                  href="/#about"
+                  to="/#about"
                   className="scroll-smooth menu-font-in-SFMonoBold text-[13px] hover:text-[13px] py-2 "
                   aria-current="page"
                 >
                   About
-                </a>
+                </Link>
               </li>
               <li>
                 <span className="menu-font-span pr-1 text-[13px]">02.</span>
                 <a
                   onClick={clickMenu}
-                  href="#Experience"
+                  href="/#Experience"
                   className="menu-font-in-SFMonoBold text-[13px] hover:text-[13px] py-2  "
                 >
                   Experience
@@ -89,7 +89,7 @@ export default function UserSideHeader() {
                 <span className="menu-font-span pr-1 text-[13px]">03.</span>
                 <a
                   onClick={clickMenu}
-                  href="#work"
+                  href="/#work"
                   className="menu-font-in-SFMonoBold text-[13px] hover:text-[13px]  py-2  "
                 >
                   Work
@@ -99,7 +99,7 @@ export default function UserSideHeader() {
                 <span className="menu-font-span pr-1 text-[13px]">04.</span>
                 <a
                   onClick={clickMenu}
-                  href="#contact"
+                  href="/#contact"
                   className="menu-font-in-SFMonoBold text-[13px] hover:text-[13px]  py-2  "
                 >
                   Contact

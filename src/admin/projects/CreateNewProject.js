@@ -1,11 +1,60 @@
 import React, { useEffect, useState } from "react";
 import Project from "../../models/ProjectsClass";
-import firebase from "../../models/connection";
+import firebaseconnection,{storageRef} from "../../models/connection";
 import Datepicker from "react-tailwindcss-datepicker";
 import Loading from "../../loading";
 import Technology from "../../models/TechnologyClass";
+import 'firebase/storage';
+
+
 
 export default function CreateNewProject() {
+
+
+
+
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [imageURL, setImageURL] = useState('');
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    setSelectedImage(file);
+
+    // Create a reference to the Firebase Storage location where you want to store the image
+
+    // const storageRef = firebaseconnection.storage().ref(`images/${file.name}`);
+
+    // // Upload the selected image to Firebase Storage
+    const uploadTask = storageRef.ref(`images/${file.name}`).put(file);
+
+    uploadTask.on(
+      'state_changed',
+      null,
+      (error) => {
+        console.error('Error uploading image: ', error);
+      },
+      () => {
+        // Get the download URL of the uploaded image
+        uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+          setImageURL(downloadURL);
+        });
+      }
+    );
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   document.title = "Create New Project | Dashboard";
 
   const [isLoading, setisLoading] = useState(false);
@@ -53,7 +102,7 @@ export default function CreateNewProject() {
 
     const fetchTheTechnologies = async () => {
       try {
-        const collectionRef = firebase.firestore().collection("technologies");
+        const collectionRef = firebaseconnection.firestore().collection("technologies");
         const snapshot = await collectionRef.get();
 
         const TechList = snapshot.docs.map((doc) => {
@@ -140,7 +189,7 @@ export default function CreateNewProject() {
         <label
           htmlFor="dropzone-file"
           className={
-            " bg-no-repeat bg-contain	 mb-5 flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-white dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+            " bg-no-repeat bg-cover bg-[url('https://firebasestorage.googleapis.com/v0/b/sheikhtabarak-1019.appspot.com/o/spothub.png?alt=media&token=5bcf0bb7-1e59-4efd-9723-4b0027bd1283')]	 mb-5 flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-white dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
           }
         >
           <div className="flex flex-col items-center justify-center pt-5 pb-6">
@@ -406,6 +455,25 @@ export default function CreateNewProject() {
               onChange={handleValueChange}
             />
           </div>
+
+
+          <div>
+      <h1>Upload Image to Firebase Storage</h1>
+      <input type="file" accept="image/*" onChange={handleImageUpload} />
+      {selectedImage && <img src={URL.createObjectURL(selectedImage)} alt="Selected" />}
+      {imageURL && (
+        <div>
+          <h2>Uploaded Image URL:</h2>
+          <a href={imageURL} target="_blank" rel="noopener noreferrer">
+            {imageURL}
+          </a>
+          <img src={imageURL} alt="Uploaded" />
+        </div>
+      )}
+    </div>
+
+
+
           <button
             // onClick={()=>addData}
             type="submit"
@@ -415,6 +483,10 @@ export default function CreateNewProject() {
           </button>
         </form>
       </div>
+
+
+
+
     </section>
   );
 }

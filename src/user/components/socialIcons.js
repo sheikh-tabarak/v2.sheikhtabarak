@@ -43,7 +43,7 @@ export default function SocialIcons() {
             </li>
           </Link>
           {/* <!-- Upwork --> */}
-          <Link to={"https://www.fiverr.com/sheikhtabarak"} target="blank">
+          <Link to={"https://www.upwork.com/freelancers/~017ed24f96b80d5bca"} target="blank">
           <li className="py-3">
           
               <SiUpwork className="h-6 w-6 fill-[#CCD6F6;] hover:fill-[#4CD684;]  hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175" />
@@ -51,24 +51,23 @@ export default function SocialIcons() {
           </li>
           </Link>
           {/* <!-- Github --> */}
-          <Link to={"https://www.fiverr.com/sheikhtabarak"} target="blank">
+          <Link to={"https://github.com/sheikh-tabarak"} target="blank">
           <li className="py-3">
-            <a href="https://google.com ">
              <FaGithub  className="h-6 w-6 fill-[#CCD6F6;] hover:fill-[#4CD684;]  hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175"/>
-            </a>
           </li>
           </Link>
           <li className="py-3">
-            <a href="https://google.com ">
+            
+            <Link to={"https://www.linkedin.com/in/sheikhtabarak/"}  target="blank">
               {/* <!-- Linkedin --> */}
               <FaLinkedinIn className="h-6 w-6 fill-[#CCD6F6;] hover:fill-[#4CD684;]  hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175"/>
-            </a>
+            </Link>
           </li>
           <li className="py-3">
-            <a href="https://google.com ">
+            <Link to={"https://instagram.com/sheikh_tabarak"} target="blank">
               {/* <!-- Instagram --> */}
               <FaInstagram className="h-6 w-6 fill-[#CCD6F6;] hover:fill-[#4CD684;]  hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175"/>
-            </a>
+            </Link>
           </li>
 
           <li className="pt-8 flex justify-center">
