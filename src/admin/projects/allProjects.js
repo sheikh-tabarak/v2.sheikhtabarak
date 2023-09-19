@@ -32,71 +32,15 @@ export default function AllProjects() {
     setisLoading(false);
   }
 
-  const ProductList = [
-    {
-      id: "0000",
-      title: "Apple MacBook Pro 17",
-      category: "Laptop",
-      color: "Silver",
-      price: 1000,
-    },
-    {
-      id: "0002",
-      title: "Microsoft Surface Pro",
-      category: "Laptop PC",
-      color: "White",
-      price: 1999,
-    },
-
-    {
-      id: "0003",
-      title: "Microsoft Surface Pro",
-      category: "Laptop PC",
-      color: "White",
-      price: 1999,
-    },
-
-    {
-      id: "0004",
-      title: "Microsoft Surface Pro",
-      category: "Laptop PC",
-      color: "White",
-      price: 1999,
-    },
-
-    {
-      id: "0005",
-      title: "Microsoft Surface Pro",
-      category: "Laptop PC",
-      color: "White",
-      price: 1999,
-    },
-
-    {
-      id: "0006",
-      title: "Microsoft Surface Pro",
-      category: "Laptop PC",
-      color: "White",
-      price: 1999,
-    },
-
-    {
-      id: "0007",
-      title: "Microsoft Surface Pro",
-      category: "Laptop PC",
-      color: "White",
-      price: 1999,
-    },
-  ];
-
   const [projects, setProjects] = useState([]);
   const [TechList, setTechList] = useState([]);
 
   useEffect(() => {
-
     const fetchProjects = async () => {
       try {
-        const collectionRef = firebaseconnection.firestore().collection("projects");
+        const collectionRef = firebaseconnection
+          .firestore()
+          .collection("projects");
         const snapshot = await collectionRef.get();
 
         const projectList = snapshot.docs.map((doc) => {
@@ -121,21 +65,8 @@ export default function AllProjects() {
       }
     };
 
-
-    
-
     fetchProjects();
   }, [refreshData]);
-
-  // function clickHereButton() {
-  //   // console.log(TestingLocation);
-  //   // setTestingLocation("This is Testing Value");
-  //   Link
-  //   navigate("/dashboard/projects/update-project", {
-  //     replace: true,
-  //     state: { projects },
-  //   });
-  // }
 
   return isLoading === true ? (
     <Loading />
@@ -380,17 +311,11 @@ export default function AllProjects() {
                     ? project.project_description
                     : project.project_description.split("", 15)}
 
-
-{project.project_description === ""
+                  {project.project_description === ""
                     ? "N/A"
                     : project.project_description.length <= 15
                     ? ""
                     : " ..."}
-
-              
-
-
-                  
                 </td>
 
                 {/* <td className="w-full  px-6 py-4">{product.project_title===""?"N/A":product.project_title}</td> */}
@@ -398,9 +323,7 @@ export default function AllProjects() {
                   {project.project_id === "" ? "N/A" : project.client_name}
                 </td>
                 <td className=" w-1/6 px-6 py-4">
-                  {project.builtsin === ""
-                    ? "N/A"
-                    : project.builtsin}
+                  {project.builtsin === "" ? "N/A" : project.builtsin}
                 </td>
                 <td className=" w-1/6 px-6 py-4">
                   <a

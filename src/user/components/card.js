@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaGithub, FaLink } from "react-icons/fa";
 import Image from "../../assests/projects/spothub.png";
+import projectgeneralimage from "../../assests/projects/projectgeneralimage.jpg";
 
-export default function Card() {
+export default function Card(props) {
   const test = "React js, Firebase ";
   return (
     <section id="">
@@ -13,20 +14,16 @@ export default function Card() {
           <h1 className="col text-[20px] leading-8 font-bold tracking-tight text-[#CCD6F6] md:text-[40px] lg:text-[24px]">
             Some Things I’ve Built.
           </h1>
-          {/* <hr className="h-px mx-8 my-12 bg-gray-400 border-1 dark:bg-gray-700" /> */}
         </div>
 
-        <div className="grid grid-cols-7 gap-4">
-          <div className="col-span-0 lg:col-start-1 lg:col-end-5 py-0 md:py-10 lg:my-10 ">
+        <div className="grid grid-cols-7 gap-4 md:py-10 lg:my-10">
+          <div className="col-span-0 lg:col-start-1 lg:col-end-5 py-0  ">
             <Link>
-              {/* <iframe className="w-full h-full rounded-[20px]" src="https://spothub.sheikhtabarak.me"></iframe> */}
-              {/* <div className="w-full h-full bg-contain bg-center bg-[#2B374E]   hover:opacity-100  bg-no-repeat bg-[url('https://v4.brittanychiang.com/static/3b4d6e8f44baf7e6d7a0ed4b3e4d8d39/272cf/halcyon.png')]]"> */}
-              {/* <img className="w-full h-full " src={Image} alt="" /> */}
               <div className="w-full  border border-[#4CD684] rounded-lg shadow  bg-[#112240]">
                 <a href="#">
                   <img
                     className="rounded-lg"
-                    src="https://firebasestorage.googleapis.com/v0/b/sheikhtabarak-1019.appspot.com/o/spothub.png?alt=media&token=5bcf0bb7-1e59-4efd-9723-4b0027bd1283"
+                    src={props.image ? props.image : projectgeneralimage}
                     alt="product image"
                   />
                 </a>
@@ -34,7 +31,7 @@ export default function Card() {
               {/* </div> */}
             </Link>
           </div>
-          <div className=" ml-0 col-start-1 col-end-8 lg:col-end-8 lg:col-span-3  lg:-ml-40">
+          <div className=" ml-0 col-start-1 col-end-8 lg:col-end-8 lg:col-span-3  lg:-ml-40 content-center lg:content-center ">
             <div className="">
               {/* <img className='w-full h-full' src="https://v4.brittanychiang.com/static/3b4d6e8f44baf7e6d7a0ed4b3e4d8d39/272cf/halcyon.png" alt="" /> */}
 
@@ -44,23 +41,15 @@ export default function Card() {
                 </p>
 
                 <p className="py-1 px-2 col font-bold text-[18px] leading-8 mb-4 tracking-tight text-[#CCD6F6] hover:text-[#4CD684] md:text-[40px] lg:text-[22px] font-[500] ">
-                  <Link>Halcyon Theme</Link>
+                  <Link>{props.Title}</Link>
                 </p>
 
                 <p className="text-center lg:text-right bg-[#112240] p-5 rounded-[10px] text-[400] text-[12px] overflow-break tracking-tight text-[#8892B0] md:text-[15px] lg:text-[15px]">
-                  Having struggled with understanding how the Spotify OAuth flow
-                  works, I made the course I wish I could have had.
-                  <br />
-                  Unlike tutorials that only cover a few concepts and leave you
-                  with half-baked GitHub repositories, this course covers
-                  everything from explaining the principles of REST APIs to
-                  implementing Spotify's OAuth flow and fetching API data in a
-                  React app. By the end of the course, you’ll have an app
-                  deployed to the internet you can add to your portfolio.
+                  {props.description}
                 </p>
 
                 <div className="py-3 text-center lg:text-right">
-                  {test.split(",").map((value, i) => {
+                  {props.technology.split(",").map((value, i) => {
                     return (
                       <span
                         key={i}
@@ -74,27 +63,35 @@ export default function Card() {
                 </div>
 
                 <div className="flex justify-center lg:justify-end lg:text-right gap-x-6 my-5 ">
-                  <a
-                    id="about"
-                    href="#"
-                    className="flex gap-2 menu-button  hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175
+                  {props.projectLink ? (
+                    <a
+                      id="about"
+                      href={props.projectLink}
+                      className="flex gap-2 menu-button  hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175
            px-5 py-3 
             text-[10px] font-bold mb-4 tracking-tight text-[#8892B0] md:text-[13px] lg:text-[13px] lg:px-8 lg:py-3"
-                  >
-                    <FaLink />
-                    <span> View Project</span>
-                  </a>
+                    >
+                      <FaLink />
+                      <span> View Project</span>
+                    </a>
+                  ) : (
+                    ""
+                  )}
 
-                  <a
-                    id="about"
-                    href="#"
-                    className=" flex gap-2 menu-button  hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175
+                  {props.Github ? (
+                    <a
+                      id="about"
+                      href={props.Github}
+                      className=" flex gap-2 menu-button  hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175
            px-2 py-3 
             text-[10px] font-bold mb-4 tracking-tight text-[#8892B0] md:text-[13px] lg:text-[13px] lg:px-8 lg:py-3"
-                  >
-                    <FaGithub />
-                    Git hub Link
-                  </a>
+                    >
+                      <FaGithub />
+                      Git hub Link
+                    </a>
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
             </div>

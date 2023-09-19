@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Project from "../../models/ProjectsClass";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
-import firebaseconnection from "../../models/connection";
+import firebaseconnection, { storageRef } from "../../models/connection";
 import Technology from "../../models/TechnologyClass";
 
 
@@ -57,7 +57,46 @@ export default function UpdateProject(props) {
     });
   };
 
+
+
+  async function handleImageUpload (file) {
+    
+    const uploadTask =  storageRef.ref(`projectImages/${NewProject.name}`).put(file);
+
+      uploadTask.on(
+      'state_changed',
+      null,
+      (error) => {
+        console.error('Error uploading image: ', error);
+      },
+      () => {
+        // Get the download URL of the uploaded image
+        uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+
+          setNewProject({
+            name: NewProject.name,
+            desc: NewProject.desc,
+            github: NewProject.github,
+            clientName: NewProject.clientName,
+            startDate: NewProject.startDate,
+            endDate: NewProject.endDate,
+            featureImage: downloadURL,
+            link: NewProject.link,
+            builtsin: NewProject.builtsin,
+          });
+
+          console.log(NewProject.featureImage)
+
+        });
+      }
+    );
+  };
+
   async function UpdatethisProject(e){
+
+
+   await handleImageUpload(selectedImage);
+
 
     setisLoading(true);
 
@@ -80,48 +119,27 @@ export default function UpdateProject(props) {
   }
 
 
-// const [TechList, setTechList] = useState([]);
 
 useEffect(() => {
-  // const fetchTheTechnologies = async () => {
-  //   try {
-  //     const collectionRef = firebaseconnection.firestore().collection("technologies");
-  //     const snapshot = await collectionRef.get();
 
-  //     const TechList = snapshot.docs.map((doc) => {
-  //       const data = doc.data();
-  //       return new Technology(
-  //         data.technology_id,
-  //         data.technology_title,
-  //         data.technology_desc
-  //       );
-  //     });
-  //     setTechList(TechList);
-  //   } catch (error) {
-  //     console.error("Error fetching projects:", error);
-  //   }
-  // };
-
-  // fetchTheTechnologies();
-
-//   console.log(
-  //     "Title: " +
-  //       NewProject.name +
-  //       "\nDescription: " +
-  //       NewProject.desc +
-  //       "\nStartDate: " +
-  //       NewProject.startDate +
-  //       "\nEnd Date: " +
-  //       NewProject.endDate +
-  //       "\nFeature Image: " +
-  //       NewProject.featureImage +
-  //       "\nClient: " +
-  //       NewProject.clientName +
-  //       "\nProject Link: " +
-  //       NewProject.link +
-  //       "\nBuilts in: " +
-  //       NewProject.builtsin
-  //   );
+  console.log(
+      "Title: " +
+        NewProject.name +
+        "\nDescription: " +
+        NewProject.desc +
+        "\nStartDate: " +
+        NewProject.startDate +
+        "\nEnd Date: " +
+        NewProject.endDate +
+        "\nFeature Image: " +
+        NewProject.featureImage +
+        "\nClient: " +
+        NewProject.clientName +
+        "\nProject Link: " +
+        NewProject.link +
+        "\nBuilts in: " +
+        NewProject.builtsin
+    );
 });
 
 
@@ -148,7 +166,7 @@ useEffect(() => {
               }}
             />
 
-            {(selectedImage === null&&location.state.project.feature_image=="") ? (
+            {(selectedImage === null&&location.state.project.feature_image==="") ? (
               <div className="flex flex-col items-center justify-center pt-5 pb-6">
                 <svg
                   className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
@@ -180,6 +198,7 @@ useEffect(() => {
                   selectedImage === null
                     ? location.state.project.feature_image
                     : URL.createObjectURL(selectedImage)
+                    // 
                 }
                 alt="Selected"
               />

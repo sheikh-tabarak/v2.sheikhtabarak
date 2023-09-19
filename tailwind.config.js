@@ -9,17 +9,10 @@ module.exports = {
     // "./src/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {
-
-      // backgroundImage: {
-      //   'hero-pattern': "url('/assest')",
-      //  'footer-texture': "url('/img/footer-texture.png')",
-      // }
-    },
+    extend: {},
   },
   plugins: [
 
     require('flowbite/plugin')
   ],
 }
-

@@ -1,10 +1,14 @@
-import firebaseconnection from "../models/connection";
+import firebaseconnection, { storageRef } from "../models/connection";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import { toast } from "react-toastify";
 // import { toast } from "react-toastify";
 
 const firestore = firebaseconnection.firestore();
+
+
+
+
 
 class Project {
   constructor(
@@ -43,6 +47,50 @@ class Project {
     Builtsin
   ) {
     try {
+
+// let imageLink="";
+
+      // async function handleImageUpload (file) {
+    
+      //   const uploadTask = await storageRef.ref(`projectImages/${file.name}`).put(file);
+    
+      //    uploadTask.on(
+      //     'state_changed',
+      //     null,
+      //     (error) => {
+      //       console.error('Error uploading image: ', error);
+      //     },
+      //     async () => {
+      //       // Get the download URL of the uploaded image
+      //       await uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+
+      //         imageLink=downloadURL;
+
+
+    
+      //         // setNewProject({
+      //         //   name: NewProject.name,
+      //         //   desc: NewProject.desc,
+      //         //   github: NewProject.github,
+      //         //   clientName: NewProject.clientName,
+      //         //   startDate: NewProject.startDate,
+      //         //   endDate: NewProject.endDate,
+      //         //   featureImage: downloadURL,
+      //         //   link: NewProject.link,
+      //         //   builtsin: NewProject.builtsin,
+      //         // });
+    
+      //         console.log(imageLink)
+    
+    
+      //         // setImageURL(imageLink);
+      //       });
+      //     }
+      //   );
+      // // };
+
+
+
       // const oldProject = firestore.collection('projects');
       // const ProjectId = oldProject.doc().id;
       const newProject = firestore.collection("projects");

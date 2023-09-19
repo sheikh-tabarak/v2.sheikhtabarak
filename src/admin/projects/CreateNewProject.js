@@ -24,25 +24,12 @@ export default function CreateNewProject() {
   });
   
 
-  // const [imageURL, setImageURL] = useState("");
-
-
 
   async function handleImageUpload (file) {
-
-    // const file = e.target.files[0];
-    // setSelectedImage(file);
-    // setbeforeUploadimageURL(URL.createObjectURL(selectedImage));
-    // Create a reference to the Firebase Storage location where you want to store the image
-
-    // const storageRef = firebaseconnection.storage().ref(`images/${file.name}`);
-
-    // // Upload the selected image to Firebase Storage
     
-    
-    const uploadTask = storageRef.ref(`projectImages/${file.name}`).put(file);
+    const uploadTask =  storageRef.ref(`projectImages/${NewProject.name}`).put(file);
 
-    uploadTask.on(
+      uploadTask.on(
       'state_changed',
       null,
       (error) => {
@@ -105,30 +92,7 @@ export default function CreateNewProject() {
   const [SelectedTechList, setSelectedTechList] = useState([]);
 
   useEffect(() => {
-    // console.log("selected + "+NewProject.builtsin);
 
-    // const fetchTheTechnologies = async () => {
-    //   try {
-    //     const collectionRef = firebaseconnection
-    //       .firestore()
-    //       .collection("technologies");
-    //     const snapshot = await collectionRef.get();
-
-    //     const TechList = snapshot.docs.map((doc) => {
-    //       const data = doc.data();
-    //       return new Technology(
-    //         data.technology_id,
-    //         data.technology_title,
-    //         data.technology_desc
-    //       );
-    //     });
-    //     setTechList(TechList, false);
-    //   } catch (error) {
-    //     console.error("Error fetching projects:", error);
-    //   }
-    // };
-
-    // fetchTheTechnologies();
 
     console.log(
       "Title: " +
@@ -151,8 +115,10 @@ export default function CreateNewProject() {
   },[]);
 
   async function addData(e) {
+
     e.preventDefault();
     setisLoading(true);
+
 await handleImageUpload(ImageFile);
     console.log("okay done");
     const newProject = new Project();

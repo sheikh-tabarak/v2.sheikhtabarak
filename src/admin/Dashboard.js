@@ -13,6 +13,9 @@ import ManageProjects from "./projects/ManageProjects";
 import { ToastContainer } from "react-toastify";
 import { GrProjects, GrTechnology } from "react-icons/gr";
 
+import {AiTwotoneAppstore,AiOutlineUnorderedList} from "react-icons/ai";
+import {PiOfficeChairFill} from "react-icons/pi";
+
 export default function Dashboard() {
   // const nameuserbrowala = useContext(authContextBro);
   const navigate = useNavigate();
@@ -938,7 +941,10 @@ export default function Dashboard() {
                   className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 >
                   {/* <span className="text-[#4CD684]"> */}
-                    <GrProjects className="h-4 w-4 fill-emerald-950	 hover:fill-[#4CD684;]" />
+                  <p className="h-4 w-4 fill-[#4CD684] lg:fill-[#4CD684] stroke-[#4CD684] hover:fill-[#4CD684]">
+                <  AiTwotoneAppstore className="h-4 w-4 fill-[#1D3E39]  stroke-[#4CD684] hover:fill-[#4CD684]"/>
+                  </p>
+                   
                   {/* </span> */}
 
                   <span className="ml-3">Projects </span>
@@ -949,13 +955,30 @@ export default function Dashboard() {
             <li>
               <Link to={"/dashboard/projects/technologies"}>
                 <a
-                  target="_blank"
+                
                   className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 >
-                  <GrTechnology className="fill-[#CCD6F6;] hover:fill-[#4CD684;]" />
+                  <AiOutlineUnorderedList  className="h-4 w-4 fill-[#1D3E39] stroke-[#4CD684] hover:fill-[#4CD684]"/>
                   <span className="ml-3">Technologies </span>
                 </a>
               </Link>
+
+
+            </li>
+
+
+            <li>
+              <Link >
+                <a
+                
+                  className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                >
+                  <PiOfficeChairFill  className="h-4 w-4 fill-[#1D3E39] stroke-[#4CD684] hover:fill-[#4CD684]"/>
+                  <span className="ml-3">Experiences </span>
+                </a>
+              </Link>
+
+              
             </li>
 
             {/* //http://localhost:3000/dashboard/projects/technologies */}

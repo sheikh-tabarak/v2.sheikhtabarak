@@ -71,13 +71,6 @@ export default function MyTechnologies() {
     fetchTechnologies();
   }, [refreshData]);
 
-  // useEffect(() => {
-  //   console.log(
-  //     "Title: " +
-  //       NewTechnology.project_title
-  //   );
-  // });
-
   async function addNewTech(e) {
     e.preventDefault();
     setisLoading(true);

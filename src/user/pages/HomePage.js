@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../../styles/sheikhtabarak.css";
 import UserSideHeader from "../components/UserSideHeader";
 import HeroSection from "../components/HeroSection";
@@ -11,8 +11,16 @@ import { Link, Route, Routes } from "react-router-dom";
 import SocialIcons from "../components/socialIcons";
 import Footer from "../components/Footer";
 import SingleProject from "./SingleProject";
+import Experiences from "../../models/ExperienceClass";
+import firebaseconnection from "../../models/connection";
+import ProjectArchive from "../data/projectsdata";
 
 export default function HomePage() {
+
+
+  const [projects, setProjects] = useState([]);
+
+
   return (
     <>
       <div className="w-full bg-[#0A192F] ">
@@ -29,7 +37,14 @@ export default function HomePage() {
                 <HeroSection />
                 <AboutSection />
                 <Experience />
-                <Card />
+                <Card
+        Title={ProjectArchive[1].title}
+        image={ProjectArchive[1].project_image}
+        technology={ProjectArchive[1].builtwith}
+        description={ProjectArchive[1].description}
+        projectLink={ProjectArchive[1].link}
+        Github={ProjectArchive[1].github_link}
+      />
                 <Contact />
               </>
             }
