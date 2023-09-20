@@ -20,6 +20,9 @@ import store from "./store/store";
 import HomePage from "./user/pages/HomePage";
 import AnimatedCursor from "react-animated-cursor";
 import firebaseconnection from "./models/connection";
+import Project from "./models/ProjectsClass";
+import PortfolioList from "./admin/pages/PortfolioList";
+import { setProjectArchive } from "./store/actions/index";
 
 export const authContextBro = createContext("");
 
@@ -28,6 +31,49 @@ const analytics = getAnalytics(firebaseconnection);
 function App() {
   const [name, setname] = useState("test");
   const isLogin = useSelector((state) => state.checkLoginApp);
+
+  const [projects, setProjects] = useState([]);
+  const [refreshData, setrefreshData] = useState(false);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const collectionRef = firebaseconnection
+          .firestore()
+          .collection("projects");
+        const snapshot = await collectionRef.get();
+
+        const projectList = snapshot.docs.map((doc) => {
+          const data = doc.data();
+          return new Project(
+            data.project_id,
+            data.project_title,
+            data.project_description,
+            data.project_github,
+            data.client_name,
+            data.date_to_start,
+            data.date_to_end,
+            data.feature_image,
+            data.project_link,
+            data.builtsin
+          );
+
+        });
+
+        setProjects(projectList);
+        console.log(projectList);
+
+        store.dispatch(setProjectArchive(projectList));
+     
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+      }
+    };
+
+    fetchProjects();
+  },[refreshData]);
+
+  
 
   return (
     <authContextBro.Provider
@@ -47,6 +93,7 @@ function App() {
           <Route path="/*" element={<HomePage />} />
           <Route path="/login/" element={<Login />} />
           <Route path="/dashboard/*" element={<Dashboard />} />
+          <Route path="/portfolio/" element={<PortfolioList />} />
         </Routes>
       </BrowserRouter>
     </authContextBro.Provider>

@@ -21,6 +21,30 @@ const ProjectArchive = [
     github_link: "https://github.com/sheikh-tabarak/spot_hub",
   },
 
+
+  {
+    project_image: "",
+    description:"This Is Details",
+    year: 2023,
+    title: "Spothub",
+    madeat: "University of Gujrat",
+    builtwith: "Flutter,Firebase,Dart",
+    link: "https://spothub.sheikhtabarak.me/",
+    github_link: "https://github.com/sheikh-tabarak/spot_hub",
+  },
+
+
+  {
+    project_image: "",
+    description:"This Is Details",
+    year: 2023,
+    title: "Spothub",
+    madeat: "University of Gujrat",
+    builtwith: "Flutter,Firebase,Dart",
+    link: "https://spothub.sheikhtabarak.me/",
+    github_link: "https://github.com/sheikh-tabarak/spot_hub",
+  },
+
   {
     project_image: "",
     description:"This Is Details",
@@ -133,7 +157,7 @@ const ProjectArchive = [
     // playstore_link:""
   },
 
-  //https://candyhype.com/
+  // https://candyhype.com/
 ];
 
 export default ProjectArchive;

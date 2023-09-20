@@ -17,7 +17,7 @@ export default function Archive(props) {
   const [refreshData, setrefreshData] = useState(false);
 
   useEffect(() => {
-    const FilterText = history.pathname.split("/")[2];
+    const FilterText = history.pathname.split("/")[3];
     FilterText !== undefined ? setTech(FilterText) : setTech("");
 
     // const fetchProjects = async () => {

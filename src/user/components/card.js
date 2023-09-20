@@ -8,15 +8,8 @@ export default function Card(props) {
   const test = "React js, Firebase ";
   return (
     <section id="">
-      <div className="px-4 py-10 lg:px-36 lg:py-10 md:px-36 md:py-10">
-        <div id="" className="flex pb-0">
-          <h1 className="col menu-font-span text-[22px] ">3.</h1>
-          <h1 className="col text-[20px] leading-8 font-bold tracking-tight text-[#CCD6F6] md:text-[40px] lg:text-[24px]">
-            Some Things I’ve Built.
-          </h1>
-        </div>
-
-        <div className="grid grid-cols-7 gap-4 md:py-10 lg:my-10">
+      <div className="px-4 py-2 lg:px-36 lg:py-0 md:px-36 md:py-10">
+        <div className="grid grid-cols-7 gap-4 md:py-10 lg:my-0">
           <div className="col-span-0 lg:col-start-1 lg:col-end-5 py-0  ">
             <Link>
               <div className="w-full  border border-[#4CD684] rounded-lg shadow  bg-[#112240]">
@@ -41,7 +34,9 @@ export default function Card(props) {
                 </p>
 
                 <p className="py-1 px-2 col font-bold text-[18px] leading-8 mb-4 tracking-tight text-[#CCD6F6] hover:text-[#4CD684] md:text-[40px] lg:text-[22px] font-[500] ">
-                  <Link>{props.Title}</Link>
+                 
+                  
+                  {props.Title}
                 </p>
 
                 <p className="text-center lg:text-right bg-[#112240] p-5 rounded-[10px] text-[400] text-[12px] overflow-break tracking-tight text-[#8892B0] md:text-[15px] lg:text-[15px]">
@@ -97,12 +92,6 @@ export default function Card(props) {
             </div>
           </div>
         </div>
-
-        <Link className="text-center" to={"/archive/tech"}>
-          <p className="menu-font-span hover:underline leading-6 md:leading-10 text-[14px] lg:text-[16px] pb-10 ">
-            view the archive
-          </p>
-        </Link>
       </div>
     </section>
   );
