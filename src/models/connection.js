@@ -15,6 +15,11 @@ const firebaseConfig = {
 
 const firebaseconnection = firebase.initializeApp(firebaseConfig);
 
+
+
+
+
+
 const firestore = firebase.firestore();
 
 const storageRef = firebase.storage();
