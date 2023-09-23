@@ -14,6 +14,9 @@ import SingleProject from "./SingleProject";
 import Experiences from "../../models/ExperienceClass";
 import firebaseconnection from "../../models/connection";
 import ProjectArchive from "../data/projectsdata";
+import Page404 from "../components/Page404";
+import NewCard from "../components/NewCard";
+import FeaturedProjects from "../components/FeaturedProjects";
 
 export default function HomePage() {
 
@@ -37,18 +40,20 @@ export default function HomePage() {
                 <HeroSection />
                 <AboutSection />
                 <Experience />
-                <Card
+                <FeaturedProjects/>
+                {/* <NewCard
         Title={ProjectArchive[1].title}
         image={ProjectArchive[1].project_image}
         technology={ProjectArchive[1].builtwith}
         description={ProjectArchive[1].description}
         projectLink={ProjectArchive[1].link}
         Github={ProjectArchive[1].github_link}
-      />
+      /> */}
                 <Contact />
               </>
             }
           />
+           <Route path="/*" element={<Page404/>} />
           <Route path="/archive/tech/*" element={<Archive />} />
           <Route path="/archive/id/*" element={<SingleProject />}></Route>
 

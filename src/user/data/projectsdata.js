@@ -1,7 +1,7 @@
 const ProjectArchive = [
   {
     project_image: "",
-    description:"This Is Details",
+    description:"Here, we’ve called an anonymous arrow function within the onClick event handler. This function uses the updater function setIsNavExpanded to reverse the current value of the isNavExpanded state. This means isNavExpanded will toggle between true and false whenever the icon is clicked.",
     year: 2023,
     title: "Candy Shop",
     madeat: "Upwork",

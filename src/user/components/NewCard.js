@@ -1,28 +1,30 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+'use client';
+import React from "react";
+import { Card } from "flowbite-react";
 import { FaGithub, FaLink } from "react-icons/fa";
-import Image from "../../assests/projects/spothub.png";
 import projectgeneralimage from "../../assests/projects/projectgeneralimage.jpg";
 
-export default function Card(props) {
-  // const test = "React js, Firebase ";
+
+export default function NewCard(props) {
   return (
-    <section id="">
-      <div className="px-4 py-2 lg:px-36 lg:py-0 md:px-36 md:py-10">
-        <div className="lg:grid grid-col-7 gap-4 md:py-10 lg:my-0">
-          <div className="col-span-0 lg:col-start-1 lg:col-end-5 py-0 border border-[#4CD684] rounded-lg shadow ">
-            <img
-              className="rounded-lg w-[100%] h-[100%]"
-              src={props.image ? props.image : projectgeneralimage}
-              alt="product image"
-            />
-          </div>
-          <div className="ml-0 col-start-1 col-end-8 lg:col-end-8 lg:col-span-3  lg:-ml-40 content-center lg:content-center ">
-            <div className="">
-              
-              
-              
-              <div className="shadow lg:px-10 py-0 sm: md:py-10 text-center lg:text-right ">
+    <>
+    <Card vertical
+     className="bg-[#0A192F]"
+    imgSrc={props.image ? props.image : projectgeneralimage}
+    >
+      {/* <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+        <p>Noteworthy technology acquisitions 2021</p>
+      </h5>
+      
+      <p className="font-normal text-gray-700 dark:text-gray-400">
+        <p>
+          Here are the biggest enterprise technology acquisitions of 2021 so
+          far, in reverse chronological order.
+        </p>
+      </p> */}
+
+
+      {/* <div className="shadow lg:px-10 py-0 sm: md:py-10 text-center lg:text-right "> */}
                 <p className="pt-3 skills-font-span text-[13px] text-[#4CD684]">
                   Featured Project
                 </p>
@@ -42,7 +44,7 @@ export default function Card(props) {
                         key={i}
                         className="p-1 skills-font-span text-[13px] text-[#CCD6F6]"
                       >
-                        {i !== 0 && i < props.technology.length - 1 ? "-" : null}
+                        {i !== 0 && i < props.technology.length  - 1 ? "-" : null}
                         {value}
                       </span>
                     );
@@ -80,17 +82,9 @@ export default function Card(props) {
                     ""
                   )}
                 </div>
-              </div>
+              {/* </div> */}
 
-
-
-
-
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    </Card>
+    </>
   );
 }

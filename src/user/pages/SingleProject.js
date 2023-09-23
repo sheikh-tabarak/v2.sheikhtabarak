@@ -23,17 +23,20 @@ const [ProjectIndex, setProjectIndex] = useState(0);
     <>
       <div className="px-4 py-10 lg:px-36 lg:py-5 md:px-36 md:py-10">
         <div className="flex justify-between">
-<div className="flex gap-2 justify-item-middle justify-items-middle justify-middle align-items-center">
+          <Link to={"/archive/tech"}>
+          <div className="flex gap-2 items-center">
 <LiaAngleLeftSolid className="col text-[20px] leading-8 font-bold tracking-tight text-[#CCD6F6] md:text-[40px] lg:text-[24px]" />
    <h1 className="col text-[20px] leading-8 font-bold tracking-tight text-[#CCD6F6] md:text-[40px] lg:text-[24px]">
            Back the Archive List
           </h1>
 </div>
+          </Link>
+
        
 
           <div className="flex gap-4">
 
-<Link onClick={()=>{ProjectIndex>0?setProjectIndex(ProjectIndex-1):console.log("No project back")}} to={"/archive/id/" + ProjectIndex} state={{ index: ProjectIndex }} >
+{/* <Link onClick={()=>{ProjectIndex>0?setProjectIndex(ProjectIndex-1):console.log("No project back")}} to={"/archive/id/" + ProjectIndex} state={{ index: ProjectIndex }} >
  <div className="flex gap-2 justify-item-middle" >
                <LiaAngleLeftSolid className="col text-[20px] leading-8 font-bold tracking-tight text-[#CCD6F6] md:text-[40px] lg:text-[24px]" />
                <h1 className="col text-[20px] leading-8 font-bold tracking-tight text-[#CCD6F6] md:text-[40px] lg:text-[24px]">Previous </h1> 
@@ -47,7 +50,7 @@ const [ProjectIndex, setProjectIndex] = useState(0);
           
           <LiaAngleRightSolid className="col text-[20px]  tracking-tight text-[#CCD6F6] md:text-[40px] lg:text-[30px]" />
             </div>
-            </Link> 
+            </Link>  */}
 
           </div>
        

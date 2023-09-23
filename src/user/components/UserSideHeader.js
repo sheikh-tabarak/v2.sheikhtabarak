@@ -6,34 +6,30 @@ import { RiMenu3Fill } from "react-icons/ri";
 import { BiSolidUser } from "react-icons/bi";
 import { useEffect } from "react";
 import { useRef } from "react";
-
-
-
-
+import Resume from "../../assests/resume.pdf";
+import NewCard from "./NewCard";
 
 export default function UserSideHeader() {
   const [menu, setMenu] = useState(false);
 
-
-    function clickMenu() {
+  function clickMenu() {
     setMenu(!menu);
   }
 
+  // useEffect(()=>{
 
-  
-// useEffect(()=>{
+  //   function closeMenu() {
+  //     setMenu(false);
+  //   }
 
-//   function closeMenu() {
-//     setMenu(false);
-//   }
+  //   document.body.addEventListener('click'  ,closeMenu)
 
-//   document.body.addEventListener('click'  ,closeMenu)
-  
-//   },[!menu])
-  
+  //   },[!menu])
 
   return (
     <header className="sticky top-0 z-10">
+
+
       <nav className="dark border-gray-200 px-4 lg:px-8 py-2 bg-[#0A192F] z-50">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
           <Link to={"/"} className="flex items-center">
@@ -112,7 +108,9 @@ export default function UserSideHeader() {
               <li className="mt-5 lg:mt-0 hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-17">
                 <a
                   onClick={clickMenu}
-                  href="#"
+                  href={Resume}
+                  //  rel="noopener noreferrer"
+                  target="_blank"
                   className="menu-button px-12 py-3 hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175 "
                 >
                   Resume

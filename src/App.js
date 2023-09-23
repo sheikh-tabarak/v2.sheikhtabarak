@@ -23,6 +23,7 @@ import firebaseconnection from "./models/connection";
 import Project from "./models/ProjectsClass";
 import PortfolioList from "./admin/pages/PortfolioList";
 import { setProjectArchive } from "./store/actions/index";
+import Page404 from "./user/components/Page404";
 
 export const authContextBro = createContext("");
 
@@ -91,9 +92,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/*" element={<HomePage />} />
-          <Route path="/login/" element={<Login />} />
+          <Route path="/login/*" element={<Login />} />
+          {/* <Route path="/login/*" element={<Page404 />} /> */}
           <Route path="/dashboard/*" element={<Dashboard />} />
-          <Route path="/portfolio/" element={<PortfolioList />} />
+          {/* <Route path="/portfolio/" element={<PortfolioList />} /> */}
         </Routes>
       </BrowserRouter>
     </authContextBro.Provider>
