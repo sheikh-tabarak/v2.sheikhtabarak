@@ -20,8 +20,8 @@ const ExpirenceArray = [
     },
 
     {
-      title: "Internee",
-      Company: "National Incubation Center",
+      title: "Web developer Internee",
+      Company: "NIC",
       StartDate: "Oct 2022",
       JobLink:"https://pitb.gov.pk/nep-nics",
       EndDate: "Apr 2023",

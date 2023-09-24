@@ -1,5 +1,6 @@
 const ProjectArchive = [
   {
+    isfeatured:false,
     project_image: "",
     description:"Here, we’ve called an anonymous arrow function within the onClick event handler. This function uses the updater function setIsNavExpanded to reverse the current value of the isNavExpanded state. This means isNavExpanded will toggle between true and false whenever the icon is clicked.",
     year: 2023,
@@ -11,6 +12,7 @@ const ProjectArchive = [
   },
 
   {
+    isfeatured:true,
     project_image: "",
     description:"This Is Details",
     year: 2023,
@@ -23,6 +25,7 @@ const ProjectArchive = [
 
 
   {
+    isfeatured:false,
     project_image: "",
     description:"This Is Details",
     year: 2023,
@@ -35,6 +38,7 @@ const ProjectArchive = [
 
 
   {
+    isfeatured:false,
     project_image: "",
     description:"This Is Details",
     year: 2023,
@@ -46,6 +50,7 @@ const ProjectArchive = [
   },
 
   {
+    isfeatured:false,
     project_image: "",
     description:"This Is Details",
     year: 2022,
@@ -57,6 +62,7 @@ const ProjectArchive = [
   },
 
   {
+    isfeatured:false,
     project_image: "",
     description:"This Is Details",
     year: 2022,
@@ -70,6 +76,7 @@ const ProjectArchive = [
   },
 
   {
+    isfeatured:false,
     project_image: "",
     description:"This Is Details",
     year: 2022,
@@ -81,6 +88,7 @@ const ProjectArchive = [
     // playstore_link:""
   },
   {
+    isfeatured:false,
     project_image: "",
     description:"This Is Details",
     year: 2022,
@@ -94,6 +102,7 @@ const ProjectArchive = [
   },
 
   {
+    isfeatured:false,
     project_image: "",
     description:"This Is Details",
     year: 2022,
@@ -106,6 +115,7 @@ const ProjectArchive = [
   },
 
   {
+    isfeatured:false,
     project_image: "",
     description:"This Is Details",
     year: 2022,
@@ -119,6 +129,7 @@ const ProjectArchive = [
   },
 
   {
+    isfeatured:false,
     project_image: "",
     description:"This Is Details",
     year: 2022,
@@ -132,6 +143,7 @@ const ProjectArchive = [
   },
 
   {
+    isfeatured:false,
     project_image: "",
     description:"This Is Details",
     year: 2021,
@@ -145,6 +157,7 @@ const ProjectArchive = [
   },
 
   {
+    isfeatured:false,
     project_image: "",
     description:"This Is Details",
     year: 2019,

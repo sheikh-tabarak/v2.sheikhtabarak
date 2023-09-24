@@ -49,7 +49,7 @@ export default function Experience() {
 
   return (
     <section id="">
-      <div className="px-4 py-10 lg:px-36 lg:py-12 md:px-36 md:py-10">
+      <div className="px-10 py-10 lg:px-36 lg:py-12 md:px-36 md:py-10">
         <div id="" className="flex pb-4">
           <h1 className="col menu-font-span text-[22px] ">2.</h1>
           <h1 className="col text-[20px] leading-8 font-bold mb-4 tracking-tight text-[#CCD6F6] md:text-[40px] lg:text-[24px]">
@@ -58,7 +58,7 @@ export default function Experience() {
           {/* <hr className="h-px mx-8 my-12 bg-gray-400 border-1 dark:bg-gray-700"/> */}
         </div>
 
-        <div className="lg:flex overflow-x-auto space-x-8 w-full">
+        <div className="lg:flex overflow-x-auto lg:space-x-8 w-full">
           <div>
             <div
               id="menu1"
@@ -77,7 +77,7 @@ export default function Experience() {
                     }}
                     className={
                       menu === index
-                        ? "text-[#4CD684] hover:text-[#4CD684] text-left border-l-2 border-[#4CD684] text-[13px] experience-font-in-SFMonoBold flex justify-content space-x-6  focus:bg-gray-700 hover:bg-gray-700  px-3 py-2  w-full md:w-52"
+                        ? "text-[#4CD684] hover:text-[#4CD684] text-left border-l-2 border-[#4CD684] text-[13px] experience-font-in-SFMonoBold flex justify-content space-x-6  bg-gray-700 hover:bg-gray-700  px-3 py-2  w-full md:w-52"
                         : "text-left text-[13px] border-l-2  border-[#404C66]  experience-font-in-SFMonoBold flex justify-start items-center space-x-6  focus:bg-gray-700 focus:text-[#4CD684] hover:bg-gray-700 text-gray-400 px-3 py-2  w-full md:w-52"
                     }
                   >
@@ -88,8 +88,8 @@ export default function Experience() {
             </div>
           </div>
 
-          <div>
-            <div className="py-5 w-full shadow lg:px-10 lg:py-0 sm: md:py-10">
+          {/* <div> */}
+            <div className="py-5 lg:w-full shadow px-0 lg:px-10 lg:py-0 md:py-10">
               <span className="col text-[18px] leading-8 mb-4 tracking-tight text-[#CCD6F6] md:text-[40px] lg:text-[22px] font-[500]">
                 {ExpirenceArray[menu].title}
               </span>
@@ -113,7 +113,7 @@ export default function Experience() {
                 }
               </p>
             </div>
-          </div>
+          {/* </div> */}
         </div>
         <div id="work"></div>
       </div>

@@ -40,15 +40,9 @@ export default function HomePage() {
                 <HeroSection />
                 <AboutSection />
                 <Experience />
+
                 <FeaturedProjects/>
-                {/* <NewCard
-        Title={ProjectArchive[1].title}
-        image={ProjectArchive[1].project_image}
-        technology={ProjectArchive[1].builtwith}
-        description={ProjectArchive[1].description}
-        projectLink={ProjectArchive[1].link}
-        Github={ProjectArchive[1].github_link}
-      /> */}
+             
                 <Contact />
               </>
             }

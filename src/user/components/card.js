@@ -23,9 +23,13 @@ export default function Card(props) {
               
               
               <div className="shadow lg:px-10 py-0 sm: md:py-10 text-center lg:text-right ">
-                <p className="pt-3 skills-font-span text-[13px] text-[#4CD684]">
+              
+             {
+              props.isfeatured==true?
+              <p className="pt-3 skills-font-span text-[13px] text-[#4CD684]">
                   Featured Project
-                </p>
+                </p>:""
+             }   
 
                 <p className="py-1 px-2 col font-bold text-[18px] leading-8 mb-4 tracking-tight text-[#CCD6F6] hover:text-[#4CD684] md:text-[40px] lg:text-[22px] font-[500] ">
                   {props.Title}
@@ -42,7 +46,7 @@ export default function Card(props) {
                         key={i}
                         className="p-1 skills-font-span text-[13px] text-[#CCD6F6]"
                       >
-                        {i !== 0 && i < props.technology.length - 1 ? "-" : null}
+                        {i !== 0 && i < props.technology.length - 1 ? "- " : null}
                         {value}
                       </span>
                     );
