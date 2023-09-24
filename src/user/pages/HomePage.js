@@ -50,7 +50,6 @@ export default function HomePage() {
            <Route path="/*" element={<Page404/>} />
           <Route path="/archive/tech/*" element={<Archive />} />
           <Route path="/archive/id/*" element={<SingleProject />}></Route>
-
           {/* <Route path="/dashboard/*" element={<Dashboard />} /> */}
         </Routes>
 

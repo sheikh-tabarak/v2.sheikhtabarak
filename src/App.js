@@ -88,14 +88,11 @@ function App() {
         innerScale={0.7}
         outerScale={3}
       />
-      {/* <Particles options={options} init={particlesInit} /> */}
       <BrowserRouter>
         <Routes>
           <Route path="/*" element={<HomePage />} />
           <Route path="/login/*" element={<Login />} />
-          {/* <Route path="/login/*" element={<Page404 />} /> */}
           <Route path="/dashboard/*" element={<Dashboard />} />
-          {/* <Route path="/portfolio/" element={<PortfolioList />} /> */}
         </Routes>
       </BrowserRouter>
     </authContextBro.Provider>
