@@ -129,7 +129,7 @@ const ProjectArchive = [
     description:
       "Chat app includes User Login and Signup, Authentication and authorization using JWT, Realtime Messaging using socket.io, All Convos stored in MongoDb database, User active status (online , offline). ",
     year: 2023,
-    title: "ECommerce Redux Kit",
+    title: "Chat App",
     madeat: "sheikhtabarak",
     builtwith: "React js,Bootstrap, Mongo DB, Node js, Express, MERN",
     link: "https://chatapp.sheikhtabarak.me/",
