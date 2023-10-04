@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ParallaxBanner } from 'react-scroll-parallax';
 import LogoGif from "../../assests/logo/sheikhtabarak.gif";
 
 
