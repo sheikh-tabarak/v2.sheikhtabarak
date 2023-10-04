@@ -1,46 +1,76 @@
-"use client";
-import React from "react";
-import { Card } from "flowbite-react";
+import React from 'react'
 import { FaGithub, FaLink } from "react-icons/fa";
 import projectgeneralimage from "../../assests/projects/projectgeneralimage.jpg";
-import { Link } from "react-router-dom";
-// import Image from 'next/image';
+import { Link } from 'react-router-dom';
+import { Card } from 'flowbite-react';
+import { LiaAngleLeftSolid, LiaAngleRightSolid } from "react-icons/lia";
 
-export default function NewCard(props) {
+
+
+export default function SinglePageCard(props) {
   return (
     <>
+  
       <Card
         key={props.index}
         vertical
         className="bg-[#0A192F] border-[#8892B0]"
-        renderImage={() => {return <img  className=" object-cover h-36 p-0 m-0 rounded-t-lg	" src={props.image ? props.image : projectgeneralimage} />}}
+        renderImage={() => {
+          return (
+            <img
+              className=" object-cover p-0 m-0 rounded-t-lg	"
+              src={props.image ? props.image : projectgeneralimage}
+            />
+          );
+        }}
         // imgSrc={props.image ? props.image : projectgeneralimage}
       >
-       
-        <Link to={"/archive/id/" + props.index} state={{ index: props.index }}>
-          <p className="col font-bold text-[18px] leading-8 tracking-tight text-[#CCD6F6] hover:text-[#4CD684] md:text-[40px] lg:text-[22px] font-[500] ">
+        <Link
+          to={"/archive/id/" + props.index}
+          state={{ index: props.index }}
+        >
+          <p className="col font-bold text-[18px]  tracking-tight text-[#CCD6F6] hover:text-[#4CD684] md:text-[40px] lg:text-[22px] font-[500] ">
             {props.Title}
           </p>
         </Link>
 
-        {/* <p className="text-center lg:text-right bg-[#112240] p-5 rounded-[10px] text-[400] text-[12px] overflow-break tracking-tight text-[#8892B0] md:text-[15px] lg:text-[15px]">
+        <p className="text-left bg-[#112240] p-5 rounded-[10px] text-[400] text-[12px] overflow-break tracking-tight text-[#8892B0] md:text-[15px] lg:text-[15px]">
           {props.description}
-        </p> */}
+        </p>
 
-        <div className="text-left">
-        
+
+        <div className='flex justify-between'>
+ <div className="text-left">
           {props.technology.split(",").map((value, i) => {
             return (
               <span
                 key={i}
                 className="p-1 skills-font-span text-[13px] text-[#CCD6F6]"
               >
-                {i !== 0 && i < props.technology.length - 1 ? "- " : null}
+                {i !== 0 &&
+                i < props.technology.length - 1
+                  ? "- "
+                  : null}
                 {value}
               </span>
             );
           })}
         </div>
+
+        <div>
+
+        <span
+              
+                className="p-1 skills-font-span text-[13px] text-[#CCD6F6]"
+              >
+              {props.year}
+              </span>
+        </div>
+
+        </div>
+
+       
+    
 
         <div className="flex justify-between lg:justify-end lg:text-right gap-x-6 ">
           {props.projectLink ? (
@@ -52,7 +82,7 @@ export default function NewCard(props) {
             text-[10px] font-bold mb-4 tracking-tight text-[#8892B0] md:text-[13px] lg:text-[13px] lg:px-8 lg:py-3"
             >
               <FaLink />
-              {/* <span> View Project</span> */}
+              <span> View Project</span>
             </a>
           ) : (
             ""
@@ -67,14 +97,14 @@ export default function NewCard(props) {
             text-[10px] font-bold mb-4 tracking-tight text-[#8892B0] md:text-[13px] lg:text-[13px] lg:px-8 lg:py-3"
             >
               <FaGithub />
-              {/* Git hub Link */}
+              Git hub Link
             </a>
           ) : (
             ""
           )}
         </div>
-        {/* </div> */}
-      </Card>
-    </>
-  );
+        </Card>
+
+        </>
+  )
 }

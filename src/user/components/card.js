@@ -58,7 +58,7 @@ export default function Card(props) {
                     <a
                       id="about"
                       href={props.projectLink}
-                      className="w-full items-center flex gap-2 menu-button  hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175
+                      className=" items-center flex gap-2 menu-button  hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175
                       justify-center    py-3
             text-[10px] font-bold mb-4 tracking-tight text-[#8892B0] md:text-[13px] lg:text-[13px] lg:px-8 lg:py-3"
                     >
@@ -73,7 +73,7 @@ export default function Card(props) {
                     <a
                       id="about"
                       href={props.Github}
-                      className="w-full items-center flex gap-2 menu-button  hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175
+                      className=" items-center flex gap-2 menu-button  hover:-translate-y-1 hover:transition hover:ease-in-out hover:delay-175
                       justify-center  py-3
             text-[10px] font-bold mb-4 tracking-tight text-[#8892B0] md:text-[13px] lg:text-[13px] lg:px-8 lg:py-3"
                     >
@@ -85,12 +85,6 @@ export default function Card(props) {
                   )}
                 </div>
               </div>
-
-
-
-
-
-
             </div>
           </div>
         </div>

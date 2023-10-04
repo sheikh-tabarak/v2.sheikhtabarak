@@ -22,6 +22,8 @@ export default function Archive(props) {
   const [refreshData, setrefreshData] = useState(false);
   const [isTabular, setisTabular] = useState(true);
 
+  const [SearchText, setSearchText] = useState("");
+
   useEffect(() => {
     const FilterText = history.pathname.split("/")[3];
     FilterText !== undefined ? setTech(FilterText) : setTech("");
@@ -145,11 +147,24 @@ export default function Archive(props) {
       </p>
 
       <div className="flex justify-between mb-4 px-4  py-2 rounded-[5px]  bg-[#112240] ">
-        <p className="text-[16px] leading-8 text-[#8892B0] rounded-[5px]">
+        <div>
+          {/* <p className="text-[16px] leading-8 text-[#8892B0] rounded-[5px]">
           Change Layout
-        </p>
+        </p> */}
 
-        <div className="flex gap-5 items-center text-[16px] leading-8  rounded-[5px]">
+          <div>
+            <input
+              onChange={(e) => {
+                setSearchText(e.target.value);
+              }}
+              className="bg-transparent rounded w-full text-sm text-gray-100 focus:outline-none focus:ring-[#4CD684] focus:ring-2"
+              type="text"
+              placeholder="Search Project"
+            />
+          </div>
+        </div>
+
+        <div className="flex gap-5 items-center text-[16px] leading-8  rounded-[5px] ">
           <Link
             onClick={() => {
               setisTabular(false);
@@ -222,19 +237,27 @@ export default function Archive(props) {
                 element={
                   <>
                     {ProjectArchive.map((value, index) => {
-                      return isTabular == true ? (
-                        <ArchiveTable index={index} value={value} />
-                      ) : (
-                        <NewCard
-                          Title={value.title}
-                          image={value.project_image}
-                          technology={value.builtwith}
-                          description={value.description}
-                          projectLink={value.link}
-                          Github={value.github_link}
-                          index={index}
-                        />
-                      );
+                      if (
+                        value.title
+                          .toLowerCase()
+                          .includes(SearchText.toLowerCase())
+                      ) {
+                        return isTabular == true ? (
+                          <ArchiveTable index={index} value={value} />
+                        ) : (
+                          <NewCard
+                            Title={value.title}
+                            image={value.project_image}
+                            technology={value.builtwith}
+                            description={value.description}
+                            projectLink={value.link}
+                            Github={value.github_link}
+                            index={index}
+                          />
+                        );
+                      }
+
+                      // return null;
                     })}
                   </>
                 }
@@ -249,19 +272,25 @@ export default function Archive(props) {
                       !value.builtwith.replace(/\s/g, "").includes("Flutter") &&
                       !value.builtwith.replace(/\s/g, "").includes("Wordpress")
                     ) {
-                      return isTabular == true ? (
-                        <ArchiveTable index={index} value={value} />
-                      ) : (
-                        <NewCard
-                          Title={value.title}
-                          image={value.project_image}
-                          technology={value.builtwith}
-                          description={value.description}
-                          projectLink={value.link}
-                          Github={value.github_link}
-                          index={index}
-                        />
-                      );
+                      if (
+                        value.title
+                          .toLowerCase()
+                          .includes(SearchText.toLowerCase())
+                      ) {
+                        return isTabular == true ? (
+                          <ArchiveTable index={index} value={value} />
+                        ) : (
+                          <NewCard
+                            Title={value.title}
+                            image={value.project_image}
+                            technology={value.builtwith}
+                            description={value.description}
+                            projectLink={value.link}
+                            Github={value.github_link}
+                            index={index}
+                          />
+                        );
+                      }
                     }
                   } else {
                     if (
@@ -270,19 +299,25 @@ export default function Archive(props) {
                         .toLowerCase()
                         .includes(Tech.toLowerCase())
                     ) {
-                      return isTabular == true ? (
-                        <ArchiveTable index={index} value={value} />
-                      ) : (
-                        <NewCard
-                          Title={value.title}
-                          image={value.project_image}
-                          technology={value.builtwith}
-                          description={value.description}
-                          projectLink={value.link}
-                          Github={value.github_link}
-                          index={index}
-                        />
-                      );
+                      if (
+                        value.title
+                          .toLowerCase()
+                          .includes(SearchText.toLowerCase())
+                      ) {
+                        return isTabular == true ? (
+                          <ArchiveTable index={index} value={value} />
+                        ) : (
+                          <NewCard
+                            Title={value.title}
+                            image={value.project_image}
+                            technology={value.builtwith}
+                            description={value.description}
+                            projectLink={value.link}
+                            Github={value.github_link}
+                            index={index}
+                          />
+                        );
+                      }
                     }
                   }
                 })}

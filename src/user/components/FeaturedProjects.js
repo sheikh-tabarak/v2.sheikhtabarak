@@ -7,6 +7,9 @@ import ProjectArchive from '../data/projectsdata'
 export default function FeaturedProjects() {
   return (
     <div className="px-4 py-10 lg:px-36 lg:py-12 md:px-36 md:py-10">
+
+
+
       <div className="px-4 py-10 ">
         <div id="" className="flex pb-0">
           <h1 className="col menu-font-span text-[22px] ">3.</h1>

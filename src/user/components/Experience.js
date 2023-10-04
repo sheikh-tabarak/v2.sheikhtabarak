@@ -50,6 +50,8 @@ export default function Experience() {
   return (
     <section id="">
       <div className="px-10 py-10 lg:px-36 lg:py-12 md:px-36 md:py-10">
+
+
         <div id="" className="flex pb-4">
           <h1 className="col menu-font-span text-[22px] ">2.</h1>
           <h1 className="col text-[20px] leading-8 font-bold mb-4 tracking-tight text-[#CCD6F6] md:text-[40px] lg:text-[24px]">
