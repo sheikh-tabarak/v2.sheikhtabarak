@@ -6,6 +6,9 @@ import {
   useNavigate,
   Redirect,
 } from "react-router-dom";
+import Avator from "./assests/avator.jpg";
+
+import { FloatingWhatsApp } from 'react-floating-whatsapp'
 import "./App.css";
 import "firebase/auth";
 import Login from "./auth/Login";
@@ -95,7 +98,14 @@ function App() {
           <Route path="/dashboard/*" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
+      <FloatingWhatsApp allowClickAway="true" notificationDelay="5" notification="true" notificationSound="true" placeholder="Write to me.." darkMode="true" statusMessage="Typically replies within 10-15 mins" avatar={Avator} phoneNumber="+923154706237" accountName="Muhammad Tabarak" />
+
     </authContextBro.Provider>
+
+    
+
+
+
   );
 }
 
