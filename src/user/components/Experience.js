@@ -16,36 +16,37 @@ export default function Experience() {
   });
 
   const [Experience, setExperience] = useState([]);
+  
   const [refreshData, setrefreshData] = useState(false);
 
-  useEffect(() => {
-    const fetchExperiences = async () => {
-      try {
-        const collectionRef = firebaseconnection
-          .firestore()
-          .collection("experiences");
-        const snapshot = await collectionRef.get();
+  // useEffect(() => {
+  //   const fetchExperiences = async () => {
+  //     try {
+  //       const collectionRef = firebaseconnection
+  //         .firestore()
+  //         .collection("experiences");
+  //       const snapshot = await collectionRef.get();
 
-        const ExperienceList = snapshot.docs.map((doc) => {
-          const exdata = doc.data();
-          return new Experiences(
-            exdata.Company,
-            exdata.Description,
-            exdata.EndDate,
-            exdata.JobLink,
-            exdata.StartDate,
-            exdata.title
-          );
-        });
+  //       const ExperienceList = snapshot.docs.map((doc) => {
+  //         const exdata = doc.data();
+  //         return new Experiences(
+  //           exdata.Company,
+  //           exdata.Description,
+  //           exdata.EndDate,
+  //           exdata.JobLink,
+  //           exdata.StartDate,
+  //           exdata.title
+  //         );
+  //       });
 
-        setExperience(ExperienceList);
-      } catch (error) {
-        console.error("Error fetching projects:", error);
-      }
-    };
+  //       setExperience(ExperienceList);
+  //     } catch (error) {
+  //       console.error("Error fetching projects:", error);
+  //     }
+  //   };
 
-    fetchExperiences();
-  }, [refreshData]);
+  //   fetchExperiences();
+  // }, [refreshData]);
 
   return (
     <section id="">
@@ -71,7 +72,7 @@ export default function Experience() {
                 // :"hidden"
               } lg:justify-start lg:flex-col w-full md:w-auto items-start pb-1 `}
             >
-              {Experience.map((value, index) => {
+              {ExpirenceArray.map((value, index) => {
                 return (
                   <button
                     onClick={() => {
@@ -106,13 +107,13 @@ export default function Experience() {
                 {ExpirenceArray[menu].StartDate}-{ExpirenceArray[menu].EndDate}
               </p>
 
-              <p className="text-[14px]  tracking-tight text-[#8892B0] md:text-[18px] lg:text-[18px]">
-                {
+              <p dangerouslySetInnerHTML={{__html: ExpirenceArray[menu].Description}} className="text-[14px]  tracking-tight text-[#8892B0] md:text-[18px] lg:text-[18px]">
+                {/* {
                   ExpirenceArray[menu].Description
 
                   // : menu.four
                   // ? ExpirenceArray[3].Description
-                }
+                } */}
               </p>
             </div>
           {/* </div> */}
