@@ -5,9 +5,12 @@ import { FaRegCopyright } from "react-icons/fa";
 import Github from "./Github";
 import SocialIcons from "./socialIcons";
 
+
 export default function Footer() {
   return (
     <section>
+
+     
       <div className="  px-4 py-10 lg:px-36 lg:py-10 md:px-36 md:py-5">
         <div className="block lg:flex lg:justify-between lg:items-end">
           <div>
@@ -25,10 +28,6 @@ export default function Footer() {
               </p>
             </div>
 
-            {/* <p  className="text-[10px] lg:text-[13px] py-2 flex gap-2 content-between justify-start">A visual journey through my coding commitment and open-source contributions.</p> */}
-
-
-
             <Link
               to={"/"}
               className="menu-font-in-SFMonoBold text-[10px] lg:text-[13px]  flex gap-2 content-between justify-center lg:justify-start "
@@ -36,11 +35,7 @@ export default function Footer() {
               <FaRegCopyright className="self-center	" />
               2023 Copyrights | All Rights Reserved
             </Link>
-
-           
           </div>
-
-
           <Github />
         </div>
       </div>
