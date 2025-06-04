@@ -17,6 +17,7 @@ import ProjectArchive from "../data/projectsdata";
 import Page404 from "../components/Page404";
 import NewCard from "../components/NewCard";
 import FeaturedProjects from "../components/FeaturedProjects";
+import { Helmet } from 'react-helmet';
 
 export default function HomePage() {
 
@@ -26,6 +27,12 @@ export default function HomePage() {
 
   return (
     <>
+
+     <Helmet>
+        <title>Muhammad Tabarak - Second version of Muhammad Tabarak's Portfolio</title>
+        <link rel="canonical" href="https://sheikhtabarak.me/" />
+      </Helmet>
+
       <div className="w-full bg-[#0A192F] ">
         <UserSideHeader />
         <div className="hidden lg:block">

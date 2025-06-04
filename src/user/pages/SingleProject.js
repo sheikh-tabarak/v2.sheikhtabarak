@@ -8,6 +8,7 @@ import { LiaAngleLeftSolid, LiaAngleRightSolid } from "react-icons/lia";
 import NewCard from "../components/NewCard";
 import { FaGithub, FaLink } from "react-icons/fa";
 import SinglePageCard from "../components/SinglePageCard";
+import { Helmet } from 'react-helmet';
 
 export default function SingleProject(props) {
   const location = useLocation();
@@ -21,6 +22,10 @@ export default function SingleProject(props) {
 
   return (
     <>
+      <Helmet>
+        <title>{ProjectArchive[ProjectIndex].title}</title>
+        <link rel="canonical" href="https://sheikhtabarak.me/portfolio" />
+      </Helmet>
       <div className="px-4 py-10 lg:px-36 lg:py-5 md:px-36 md:py-10">
         <div className="flex justify-between pb-5">
           <Link to={"/archive/tech"}>

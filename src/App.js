@@ -13,20 +13,15 @@ import "./App.css";
 import "firebase/auth";
 import Login from "./auth/Login";
 import Dashboard from "./admin/Dashboard";
-import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import Home from "./user/home";
-import Portfolio from "./user/pages/portfolio";
 import { getAuth } from "firebase/auth";
-import { useDispatch, useSelector } from "react-redux/";
+import { useSelector } from "react-redux/";
 import store from "./store/store";
 import HomePage from "./user/pages/HomePage";
 import AnimatedCursor from "react-animated-cursor";
 import firebaseconnection from "./models/connection";
 import Project from "./models/ProjectsClass";
-import PortfolioList from "./admin/pages/PortfolioList";
 import { setProjectArchive } from "./store/actions/index";
-import Page404 from "./user/components/Page404";
 
 export const authContextBro = createContext("");
 

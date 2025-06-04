@@ -12,6 +12,7 @@ import SingleProject from "./SingleProject";
 import ArchiveTable from "../components/ArchiveTable";
 import FeaturedProjects from "../components/FeaturedProjects";
 import NewCard from "../components/NewCard";
+import { Helmet } from 'react-helmet';
 
 export default function Archive(props) {
   const [Moredetails, setMoredetails] = useState(true);
@@ -64,6 +65,12 @@ export default function Archive(props) {
 
   return (
     <div className="px-5 py-10 lg:px-36 lg:py-10 md:px-36 md:py-10">
+
+       <Helmet>
+              <title>Portfolio - Second version of Muhammad Tabarak's Portfolio</title>
+              <link rel="canonical" href="https://sheikhtabarak.me/portfolio" />
+            </Helmet>
+
       <div className="lg:justify-between  lg:flex	lg:items-end">
         <h1 className="text-[20px] font-bold  tracking-tight text-[#CCD6F6] md:text-[40px] lg:text-[60px]">
           Archive
